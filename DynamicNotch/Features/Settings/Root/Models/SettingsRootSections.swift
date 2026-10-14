@@ -73,6 +73,7 @@ extension SettingsRootViewModel {
     enum Section: String, CaseIterable, Identifiable {
         case general
         case homePage
+        case incidents
         #if DEBUG
         case debug
         #endif
@@ -174,6 +175,8 @@ extension SettingsRootViewModel {
                 return .calendar
             case "notifications", "externalDrives", "externalDevices":
                 return .externalDevices
+            case "incidencias", "asana":
+                return .incidents
             default:
                 return Self(rawValue: storedValue ?? "") ?? .general
             }
@@ -278,6 +281,27 @@ private enum SettingsSectionCatalog {
                 imageName: nil,
                 tint: .blue,
                 resetGroup: .homePage
+            )
+
+        case .incidents:
+            return .init(
+                sidebarGroup: .application,
+                titleKey: "incidents.settings.section.title",
+                fallbackTitle: "Incidents",
+                subtitleKey: "incidents.settings.section.subtitle",
+                fallbackSubtitle: "Asana incidents in the notch: account, appearance, sounds and alerts.",
+                searchKeywords: [
+                    "incidencias",
+                    "incidents",
+                    "asana",
+                    "tickets",
+                    "do not disturb",
+                    "hotkey"
+                ],
+                systemImage: "flame.fill",
+                imageName: nil,
+                tint: .orange,
+                resetGroup: .incidents
             )
 
         #if DEBUG

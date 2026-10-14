@@ -8,7 +8,7 @@ import Security
 import OpenDirectory
 
 enum FaceIDKeychainService {
-    private static let serviceName = "com.Jackson.DynamicNotch.FaceID"
+    private static let serviceName = "com.joandev.notchwatch.FaceID"
     private static let accountName = NSUserName()
 
     /// Verifies if the provided password authenticates the current macOS user account.

@@ -1,0 +1,877 @@
+[
+  {
+    "key": "incidents.settings.account.preset.tubuencamino",
+    "en": "Use Tubuencamino preset",
+    "es": "Usar preajuste de Tubuencamino"
+  },
+  {
+    "key": "incidents.settings.account.projects.card",
+    "en": "Watched projects",
+    "es": "Proyectos vigilados"
+  },
+  {
+    "key": "incidents.settings.account.projects.name",
+    "en": "Short name",
+    "es": "Nombre corto"
+  },
+  {
+    "key": "incidents.settings.account.projects.symbol",
+    "en": "SF Symbol",
+    "es": "Símbolo SF"
+  },
+  {
+    "key": "incidents.settings.account.remove",
+    "en": "Remove",
+    "es": "Eliminar"
+  },
+  {
+    "key": "incidents.settings.account.remove.confirm.message",
+    "en": "The token is deleted from the Keychain and the watched projects are forgotten.",
+    "es": "El token se borra del Llavero y se olvidan los proyectos vigilados."
+  },
+  {
+    "key": "incidents.settings.account.remove.confirm.title",
+    "en": "Remove the Asana account?",
+    "es": "¿Eliminar la cuenta de Asana?"
+  },
+  {
+    "key": "incidents.settings.account.remove.done",
+    "en": "Account removed.",
+    "es": "Cuenta eliminada."
+  },
+  {
+    "key": "incidents.settings.account.setup.reconfigure",
+    "en": "Change projects…",
+    "es": "Cambiar proyectos…"
+  },
+  {
+    "key": "incidents.settings.account.setup.start",
+    "en": "Set up with assistant…",
+    "es": "Configurar con el asistente…"
+  },
+  {
+    "key": "incidents.settings.account.subtitle",
+    "en": "Asana token, connection status and watched projects.",
+    "es": "Token de Asana, estado de la conexión y proyectos vigilados."
+  },
+  {
+    "key": "incidents.settings.account.title",
+    "en": "Account & Projects",
+    "es": "Cuenta y proyectos"
+  },
+  {
+    "key": "incidents.settings.account.token.card",
+    "en": "Personal access token",
+    "es": "Token de acceso personal"
+  },
+  {
+    "key": "incidents.settings.account.token.help",
+    "en": "Create a personal access token in Asana (My settings → Apps → Developer apps) and paste it here. It is stored in the Keychain only.",
+    "es": "Crea un token de acceso personal en Asana (Mi configuración → Aplicaciones → Apps de desarrollador) y pégalo aquí. Solo se guarda en el Llavero."
+  },
+  {
+    "key": "incidents.settings.account.token.placeholder",
+    "en": "Paste your Asana token",
+    "es": "Pega tu token de Asana"
+  },
+  {
+    "key": "incidents.settings.account.token.save",
+    "en": "Save & test",
+    "es": "Guardar y probar"
+  },
+  {
+    "key": "incidents.settings.account.workspace",
+    "en": "Workspace: %@",
+    "es": "Workspace: %@"
+  },
+  {
+    "key": "incidents.settings.advanced.card.hotkey",
+    "en": "Global shortcut",
+    "es": "Atajo global"
+  },
+  {
+    "key": "incidents.settings.advanced.card.profile",
+    "en": "Profile",
+    "es": "Perfil"
+  },
+  {
+    "key": "incidents.settings.advanced.card.reset",
+    "en": "Reset",
+    "es": "Restablecer"
+  },
+  {
+    "key": "incidents.settings.advanced.export.action",
+    "en": "Export…",
+    "es": "Exportar…"
+  },
+  {
+    "key": "incidents.settings.advanced.export.desc",
+    "en": "Saves sources, appearance, sounds and behavior as JSON. Tokens are never included.",
+    "es": "Guarda fuentes, apariencia, sonidos y comportamiento en JSON. Los tokens nunca se incluyen."
+  },
+  {
+    "key": "incidents.settings.advanced.export.done",
+    "en": "Profile exported to %@",
+    "es": "Perfil exportado a %@"
+  },
+  {
+    "key": "incidents.settings.advanced.export.title",
+    "en": "Export profile",
+    "es": "Exportar perfil"
+  },
+  {
+    "key": "incidents.settings.advanced.hotkey.desc",
+    "en": "Works from any app and needs no permission.",
+    "es": "Funciona desde cualquier app y no necesita permisos."
+  },
+  {
+    "key": "incidents.settings.advanced.hotkey.title",
+    "en": "Expand or collapse the island",
+    "es": "Desplegar o recoger la isla"
+  },
+  {
+    "key": "incidents.settings.advanced.import.action",
+    "en": "Import…",
+    "es": "Importar…"
+  },
+  {
+    "key": "incidents.settings.advanced.import.desc",
+    "en": "Replaces the current profile with the chosen JSON file. Add the token afterwards.",
+    "es": "Sustituye el perfil actual por el archivo JSON elegido. Añade el token después."
+  },
+  {
+    "key": "incidents.settings.advanced.import.done",
+    "en": "Profile imported from %@",
+    "es": "Perfil importado desde %@"
+  },
+  {
+    "key": "incidents.settings.advanced.import.title",
+    "en": "Import profile",
+    "es": "Importar perfil"
+  },
+  {
+    "key": "incidents.settings.advanced.path.title",
+    "en": "Profile location",
+    "es": "Ubicación del perfil"
+  },
+  {
+    "key": "incidents.settings.advanced.reset.action",
+    "en": "Reset…",
+    "es": "Restablecer…"
+  },
+  {
+    "key": "incidents.settings.advanced.reset.confirm.message",
+    "en": "Appearance, sounds, alerts and the shortcut go back to defaults. The Asana account and projects are kept.",
+    "es": "Apariencia, sonidos, avisos y atajo vuelven a sus valores por defecto. La cuenta de Asana y los proyectos se conservan."
+  },
+  {
+    "key": "incidents.settings.advanced.reset.confirm.title",
+    "en": "Reset every incidents setting?",
+    "es": "¿Restablecer todos los ajustes de incidencias?"
+  },
+  {
+    "key": "incidents.settings.advanced.reset.desc",
+    "en": "Keeps the Asana account and watched projects.",
+    "es": "Conserva la cuenta de Asana y los proyectos vigilados."
+  },
+  {
+    "key": "incidents.settings.advanced.reset.title",
+    "en": "Reset all incidents settings",
+    "es": "Restablecer todos los ajustes de incidencias"
+  },
+  {
+    "key": "incidents.settings.advanced.subtitle",
+    "en": "Global shortcut, profile export/import and reset.",
+    "es": "Atajo global, exportar/importar perfil y restablecer."
+  },
+  {
+    "key": "incidents.settings.advanced.title",
+    "en": "Shortcut & Advanced",
+    "es": "Atajo y avanzado"
+  },
+  {
+    "key": "incidents.settings.advanced.transfer.failed",
+    "en": "The profile could not be transferred",
+    "es": "No se pudo transferir el perfil"
+  },
+  {
+    "key": "incidents.settings.alerts.card.alert",
+    "en": "Alert card",
+    "es": "Tarjeta de aviso"
+  },
+  {
+    "key": "incidents.settings.alerts.card.dnd",
+    "en": "Do Not Disturb",
+    "es": "No molestar"
+  },
+  {
+    "key": "incidents.settings.alerts.card.notifications",
+    "en": "macOS notifications",
+    "es": "Notificaciones de macOS"
+  },
+  {
+    "key": "incidents.settings.alerts.card.reading",
+    "en": "Reading",
+    "es": "Lectura"
+  },
+  {
+    "key": "incidents.settings.alerts.card.schedule",
+    "en": "Quiet hours",
+    "es": "Horario de silencio"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.1h",
+    "en": "For 1 hour",
+    "es": "Durante 1 hora"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.30m",
+    "en": "For 30 minutes",
+    "es": "Durante 30 minutos"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.indefinite",
+    "en": "Until I turn it off",
+    "es": "Hasta que lo quite"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.off",
+    "en": "Off",
+    "es": "Desactivado"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.status.indefinite",
+    "en": "Silenced until you turn it off.",
+    "es": "En silencio hasta que lo desactives."
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.status.off",
+    "en": "Alerts and sounds arrive normally.",
+    "es": "Los avisos y sonidos llegan con normalidad."
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.status.until",
+    "en": "Silenced until %@.",
+    "es": "En silencio hasta las %@."
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.title",
+    "en": "Manual Do Not Disturb",
+    "es": "No molestar manual"
+  },
+  {
+    "key": "incidents.settings.alerts.dnd.tomorrow",
+    "en": "Until tomorrow",
+    "es": "Hasta mañana"
+  },
+  {
+    "key": "incidents.settings.alerts.duration.desc",
+    "en": "Seconds the alert stays by itself. High and urgent wait until acknowledged.",
+    "es": "Segundos que la tarjeta se mantiene sola. Las altas y urgentes esperan a que se atiendan."
+  },
+  {
+    "key": "incidents.settings.alerts.duration.title",
+    "en": "Card duration",
+    "es": "Duración de la tarjeta"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.allowed",
+    "en": "Allowed",
+    "es": "Permitido"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.denied",
+    "en": "Denied in System Settings",
+    "es": "Denegado en Ajustes del Sistema"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.notDetermined",
+    "en": "Not requested yet",
+    "es": "Aún no solicitado"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.openSettings",
+    "en": "Open System Settings",
+    "es": "Abrir Ajustes del Sistema"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.request",
+    "en": "Allow…",
+    "es": "Permitir…"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.status",
+    "en": "Status: %@",
+    "es": "Estado: %@"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.title",
+    "en": "Permission",
+    "es": "Permiso"
+  },
+  {
+    "key": "incidents.settings.alerts.permission.unavailable",
+    "en": "Unavailable in this build",
+    "es": "No disponible en esta compilación"
+  },
+  {
+    "key": "incidents.settings.alerts.pollInterval.desc",
+    "en": "Shorter intervals use more of the Asana rate limit.",
+    "es": "Intervalos más cortos consumen más límite de peticiones de Asana."
+  },
+  {
+    "key": "incidents.settings.alerts.pollInterval.title",
+    "en": "Check Asana every",
+    "es": "Consultar Asana cada"
+  },
+  {
+    "key": "incidents.settings.alerts.schedule.desc",
+    "en": "Silence incidents every day during this time range.",
+    "es": "Silencia las incidencias cada día en esta franja horaria."
+  },
+  {
+    "key": "incidents.settings.alerts.schedule.from",
+    "en": "From",
+    "es": "Desde"
+  },
+  {
+    "key": "incidents.settings.alerts.schedule.title",
+    "en": "Scheduled Do Not Disturb",
+    "es": "No molestar por horario"
+  },
+  {
+    "key": "incidents.settings.alerts.schedule.to",
+    "en": "To",
+    "es": "Hasta"
+  },
+  {
+    "key": "incidents.settings.alerts.showOnlyMine.desc",
+    "en": "Open the panel filtered to incidents assigned to you.",
+    "es": "Abre el panel filtrado a las incidencias asignadas a ti."
+  },
+  {
+    "key": "incidents.settings.alerts.showOnlyMine.title",
+    "en": "Show only mine by default",
+    "es": "Mostrar solo las mías por defecto"
+  },
+  {
+    "key": "incidents.settings.alerts.subtitle",
+    "en": "Do Not Disturb, alert card, macOS notifications and polling.",
+    "es": "No molestar, tarjeta de aviso, notificaciones de macOS y lectura."
+  },
+  {
+    "key": "incidents.settings.alerts.systemNotifications.desc",
+    "en": "Also post each new incident as a macOS notification with quick actions.",
+    "es": "Publica además cada incidencia nueva como notificación de macOS con acciones rápidas."
+  },
+  {
+    "key": "incidents.settings.alerts.systemNotifications.title",
+    "en": "Notification Center",
+    "es": "Centro de notificaciones"
+  },
+  {
+    "key": "incidents.settings.alerts.title",
+    "en": "Alerts",
+    "es": "Avisos"
+  },
+  {
+    "key": "incidents.settings.alerts.urgentBreaksThrough.desc",
+    "en": "With Do Not Disturb on, urgent incidents keep their sound and alert.",
+    "es": "Con No molestar activo, las urgentes conservan su sonido y su aviso."
+  },
+  {
+    "key": "incidents.settings.alerts.urgentBreaksThrough.title",
+    "en": "Urgent incidents still sound",
+    "es": "Las urgentes suenan igualmente"
+  },
+  {
+    "key": "incidents.settings.appearance.card.colors",
+    "en": "Priority colors",
+    "es": "Colores por prioridad"
+  },
+  {
+    "key": "incidents.settings.appearance.card.motion",
+    "en": "Motion",
+    "es": "Movimiento"
+  },
+  {
+    "key": "incidents.settings.appearance.card.theme",
+    "en": "Theme",
+    "es": "Tema"
+  },
+  {
+    "key": "incidents.settings.appearance.card.typography",
+    "en": "Typography",
+    "es": "Tipografía"
+  },
+  {
+    "key": "incidents.settings.appearance.font.desc",
+    "en": "Design used for titles and chips in the island.",
+    "es": "Diseño de letra para títulos y chips de la isla."
+  },
+  {
+    "key": "incidents.settings.appearance.font.title",
+    "en": "Font",
+    "es": "Tipografía"
+  },
+  {
+    "key": "incidents.settings.appearance.motion.desc",
+    "en": "How often the island breathes, shimmers or unfolds while idle.",
+    "es": "Con qué frecuencia la isla respira, brilla o se despliega en reposo."
+  },
+  {
+    "key": "incidents.settings.appearance.motion.title",
+    "en": "Ambient motion",
+    "es": "Movimiento ambiental"
+  },
+  {
+    "key": "incidents.settings.appearance.subtitle",
+    "en": "Theme, priority colors, typography and motion.",
+    "es": "Tema, colores por prioridad, tipografía y movimiento."
+  },
+  {
+    "key": "incidents.settings.appearance.textScale.desc",
+    "en": "Scales every text in the island.",
+    "es": "Escala todos los textos de la isla."
+  },
+  {
+    "key": "incidents.settings.appearance.textScale.title",
+    "en": "Text size",
+    "es": "Tamaño de texto"
+  },
+  {
+    "key": "incidents.settings.appearance.theme.desc",
+    "en": "Automatic follows the system appearance.",
+    "es": "Automático sigue la apariencia del sistema."
+  },
+  {
+    "key": "incidents.settings.appearance.theme.title",
+    "en": "Island theme",
+    "es": "Tema de la isla"
+  },
+  {
+    "key": "incidents.settings.appearance.title",
+    "en": "Appearance",
+    "es": "Apariencia"
+  },
+  {
+    "key": "incidents.settings.card.activity",
+    "en": "Activity",
+    "es": "Actividad"
+  },
+  {
+    "key": "incidents.settings.card.status",
+    "en": "Connection",
+    "es": "Conexión"
+  },
+  {
+    "key": "incidents.settings.enabled.desc",
+    "en": "Watch Asana incidents and show them as a live activity.",
+    "es": "Vigila las incidencias de Asana y las muestra como live activity."
+  },
+  {
+    "key": "incidents.settings.enabled.title",
+    "en": "Incidents in the notch",
+    "es": "Incidencias en el notch"
+  },
+  {
+    "key": "incidents.settings.error.decoding",
+    "en": "Unexpected answer from Asana: %@",
+    "es": "Respuesta inesperada de Asana: %@"
+  },
+  {
+    "key": "incidents.settings.error.http",
+    "en": "Asana answered %d: %@",
+    "es": "Asana respondió %d: %@"
+  },
+  {
+    "key": "incidents.settings.error.invalidConfiguration",
+    "en": "Invalid configuration: %@",
+    "es": "Configuración no válida: %@"
+  },
+  {
+    "key": "incidents.settings.error.network",
+    "en": "Network error: %@",
+    "es": "Error de red: %@"
+  },
+  {
+    "key": "incidents.settings.error.rateLimited",
+    "en": "Asana is rate limiting requests. Try again in a minute.",
+    "es": "Asana está limitando las peticiones. Vuelve a intentarlo en un minuto."
+  },
+  {
+    "key": "incidents.settings.error.unauthorized",
+    "en": "Asana rejected the token. Check that it is valid and has not expired.",
+    "es": "Asana rechazó el token. Comprueba que es válido y no ha caducado."
+  },
+  {
+    "key": "incidents.settings.font.monospaced",
+    "en": "Monospaced",
+    "es": "Monoespaciada"
+  },
+  {
+    "key": "incidents.settings.font.rounded",
+    "en": "Rounded",
+    "es": "Redondeada"
+  },
+  {
+    "key": "incidents.settings.font.system",
+    "en": "System",
+    "es": "Sistema"
+  },
+  {
+    "key": "incidents.settings.format.minutes",
+    "en": "%d min",
+    "es": "%d min"
+  },
+  {
+    "key": "incidents.settings.format.seconds",
+    "en": "%d s",
+    "es": "%d s"
+  },
+  {
+    "key": "incidents.settings.hotkey.off",
+    "en": "Off",
+    "es": "Desactivado"
+  },
+  {
+    "key": "incidents.settings.motif.alarm",
+    "en": "Alarm",
+    "es": "Alarma"
+  },
+  {
+    "key": "incidents.settings.motif.chime",
+    "en": "Chime",
+    "es": "Campanilla"
+  },
+  {
+    "key": "incidents.settings.motif.drop",
+    "en": "Drop",
+    "es": "Gota"
+  },
+  {
+    "key": "incidents.settings.motif.glass",
+    "en": "Glass",
+    "es": "Cristal"
+  },
+  {
+    "key": "incidents.settings.motif.tick",
+    "en": "Tick",
+    "es": "Tic"
+  },
+  {
+    "key": "incidents.settings.motif.triad",
+    "en": "Triad",
+    "es": "Tríada"
+  },
+  {
+    "key": "incidents.settings.motion.lively",
+    "en": "Lively",
+    "es": "Vivo"
+  },
+  {
+    "key": "incidents.settings.motion.normal",
+    "en": "Normal",
+    "es": "Normal"
+  },
+  {
+    "key": "incidents.settings.motion.off",
+    "en": "Off",
+    "es": "Desactivado"
+  },
+  {
+    "key": "incidents.settings.motion.subtle",
+    "en": "Subtle",
+    "es": "Sutil"
+  },
+  {
+    "key": "incidents.settings.priority.high",
+    "en": "High",
+    "es": "Alta"
+  },
+  {
+    "key": "incidents.settings.priority.low",
+    "en": "Low",
+    "es": "Baja"
+  },
+  {
+    "key": "incidents.settings.priority.medium",
+    "en": "Medium",
+    "es": "Media"
+  },
+  {
+    "key": "incidents.settings.priority.none",
+    "en": "No priority",
+    "es": "Sin prioridad"
+  },
+  {
+    "key": "incidents.settings.priority.urgent",
+    "en": "Urgent",
+    "es": "Urgente"
+  },
+  {
+    "key": "incidents.settings.section.subtitle",
+    "en": "Asana incidents in the notch: account, appearance, sounds and alerts.",
+    "es": "Incidencias de Asana en el notch: cuenta, apariencia, sonidos y avisos."
+  },
+  {
+    "key": "incidents.settings.section.title",
+    "en": "Incidents",
+    "es": "Incidencias"
+  },
+  {
+    "key": "incidents.settings.setup.back",
+    "en": "Back",
+    "es": "Atrás"
+  },
+  {
+    "key": "incidents.settings.setup.next",
+    "en": "Next",
+    "es": "Siguiente"
+  },
+  {
+    "key": "incidents.settings.setup.preset.help",
+    "en": "The preset connects the seven Tubuencamino incident projects without further questions.",
+    "es": "El preajuste conecta los siete proyectos de incidencias de Tubuencamino sin más preguntas."
+  },
+  {
+    "key": "incidents.settings.setup.projects.archived",
+    "en": "Archived",
+    "es": "Archivado"
+  },
+  {
+    "key": "incidents.settings.setup.projects.empty",
+    "en": "No projects match.",
+    "es": "Ningún proyecto coincide."
+  },
+  {
+    "key": "incidents.settings.setup.projects.help",
+    "en": "Pick the projects to watch. Each one becomes a collection in the notch.",
+    "es": "Elige los proyectos a vigilar. Cada uno será una colección en el notch."
+  },
+  {
+    "key": "incidents.settings.setup.projects.search",
+    "en": "Search projects",
+    "es": "Buscar proyectos"
+  },
+  {
+    "key": "incidents.settings.setup.projects.selected",
+    "en": "%d selected",
+    "es": "%d seleccionados"
+  },
+  {
+    "key": "incidents.settings.setup.review.detected",
+    "en": "Detected section",
+    "es": "Sección Detectadas"
+  },
+  {
+    "key": "incidents.settings.setup.review.detected.desc",
+    "en": "Open tasks here are pending incidents.",
+    "es": "Las tareas abiertas aquí son incidencias pendientes."
+  },
+  {
+    "key": "incidents.settings.setup.review.help",
+    "en": "Check the detected sections and fields for each project. You can change them later.",
+    "es": "Revisa las secciones y campos detectados en cada proyecto. Podrás cambiarlos después."
+  },
+  {
+    "key": "incidents.settings.setup.review.none",
+    "en": "None",
+    "es": "Ninguna"
+  },
+  {
+    "key": "incidents.settings.setup.review.priority",
+    "en": "Priority field",
+    "es": "Campo de prioridad"
+  },
+  {
+    "key": "incidents.settings.setup.review.priority.desc",
+    "en": "Enum field whose options map to urgent, high, medium and low.",
+    "es": "Campo de tipo lista cuyas opciones se corresponden con urgente, alta, media y baja."
+  },
+  {
+    "key": "incidents.settings.setup.review.resolved",
+    "en": "Resolution section",
+    "es": "Sección Resolución"
+  },
+  {
+    "key": "incidents.settings.setup.review.resolved.desc",
+    "en": "Resolving moves the task here. Without it, resolving is disabled.",
+    "es": "Resolver mueve la tarea aquí. Sin ella, resolver queda desactivado."
+  },
+  {
+    "key": "incidents.settings.setup.save",
+    "en": "Save",
+    "es": "Guardar"
+  },
+  {
+    "key": "incidents.settings.setup.step",
+    "en": "Step %d of %d",
+    "es": "Paso %d de %d"
+  },
+  {
+    "key": "incidents.settings.setup.step.projects",
+    "en": "Projects",
+    "es": "Proyectos"
+  },
+  {
+    "key": "incidents.settings.setup.step.review",
+    "en": "Review",
+    "es": "Revisión"
+  },
+  {
+    "key": "incidents.settings.setup.step.token",
+    "en": "Personal access token",
+    "es": "Token de acceso personal"
+  },
+  {
+    "key": "incidents.settings.setup.step.workspace",
+    "en": "Workspace",
+    "es": "Workspace"
+  },
+  {
+    "key": "incidents.settings.setup.title",
+    "en": "Connect Asana",
+    "es": "Conectar Asana"
+  },
+  {
+    "key": "incidents.settings.setup.workspace.help",
+    "en": "Choose the workspace that holds the incident projects.",
+    "es": "Elige el workspace que contiene los proyectos de incidencias."
+  },
+  {
+    "key": "incidents.settings.sounds.card.general",
+    "en": "Sound",
+    "es": "Sonido"
+  },
+  {
+    "key": "incidents.settings.sounds.card.motifs",
+    "en": "Sound per priority",
+    "es": "Sonido por prioridad"
+  },
+  {
+    "key": "incidents.settings.sounds.card.repeats",
+    "en": "Repeats",
+    "es": "Repeticiones"
+  },
+  {
+    "key": "incidents.settings.sounds.muted.desc",
+    "en": "Incidents arrive silently; the island still updates.",
+    "es": "Las incidencias llegan en silencio; la isla se sigue actualizando."
+  },
+  {
+    "key": "incidents.settings.sounds.muted.title",
+    "en": "Mute",
+    "es": "Silenciar"
+  },
+  {
+    "key": "incidents.settings.sounds.preview",
+    "en": "Preview",
+    "es": "Probar"
+  },
+  {
+    "key": "incidents.settings.sounds.repeatInterval.desc",
+    "en": "Pause between repeats while unattended.",
+    "es": "Pausa entre repeticiones mientras no se atienden."
+  },
+  {
+    "key": "incidents.settings.sounds.repeatInterval.title",
+    "en": "Repeat every",
+    "es": "Repetir cada"
+  },
+  {
+    "key": "incidents.settings.sounds.repeats.desc",
+    "en": "Keep sounding until the incident is acknowledged.",
+    "es": "Sigue sonando hasta que la incidencia se atiende."
+  },
+  {
+    "key": "incidents.settings.sounds.repeats.title",
+    "en": "Repeat high and urgent",
+    "es": "Repetir altas y urgentes"
+  },
+  {
+    "key": "incidents.settings.sounds.subtitle",
+    "en": "Volume, sound per priority and repeats.",
+    "es": "Volumen, sonido por prioridad y repeticiones."
+  },
+  {
+    "key": "incidents.settings.sounds.title",
+    "en": "Sounds",
+    "es": "Sonidos"
+  },
+  {
+    "key": "incidents.settings.sounds.volume.desc",
+    "en": "Relative to the system output volume.",
+    "es": "Relativo al volumen de salida del sistema."
+  },
+  {
+    "key": "incidents.settings.sounds.volume.title",
+    "en": "Volume",
+    "es": "Volumen"
+  },
+  {
+    "key": "incidents.settings.status.connectedAs",
+    "en": "Connected as %@",
+    "es": "Conectado como %@"
+  },
+  {
+    "key": "incidents.settings.status.connecting",
+    "en": "Connecting…",
+    "es": "Conectando…"
+  },
+  {
+    "key": "incidents.settings.status.notConfigured",
+    "en": "No account connected",
+    "es": "Ninguna cuenta conectada"
+  },
+  {
+    "key": "incidents.settings.status.notConfigured.desc",
+    "en": "Add your Asana token in Account & Projects to start watching incidents.",
+    "es": "Añade tu token de Asana en Cuenta y proyectos para empezar a vigilar incidencias."
+  },
+  {
+    "key": "incidents.settings.status.projects",
+    "en": "%d watched projects",
+    "es": "%d proyectos vigilados"
+  },
+  {
+    "key": "incidents.settings.status.refresh",
+    "en": "Refresh",
+    "es": "Actualizar"
+  },
+  {
+    "key": "incidents.settings.status.updated",
+    "en": "Updated %@",
+    "es": "Actualizado %@"
+  },
+  {
+    "key": "incidents.settings.textScale.large",
+    "en": "Large",
+    "es": "Grande"
+  },
+  {
+    "key": "incidents.settings.textScale.regular",
+    "en": "Regular",
+    "es": "Normal"
+  },
+  {
+    "key": "incidents.settings.textScale.small",
+    "en": "Small",
+    "es": "Pequeño"
+  },
+  {
+    "key": "incidents.settings.theme.automatic",
+    "en": "Automatic",
+    "es": "Automático"
+  },
+  {
+    "key": "incidents.settings.theme.dark",
+    "en": "Dark",
+    "es": "Oscuro"
+  },
+  {
+    "key": "incidents.settings.theme.light",
+    "en": "Light",
+    "es": "Claro"
+  }
+]

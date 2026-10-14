@@ -24,6 +24,7 @@ final class AppContainer {
     let lockScreenManager: LockScreenManager
     let clockTimerController: any ClockTimerControlling
     let externalDrivesMonitor: ExternalDrivesMonitor
+    let incidentsViewModel: IncidentsViewModel
 
     lazy var hardwareHUDMonitor: HardwareHUDMonitor = {
         MainActor.assumeIsolated {
@@ -122,5 +123,29 @@ final class AppContainer {
                 LockScreenSoundPlayer()
         )
         self.externalDrivesMonitor = ExternalDrivesMonitor()
+        self.incidentsViewModel = AppContainer.makeIncidentsViewModel(isRunningTests: isRunningTests)
+    }
+
+    private static func makeIncidentsViewModel(isRunningTests: Bool) -> IncidentsViewModel {
+        let profileStore = IncidentsProfileStore.shared
+        if isRunningTests {
+            return IncidentsViewModel(
+                profileStore: profileStore,
+                monitoring: InactiveIncidentMonitoring(),
+                notifier: InactiveIncidentNotifier()
+            )
+        }
+        let notifier: any IncidentNotifying
+        if let liveNotifier = IncidentNotifier.make() {
+            notifier = liveNotifier
+        } else {
+            notifier = InactiveIncidentNotifier()
+        }
+        return IncidentsViewModel(
+            profileStore: profileStore,
+            monitoring: LiveIncidentMonitoring(storeURL: profileStore.seenStoreURL),
+            notifier: notifier,
+            hotKey: IncidentsHotKey()
+        )
     }
 }

@@ -1,0 +1,252 @@
+[
+  {
+    "key": "incidents.action.assigned",
+    "en": "Assigned to you",
+    "es": "Asignada a ti"
+  },
+  {
+    "key": "incidents.action.dueDateChanged",
+    "en": "Due date updated",
+    "es": "Vencimiento actualizado"
+  },
+  {
+    "key": "incidents.action.noLink",
+    "en": "This incident has no link",
+    "es": "Esta incidencia no tiene enlace"
+  },
+  {
+    "key": "incidents.action.noSource",
+    "en": "No source for this incident",
+    "es": "No hay fuente para esta incidencia"
+  },
+  {
+    "key": "incidents.action.openDemo",
+    "en": "Test incident: nothing to open",
+    "es": "Incidencia de prueba: no hay nada que abrir"
+  },
+  {
+    "key": "incidents.action.priorityChanged",
+    "en": "Priority updated",
+    "es": "Prioridad actualizada"
+  },
+  {
+    "key": "incidents.action.resolved",
+    "en": "Moved to verification",
+    "es": "Movida a verificación"
+  },
+  {
+    "key": "incidents.demo.prefix",
+    "en": "[Test]",
+    "es": "[Prueba]"
+  },
+  {
+    "key": "incidents.due.inDays",
+    "en": "Due in %d d",
+    "es": "Vence en %d d"
+  },
+  {
+    "key": "incidents.due.onDate",
+    "en": "Due %@",
+    "es": "Vence %@"
+  },
+  {
+    "key": "incidents.due.overdueDays",
+    "en": "Overdue by %d d",
+    "es": "Venció hace %d d"
+  },
+  {
+    "key": "incidents.due.today",
+    "en": "Due today",
+    "es": "Vence hoy"
+  },
+  {
+    "key": "incidents.due.tomorrow",
+    "en": "Due tomorrow",
+    "es": "Vence mañana"
+  },
+  {
+    "key": "incidents.due.yesterday",
+    "en": "Was due yesterday",
+    "es": "Venció ayer"
+  },
+  {
+    "key": "incidents.dueOption.inOneWeek",
+    "en": "In a week",
+    "es": "En una semana"
+  },
+  {
+    "key": "incidents.dueOption.inThreeDays",
+    "en": "In 3 days",
+    "es": "En 3 días"
+  },
+  {
+    "key": "incidents.dueOption.nextMonday",
+    "en": "Next Monday",
+    "es": "Próximo lunes"
+  },
+  {
+    "key": "incidents.dueOption.today",
+    "en": "Today",
+    "es": "Hoy"
+  },
+  {
+    "key": "incidents.dueOption.tomorrow",
+    "en": "Tomorrow",
+    "es": "Mañana"
+  },
+  {
+    "key": "incidents.error.configuration",
+    "en": "Configuration problem: %@",
+    "es": "Problema de configuración: %@"
+  },
+  {
+    "key": "incidents.error.decoding",
+    "en": "Unexpected answer: %@",
+    "es": "Respuesta inesperada: %@"
+  },
+  {
+    "key": "incidents.error.http",
+    "en": "Asana answered %d: %@",
+    "es": "Asana respondió %d: %@"
+  },
+  {
+    "key": "incidents.error.network",
+    "en": "No connection (%@)",
+    "es": "Sin conexión (%@)"
+  },
+  {
+    "key": "incidents.error.rateLimited",
+    "en": "Asana is rate limiting requests; retrying shortly",
+    "es": "Asana está limitando las peticiones; se reintenta en breve"
+  },
+  {
+    "key": "incidents.error.unauthorized",
+    "en": "The token is not valid or has expired",
+    "es": "El token no es válido o ha caducado"
+  },
+  {
+    "key": "incidents.hotKey.error.install",
+    "en": "The shortcut could not be enabled (error %d).",
+    "es": "No se pudo activar el atajo (error %d)."
+  },
+  {
+    "key": "incidents.hotKey.error.register",
+    "en": "%@ could not be enabled (error %d).",
+    "es": "No se pudo activar %@ (error %d)."
+  },
+  {
+    "key": "incidents.hotKey.error.taken",
+    "en": "Another app already uses %@. Choose a different shortcut.",
+    "es": "Otra app ya usa %@. Elige otro atajo."
+  },
+  {
+    "key": "incidents.hotKey.off",
+    "en": "Off",
+    "es": "Desactivado"
+  },
+  {
+    "key": "incidents.notification.action.assign",
+    "en": "Assign to me",
+    "es": "Asignármela"
+  },
+  {
+    "key": "incidents.notification.action.open",
+    "en": "Open",
+    "es": "Abrir"
+  },
+  {
+    "key": "incidents.notification.action.snooze",
+    "en": "Snooze 1 h",
+    "es": "Posponer 1 h"
+  },
+  {
+    "key": "incidents.notification.andMore",
+    "en": "%@ and %d more",
+    "es": "%@ y %d más"
+  },
+  {
+    "key": "incidents.notification.consoleErrors.many",
+    "en": "%d console errors",
+    "es": "%d errores de consola"
+  },
+  {
+    "key": "incidents.notification.consoleErrors.one",
+    "en": "%d console error",
+    "es": "%d error de consola"
+  },
+  {
+    "key": "incidents.notification.mostImportant",
+    "en": "Most important: %@",
+    "es": "La más importante: %@"
+  },
+  {
+    "key": "incidents.notification.new.many",
+    "en": "%d new incidents",
+    "es": "%d incidencias nuevas"
+  },
+  {
+    "key": "incidents.notification.new.one",
+    "en": "%d new incident",
+    "es": "%d incidencia nueva"
+  },
+  {
+    "key": "incidents.notification.pending.many",
+    "en": "%d pending incidents",
+    "es": "%d incidencias pendientes"
+  },
+  {
+    "key": "incidents.notification.pending.one",
+    "en": "%d pending incident",
+    "es": "%d incidencia pendiente"
+  },
+  {
+    "key": "incidents.notification.reportedBy",
+    "en": "Reported by %@",
+    "es": "Reportada por %@"
+  },
+  {
+    "key": "incidents.priority.high",
+    "en": "High",
+    "es": "Alta"
+  },
+  {
+    "key": "incidents.priority.low",
+    "en": "Low",
+    "es": "Baja"
+  },
+  {
+    "key": "incidents.priority.medium",
+    "en": "Medium",
+    "es": "Media"
+  },
+  {
+    "key": "incidents.priority.none",
+    "en": "No priority",
+    "es": "Sin prioridad"
+  },
+  {
+    "key": "incidents.priority.urgent",
+    "en": "Urgent",
+    "es": "Urgente"
+  },
+  {
+    "key": "incidents.source.error.emptyToken",
+    "en": "Paste a personal access token first",
+    "es": "Pega primero un token de acceso personal"
+  },
+  {
+    "key": "incidents.source.error.keychain",
+    "en": "The token could not be saved in the Keychain",
+    "es": "No se pudo guardar el token en el Llavero"
+  },
+  {
+    "key": "incidents.time.now",
+    "en": "now",
+    "es": "ahora"
+  },
+  {
+    "key": "settings.notch.priorities.row.incidents",
+    "en": "Incidents",
+    "es": "Incidencias"
+  }
+]

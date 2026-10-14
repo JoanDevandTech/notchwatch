@@ -10,6 +10,8 @@
 		E2761738300A66E900E79207 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = E2761737300A66E900E79207 /* Sparkle */; };
 		E2A100022F90000000000001 /* DynamicNotch/Resources/MediaRemoteAdapter/MediaRemoteAdapter.framework in Embed MediaRemote Adapter */ = {isa = PBXBuildFile; fileRef = E2A100012F90000000000001 /* DynamicNotch/Resources/MediaRemoteAdapter/MediaRemoteAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2C135B72F59FA8100348421 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2C135B62F59FA8100348421 /* Lottie */; };
+		AA100000000000000000A003 /* NotchwatchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA100000000000000000A002 /* NotchwatchCore */; };
+		AA100000000000000000A005 /* NotchwatchCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA100000000000000000A004 /* NotchwatchCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 			files = (
 				E2761738300A66E900E79207 /* Sparkle in Frameworks */,
 				E2C135B72F59FA8100348421 /* Lottie in Frameworks */,
+				AA100000000000000000A003 /* NotchwatchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA100000000000000000A005 /* NotchwatchCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +204,7 @@
 			packageProductDependencies = (
 				E2C135B62F59FA8100348421 /* Lottie */,
 				E2761737300A66E900E79207 /* Sparkle */,
+				AA100000000000000000A002 /* NotchwatchCore */,
 			);
 			productName = DynamicNotch;
 			productReference = E2EF78512EDDB60E00F96D1E /* DynamicNotch.app */;
@@ -223,6 +228,7 @@
 			);
 			name = DynamicNotchTests;
 			packageProductDependencies = (
+				AA100000000000000000A004 /* NotchwatchCore */,
 			);
 			productName = DynamicNotchTests;
 			productReference = F10000000000000000000001 /* DynamicNotchTests.xctest */;
@@ -324,6 +330,7 @@
 			packageReferences = (
 				E2C135B52F59FA8100348421 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				E2761736300A66E900E79207 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				AA100000000000000000A001 /* XCRemoteSwiftPackageReference "notchwatch-core" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E2EF78522EDDB60E00F96D1E /* Products */;
@@ -458,7 +465,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -527,7 +534,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -566,7 +573,7 @@
 				CURRENT_PROJECT_VERSION = 25;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "DynamicNotch/Resources/Preview\\ Content";
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -587,19 +594,20 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to media data for display in Notch.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The app requires Bluetooth access to check the status of devices.";
-				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "DynamicNotch needs access to your calendar to display upcoming events in the notch.";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "DynamicNotch needs access to your calendar to display upcoming events in the notch.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "DynamicNotch needs access to your camera to display a camera preview in the notch.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Notchwatch needs access to your calendar to display upcoming events in the notch.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Notchwatch needs access to your calendar to display upcoming events in the notch.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Notchwatch needs access to your camera to display a camera preview in the notch.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Notchwatch, fork de DynamicNotch (GPL-3.0)";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "The app requires local network access to determine the name of your current Wi-Fi network.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 1.6.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jackson.DynamicNotch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joandev.notchwatch;
+				PRODUCT_NAME = Notchwatch;
+				PRODUCT_MODULE_NAME = DynamicNotch;
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
@@ -631,7 +639,7 @@
 				CURRENT_PROJECT_VERSION = 25;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "DynamicNotch/Resources/Preview\\ Content";
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -652,19 +660,20 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to media data for display in Notch.";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The app requires Bluetooth access to check the status of devices.";
-				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "DynamicNotch needs access to your calendar to display upcoming events in the notch.";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "DynamicNotch needs access to your calendar to display upcoming events in the notch.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "DynamicNotch needs access to your camera to display a camera preview in the notch.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Notchwatch needs access to your calendar to display upcoming events in the notch.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Notchwatch needs access to your calendar to display upcoming events in the notch.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Notchwatch needs access to your camera to display a camera preview in the notch.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Notchwatch, fork de DynamicNotch (GPL-3.0)";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "The app requires local network access to determine the name of your current Wi-Fi network.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 1.6.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jackson.DynamicNotch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joandev.notchwatch;
+				PRODUCT_NAME = Notchwatch;
+				PRODUCT_MODULE_NAME = DynamicNotch;
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
 				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
@@ -692,7 +701,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundlePackageType = BNDL;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -707,7 +716,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DynamicNotch.app/Contents/MacOS/DynamicNotch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Notchwatch.app/Contents/MacOS/Notchwatch";
 				TEST_TARGET_NAME = DynamicNotch;
 			};
 			name = Debug;
@@ -721,7 +730,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundlePackageType = BNDL;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -736,7 +745,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DynamicNotch.app/Contents/MacOS/DynamicNotch";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Notchwatch.app/Contents/MacOS/Notchwatch";
 				TEST_TARGET_NAME = DynamicNotch;
 			};
 			name = Release;
@@ -749,7 +758,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundlePackageType = BNDL;
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
@@ -771,7 +780,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = WZHZ6LB2F6;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundlePackageType = BNDL;
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
@@ -843,6 +852,14 @@
 				minimumVersion = 4.6.0;
 			};
 		};
+		AA100000000000000000A001 /* XCRemoteSwiftPackageReference "notchwatch-core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JoanDevandTech/notchwatch-core.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -855,6 +872,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2C135B52F59FA8100348421 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		AA100000000000000000A002 /* NotchwatchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA100000000000000000A001 /* XCRemoteSwiftPackageReference "notchwatch-core" */;
+			productName = NotchwatchCore;
+		};
+		AA100000000000000000A004 /* NotchwatchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA100000000000000000A001 /* XCRemoteSwiftPackageReference "notchwatch-core" */;
+			productName = NotchwatchCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

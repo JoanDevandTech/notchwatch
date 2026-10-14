@@ -125,6 +125,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hideWindowWorkItem?.cancel()
         hideWindowWorkItem = nil
         container.externalDrivesMonitor.stopMonitoring()
+        container.incidentsViewModel.stopMonitoring()
     }
 
     func applyActivationPolicy(showsDockIcon: Bool) {

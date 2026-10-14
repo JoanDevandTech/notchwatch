@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag a publicar (por ejemplo v0.2.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: DMG y GitHub Release
+    runs-on: macos-26
+    timeout-minutes: 60
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_26.app 2>/dev/null || sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | tail -1)"
+          xcodebuild -version
+
+      - name: Compilar (firma ad-hoc)
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project DynamicNotch.xcodeproj -scheme DynamicNotch -configuration Release \
+            -destination 'platform=macOS' -derivedDataPath build/DerivedData \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" DEVELOPMENT_TEAM="" \
+            MARKETING_VERSION="${TAG#v}" \
+            2>&1 | grep -E "error:|BUILD|\*\*" || true
+          test -d build/DerivedData/Build/Products/Release/Notchwatch.app
+
+      - name: DMG
+        run: |
+          APP="build/DerivedData/Build/Products/Release/Notchwatch.app"
+          codesign --verify --deep --strict "$APP"
+          STAGING="$(mktemp -d)"
+          ditto "$APP" "$STAGING/Notchwatch.app"
+          ln -s /Applications "$STAGING/Applications"
+          mkdir -p build/dmg
+          hdiutil create -volname Notchwatch -srcfolder "$STAGING" -ov -format UDZO "build/dmg/Notchwatch-${TAG#v}.dmg"
+          (cd build/dmg && shasum -a 256 "Notchwatch-${TAG#v}.dmg" > "Notchwatch-${TAG#v}.dmg.sha256")
+
+      - name: Publicar la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRERELEASE=""
+          case "$TAG" in *-*) PRERELEASE="--prerelease" ;; esac
+          gh release create "$TAG" build/dmg/*.dmg build/dmg/*.sha256 \
+            --title "Notchwatch $TAG" --generate-notes $PRERELEASE
