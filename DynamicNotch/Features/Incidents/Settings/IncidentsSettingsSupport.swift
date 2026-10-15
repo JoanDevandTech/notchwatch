@@ -167,14 +167,14 @@ struct IncidentsSettingsPickerRow<Option: Hashable>: View {
     let title: String
     let description: String?
     let options: [Option]
-    let optionTitle: (Option) -> String
+    let optionTitle: @MainActor (Option) -> String
     @Binding var selection: Option
 
     init(
         title: String,
         description: String? = nil,
         options: [Option],
-        optionTitle: @escaping (Option) -> String,
+        optionTitle: @escaping @MainActor (Option) -> String,
         selection: Binding<Option>
     ) {
         self.title = title
