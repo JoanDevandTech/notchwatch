@@ -38,6 +38,7 @@ jobs:
       - name: Compilar
         run: |
           set -o pipefail
+          mkdir -p build
           xcodebuild build \
             -project DynamicNotch.xcodeproj -scheme DynamicNotch -configuration Debug \
             -destination 'platform=macOS' -derivedDataPath "$DERIVED_DATA" \
