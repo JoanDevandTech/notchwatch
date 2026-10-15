@@ -3,7 +3,7 @@
   <channel>
     <title>Notchwatch</title>
     <link>https://raw.githubusercontent.com/JoanDevandTech/notchwatch/main/appcast.xml</link>
-    <description>Actualizaciones de Notchwatch. Vacío hasta la primera release firmada con la clave EdDSA propia.</description>
+    <description>Actualizaciones de Notchwatch. Lo genera el workflow Release al publicar cada versión firmada con la clave EdDSA propia.</description>
     <language>es</language>
   </channel>
 </rss>

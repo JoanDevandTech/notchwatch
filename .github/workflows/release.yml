@@ -33,6 +33,15 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_26.app 2>/dev/null || sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | tail -1)"
           xcodebuild -version
 
+      # CFBundleVersion tiene que crecer en cada release para que Sparkle vea la nueva versión.
+      # Se deriva del número de ejecución del workflow (monótono): 100 + run_number, siempre
+      # por encima del CURRENT_PROJECT_VERSION del proyecto (25) que llevan las builds locales.
+      - name: Número de build
+        run: |
+          BUILD_NUMBER=$((100 + GITHUB_RUN_NUMBER))
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> "$GITHUB_ENV"
+          echo "CFBundleVersion: $BUILD_NUMBER · versión: ${TAG#v}"
+
       - name: Compilar
         run: |
           set -o pipefail
@@ -42,8 +51,13 @@ jobs:
             CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" DEVELOPMENT_TEAM="" \
             ENABLE_HARDENED_RUNTIME=NO \
             MARKETING_VERSION="${TAG#v}" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             2>&1 | grep -E "error:|BUILD|\*\*" || true
-          test -d build/DerivedData/Build/Products/Release/Notchwatch.app
+          APP="build/DerivedData/Build/Products/Release/Notchwatch.app"
+          test -d "$APP"
+          BUILT_VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Contents/Info.plist")"
+          echo "CFBundleVersion compilado: $BUILT_VERSION"
+          test "$BUILT_VERSION" = "$BUILD_NUMBER"
 
       # Con los secretos MACOS_CERT_P12_BASE64 y MACOS_CERT_PASSWORD se firma con el certificado
       # propio «Notchwatch Self-Signed» (identidad estable: el permiso del Llavero sobrevive a las
@@ -112,6 +126,80 @@ jobs:
           gh release create "$TAG" build/dmg/*.dmg build/dmg/*.sha256 \
             --target "$(git rev-parse HEAD)" \
             --title "Notchwatch $TAG" --generate-notes $PRERELEASE
+
+      # Con el secreto SPARKLE_PRIVATE_KEY (semilla Ed25519 en base64, la pareja de la
+      # SUPublicEDKey del Info.plist) se firma el DMG con sign_update y se añade la versión al
+      # appcast.xml de main, que es el feed que consultan las apps instaladas. Sin el secreto,
+      # la release se publica igual pero el appcast no se toca. Sin canales: todas las versiones
+      # (también las -beta) van al feed principal.
+      - name: Firmar para Sparkle y actualizar el appcast
+        env:
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${SPARKLE_PRIVATE_KEY:-}" ]]; then
+            echo "Sin SPARKLE_PRIVATE_KEY: no se firma para Sparkle ni se actualiza el appcast."
+            exit 0
+          fi
+          APP="build/DerivedData/Build/Products/Release/Notchwatch.app"
+          DMG_NAME="Notchwatch-${TAG#v}.dmg"
+          DMG="$PWD/build/dmg/$DMG_NAME"
+          SCRIPTS="$PWD/.github/scripts"
+
+          SPARKLE_VERSION="$(python3 -c 'import json, sys; pins = json.load(open(sys.argv[1]))["pins"]; print(next(p["state"]["version"] for p in pins if p["identity"] == "sparkle"))' \
+            DynamicNotch.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved)"
+          echo "Herramientas de Sparkle $SPARKLE_VERSION"
+          TOOLS="$RUNNER_TEMP/sparkle-tools"
+          mkdir -p "$TOOLS"
+          curl -fsSL --retry 3 \
+            "https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz" \
+            | tar -xJ -C "$TOOLS"
+
+          KEY_FILE="$RUNNER_TEMP/sparkle_ed25519.key"
+          trap 'rm -f "$KEY_FILE"' EXIT
+          (umask 077; printf '%s' "$SPARKLE_PRIVATE_KEY" > "$KEY_FILE")
+          SIGN_OUTPUT="$("$TOOLS/bin/sign_update" --ed-key-file "$KEY_FILE" "$DMG")"
+          rm -f "$KEY_FILE"
+          ED_SIGNATURE="$(sed -n 's/.*sparkle:edSignature="\([^"]*\)".*/\1/p' <<< "$SIGN_OUTPUT")"
+          LENGTH="$(sed -n 's/.*length="\([0-9]*\)".*/\1/p' <<< "$SIGN_OUTPUT")"
+          test -n "$ED_SIGNATURE"
+          test "$LENGTH" = "$(stat -f%z "$DMG")"
+
+          # La firma tiene que validar con la clave pública que lleva la app; si no, las apps
+          # instaladas rechazarían la actualización.
+          PUBLIC_KEY="$(/usr/libexec/PlistBuddy -c 'Print :SUPublicEDKey' "$APP/Contents/Info.plist")"
+          swift "$SCRIPTS/verify_ed_signature.swift" "$PUBLIC_KEY" "$ED_SIGNATURE" "$DMG"
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          WORKTREE="$RUNNER_TEMP/appcast-main"
+          for attempt in 1 2 3; do
+            # Cada intento parte del main más reciente y regenera el item (equivale a pull --rebase
+            # sin conflictos posibles en el XML).
+            rm -rf "$WORKTREE"
+            git worktree prune
+            git fetch --depth=1 origin main
+            git worktree add --detach "$WORKTREE" FETCH_HEAD
+            python3 "$SCRIPTS/update_appcast.py" \
+              --appcast "$WORKTREE/appcast.xml" \
+              --tag "$TAG" \
+              --build "$BUILD_NUMBER" \
+              --url "https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/${DMG_NAME}" \
+              --notes-url "https://github.com/${GITHUB_REPOSITORY}/releases/tag/${TAG}" \
+              --signature "$ED_SIGNATURE" \
+              --length "$LENGTH" \
+              --min-system 14.6
+            git -C "$WORKTREE" add appcast.xml
+            git -C "$WORKTREE" commit -m "chore(appcast): Notchwatch ${TAG#v} (build $BUILD_NUMBER)"
+            if git -C "$WORKTREE" push origin HEAD:main; then
+              echo "appcast.xml actualizado en main."
+              exit 0
+            fi
+            echo "Push rechazado (main avanzó); reintento $attempt…"
+            sleep 5
+          done
+          echo "::error::No se pudo subir appcast.xml a main."
+          exit 1
 
       - name: Borrar el llavero temporal
         if: always()
