@@ -84,9 +84,12 @@ final class FakeIncidentSource: IncidentSource, @unchecked Sendable {
         if let performError {
             throw performError
         }
+        record((action: action, incidentID: incident.id))
+    }
+    private func record(_ entry: (action: IncidentAction, incidentID: String)) {
         lock.lock()
-        recorded.append((action: action, incidentID: incident.id))
-        lock.unlock()
+        defer { lock.unlock() }
+        recorded.append(entry)
     }
 }
 
