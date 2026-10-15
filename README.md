@@ -100,9 +100,24 @@ git fetch upstream && git merge upstream/main
 
 Nuestros cambios fuera del módulo son pocos y están localizados: registro y prioridad del contenido, contenedor, coordinador de eventos, observadores de arranque, exclusión de gestos en `NotchInteractiveBodyView`, sección de Ajustes y el catálogo de cadenas (claves `incidents.*`). Identidad: bundle `com.joandev.notchwatch`, producto `Notchwatch`, feed de Sparkle propio.
 
-### Pendiente antes de publicar actualizaciones automáticas
+### Actualizaciones automáticas (Sparkle)
 
-Sparkle apunta al `appcast.xml` de este repo, que está vacío. Para activarlo hay que generar un par de claves EdDSA con `generate_keys` de Sparkle, poner la pública en `SUPublicEDKey` (Info.plist) y firmar cada release.
+La app usa Sparkle 2 y consulta el feed `SUFeedURL` = `https://raw.githubusercontent.com/JoanDevandTech/notchwatch/main/appcast.xml` (el `appcast.xml` de la raíz de `main`). La comprobación automática viene activada (`SUEnableAutomaticChecks`) y se puede desactivar en **Ajustes → Actualización de software → Buscar actualizaciones automáticamente** (ahí también está **Comprobar ahora**); se revisa al arrancar y cada 10 minutos. Cuando hay versión nueva aparece el aviso de Sparkle (y el del notch) y se instala con un clic; también se puede forzar con **Buscar actualizaciones** en el menú.
+
+Cómo se publica una versión:
+
+1. Se lanza *Release* (tag `v*` o a mano). La workflow fija `CFBundleVersion` = `100 + run_number` (crece en cada ejecución; Sparkle compara este número) y `CFBundleShortVersionString` = el tag sin la `v`.
+2. Tras crear la GitHub Release, si existe el secreto `SPARKLE_PRIVATE_KEY`, descarga las herramientas de Sparkle de la misma versión que `Package.resolved`, firma el DMG con `sign_update`, comprueba la firma contra la `SUPublicEDKey` de la app compilada y añade un `<item>` arriba del `appcast.xml` con un commit del bot directamente en `main`.
+3. Sin el secreto la release se publica igual, pero el appcast no cambia y las apps instaladas no se enteran.
+
+Sin canales: todas las versiones, también las `-beta`, van al feed principal, porque hoy todas son beta y el equipo las usa. Si algún día conviven estables y betas, habría que marcar las betas con `<sparkle:channel>beta</sparkle:channel>` y suscribir a ese canal solo a quien lo quiera (`allowedChannels(for:)` en `SparkleUpdater`).
+
+Claves EdDSA (Ed25519):
+
+- `SUPublicEDKey` (en `DynamicNotch/Application/Info.plist`): la clave pública, 32 bytes en base64. Va en el repo.
+- Secreto `SPARKLE_PRIVATE_KEY` (*Settings → Secrets and variables → Actions*): la semilla privada de 32 bytes en base64, una línea sin salto final; es el formato que acepta `sign_update --ed-key-file` y el que exporta `generate_keys -x`. Nunca va al repo; guárdala también fuera de GitHub, porque si se pierde las apps instaladas dejan de aceptar actualizaciones.
+
+Cambiar de clave rompe la cadena: las apps instaladas solo aceptan actualizaciones firmadas con la clave que llevan. Por eso **la primera versión que incluye esta clave hay que instalarla a mano** desde Releases (las anteriores traían la clave heredada de DynamicNotch); a partir de ahí avisa sola.
 
 ## Licencia
 

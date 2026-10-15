@@ -11,7 +11,9 @@
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/JoanDevandTech/notchwatch/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>7di/CHe0WlewXDmFgnxUW5UqZefP/ib1m57PNBOupw4=</string>
+	<string>96eUYiT8ODjc6FSO1CZPFsVLOG357vs7p7qBRIXwXjU=</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>SUScheduledCheckInterval</key>
 	<integer>600</integer>
 </dict>
