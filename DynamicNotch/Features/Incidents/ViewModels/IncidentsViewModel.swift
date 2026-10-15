@@ -56,7 +56,7 @@ final class IncidentsViewModel: ObservableObject {
         profileStore: IncidentsProfileStore,
         monitoring: any IncidentMonitoring,
         notifier: any IncidentNotifying,
-        sound: IncidentSoundPlayer = IncidentSoundPlayer(),
+        sound: IncidentSoundPlayer? = nil,
         hotKey: IncidentsHotKey? = nil,
         makeSource: SourceFactory? = nil,
         now: @escaping () -> Date = { Date() }
@@ -64,7 +64,7 @@ final class IncidentsViewModel: ObservableObject {
         self.profileStore = profileStore
         self.monitoring = monitoring
         self.notifier = notifier
-        self.sound = sound
+        self.sound = sound ?? IncidentSoundPlayer()
         self.hotKey = hotKey
         self.makeSource = makeSource ?? IncidentsViewModel.defaultSourceFactory
         self.now = now

@@ -33,9 +33,9 @@ final class IncidentsProfileStore: ObservableObject {
         directoryURL.appendingPathComponent(IncidentsProfileStore.seenStoreFileName)
     }
 
-    init(directoryURL: URL? = nil, keychain: any KeychainStoring = KeychainStore()) {
+    init(directoryURL: URL? = nil, keychain: (any KeychainStoring)? = nil) {
         self.directoryURL = directoryURL ?? IncidentsProfileStore.defaultDirectoryURL()
-        self.keychain = keychain
+        self.keychain = keychain ?? KeychainStore()
         let url = self.directoryURL.appendingPathComponent(IncidentsProfileStore.profileFileName)
         self.profile = ProfileCodec.load(from: url) ?? .empty
     }

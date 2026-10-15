@@ -1,4 +1,4 @@
-import AppKit
+internal import AppKit
 import Combine
 import SwiftUI
 
