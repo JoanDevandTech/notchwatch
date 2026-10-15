@@ -40,6 +40,7 @@ jobs:
             -project DynamicNotch.xcodeproj -scheme DynamicNotch -configuration Release \
             -destination 'platform=macOS' -derivedDataPath build/DerivedData \
             CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="-" DEVELOPMENT_TEAM="" \
+            ENABLE_HARDENED_RUNTIME=NO \
             MARKETING_VERSION="${TAG#v}" \
             2>&1 | grep -E "error:|BUILD|\*\*" || true
           test -d build/DerivedData/Build/Products/Release/Notchwatch.app
