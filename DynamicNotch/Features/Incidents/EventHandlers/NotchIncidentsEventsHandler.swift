@@ -70,7 +70,9 @@ final class NotchIncidentsEventsHandler {
             incidentsViewModel.acknowledgeAll()
             return
         }
-        guard !isExpanded, deferredHideWhileExpanded else { return }
+        guard !isExpanded else { return }
+        incidentsViewModel.resetPanelFilter()
+        guard deferredHideWhileExpanded else { return }
         deferredHideWhileExpanded = false
         notchViewModel.send(.hideLiveActivity(id: NotchContentRegistry.Incidents.pending.id))
     }

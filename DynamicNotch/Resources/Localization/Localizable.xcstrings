@@ -209209,6 +209209,22 @@
         }
       }
     },
+    "incidents.settings.alerts.card.scope" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scope"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alcance"
+          }
+        }
+      }
+    },
     "incidents.settings.alerts.dnd.1h" : {
       "localizations" : {
         "en" : {
@@ -209609,34 +209625,34 @@
         }
       }
     },
-    "incidents.settings.alerts.showOnlyMine.desc" : {
+    "incidents.settings.alerts.scope.desc" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open the panel filtered to incidents assigned to you."
+            "value" : "With Only mine, the counter, the alert card, sounds and notifications only include incidents assigned to you, and one reassigned to you is announced as new. The panel opens on Mine."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre el panel filtrado a las incidencias asignadas a ti."
+            "value" : "Con «Solo las mías», el contador, la tarjeta de aviso, los sonidos y las notificaciones solo tienen en cuenta las incidencias asignadas a ti, y una que te reasignan se avisa como nueva. El panel abre en «Mías»."
           }
         }
       }
     },
-    "incidents.settings.alerts.showOnlyMine.title" : {
+    "incidents.settings.alerts.scope.title" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show only mine by default"
+            "value" : "Alert me about"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar solo las mías por defecto"
+            "value" : "Avisarme de"
           }
         }
       }
@@ -209646,13 +209662,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Do Not Disturb, alert card, macOS notifications and polling."
+            "value" : "Scope, Do Not Disturb, alert card, macOS notifications and polling."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No molestar, tarjeta de aviso, notificaciones de macOS y lectura."
+            "value" : "Alcance, no molestar, tarjeta de aviso, notificaciones de macOS y lectura."
           }
         }
       }
@@ -210453,6 +210469,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urgente"
+          }
+        }
+      }
+    },
+    "incidents.settings.scope.all" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas"
+          }
+        }
+      }
+    },
+    "incidents.settings.scope.mine" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only mine"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo las mías"
           }
         }
       }

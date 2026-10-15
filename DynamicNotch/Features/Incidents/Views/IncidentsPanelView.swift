@@ -27,7 +27,7 @@ struct IncidentsPanelView: View {
     }
 
     private var showOnlyMine: Bool {
-        viewModel.profile.behavior.showOnlyMine
+        viewModel.showsOnlyMine
     }
 
     private var headerTint: Color {

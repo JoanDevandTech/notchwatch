@@ -220,6 +220,11 @@
     "es": "Horario de silencio"
   },
   {
+    "key": "incidents.settings.alerts.card.scope",
+    "en": "Scope",
+    "es": "Alcance"
+  },
+  {
     "key": "incidents.settings.alerts.dnd.1h",
     "en": "For 1 hour",
     "es": "Durante 1 hora"
@@ -345,19 +350,19 @@
     "es": "Hasta"
   },
   {
-    "key": "incidents.settings.alerts.showOnlyMine.desc",
-    "en": "Open the panel filtered to incidents assigned to you.",
-    "es": "Abre el panel filtrado a las incidencias asignadas a ti."
+    "key": "incidents.settings.alerts.scope.desc",
+    "en": "With Only mine, the counter, the alert card, sounds and notifications only include incidents assigned to you, and one reassigned to you is announced as new. The panel opens on Mine.",
+    "es": "Con «Solo las mías», el contador, la tarjeta de aviso, los sonidos y las notificaciones solo tienen en cuenta las incidencias asignadas a ti, y una que te reasignan se avisa como nueva. El panel abre en «Mías»."
   },
   {
-    "key": "incidents.settings.alerts.showOnlyMine.title",
-    "en": "Show only mine by default",
-    "es": "Mostrar solo las mías por defecto"
+    "key": "incidents.settings.alerts.scope.title",
+    "en": "Alert me about",
+    "es": "Avisarme de"
   },
   {
     "key": "incidents.settings.alerts.subtitle",
-    "en": "Do Not Disturb, alert card, macOS notifications and polling.",
-    "es": "No molestar, tarjeta de aviso, notificaciones de macOS y lectura."
+    "en": "Scope, Do Not Disturb, alert card, macOS notifications and polling.",
+    "es": "Alcance, no molestar, tarjeta de aviso, notificaciones de macOS y lectura."
   },
   {
     "key": "incidents.settings.alerts.systemNotifications.desc",
@@ -608,6 +613,16 @@
     "key": "incidents.settings.priority.urgent",
     "en": "Urgent",
     "es": "Urgente"
+  },
+  {
+    "key": "incidents.settings.scope.all",
+    "en": "All",
+    "es": "Todas"
+  },
+  {
+    "key": "incidents.settings.scope.mine",
+    "en": "Only mine",
+    "es": "Solo las mías"
   },
   {
     "key": "incidents.settings.section.subtitle",
