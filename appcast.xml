@@ -5,5 +5,15 @@
     <link>https://raw.githubusercontent.com/JoanDevandTech/notchwatch/main/appcast.xml</link>
     <description>Actualizaciones de Notchwatch. Lo genera el workflow Release al publicar cada versión firmada con la clave EdDSA propia.</description>
     <language>es</language>
+    <item>
+      <title>Notchwatch 0.2.0-beta.6</title>
+      <link>https://github.com/JoanDevandTech/notchwatch/releases/tag/v0.2.0-beta.6</link>
+      <sparkle:version>109</sparkle:version>
+      <sparkle:shortVersionString>0.2.0-beta.6</sparkle:shortVersionString>
+      <sparkle:fullReleaseNotesLink>https://github.com/JoanDevandTech/notchwatch/releases/tag/v0.2.0-beta.6</sparkle:fullReleaseNotesLink>
+      <pubDate>Thu, 15 Oct 2026 11:43:10 GMT</pubDate>
+      <sparkle:minimumSystemVersion>14.6</sparkle:minimumSystemVersion>
+      <enclosure url="https://github.com/JoanDevandTech/notchwatch/releases/download/v0.2.0-beta.6/Notchwatch-0.2.0-beta.6.dmg" sparkle:edSignature="P8iWAKAphhHJDLRevR1uldCoF2Cgc6xo+p5KbCWOq1jgJbyoUzyC7m572P1ekr4VMRvvPxlb9BzCreFuQ/vbCA==" length="15247781" type="application/octet-stream"/>
+    </item>
   </channel>
 </rss>
