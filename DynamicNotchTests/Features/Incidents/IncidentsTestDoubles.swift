@@ -11,6 +11,8 @@ final class FakeIncidentMonitoring: IncidentMonitoring {
     private(set) var seen: [String] = []
     private(set) var snoozed: [(id: String, duration: TimeInterval)] = []
     private(set) var sourceUpdates: [[String]] = []
+    private(set) var scopes: [(scope: IncidentScope, userID: String?)] = []
+    private(set) var claimed: [String] = []
 
     func enqueue(pending: [Incident], new: [Incident] = [], errors: [String: SourceError] = [:], date: Date = Date()) {
         queuedOutcomes.append(PollOutcome(newIncidents: new, pending: pending, errors: errors, date: date))
@@ -35,6 +37,15 @@ final class FakeIncidentMonitoring: IncidentMonitoring {
     nonisolated func updateSources(_ sources: [any IncidentSource]) async {
         let ids = sources.map(\.id)
         await MainActor.run { sourceUpdates.append(ids) }
+    }
+
+    nonisolated func updateScope(_ scope: IncidentScope, for user: SourceIdentity?) async {
+        let userID = user?.userID
+        await MainActor.run { scopes.append((scope: scope, userID: userID)) }
+    }
+
+    nonisolated func claim(_ id: String) async {
+        await MainActor.run { claimed.append(id) }
     }
 
     private func nextOutcome() -> PollOutcome {
@@ -193,10 +204,17 @@ enum IncidentsTestFactory {
         )
     }
 
-    static func makeFixture(configured: Bool = true, now: @escaping () -> Date = { Date() }) -> Fixture {
+    /// `scope` es `.all` por defecto para que los tests generales vean todas las incidencias; los del
+    /// alcance «Solo las mías» lo piden explícitamente.
+    static func makeFixture(
+        configured: Bool = true,
+        scope: IncidentScope = .all,
+        now: @escaping () -> Date = { Date() }
+    ) -> Fixture {
         let collection = WatchedCollection(id: WatchedCollection.makeID(sourceID: sourceID, key: "a"), name: "Alpha")
         let keychain = FakeKeychain()
         let profileStore = IncidentsProfileStore(directoryURL: makeTemporaryDirectory(), keychain: keychain)
+        profileStore.profile.behavior.scope = scope
         if configured {
             profileStore.profile.sources = [.asana(makeConfig(collection: collection))]
             keychain.save(token, account: sourceID)

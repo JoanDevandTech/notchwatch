@@ -74,7 +74,119 @@ final class IncidentsViewModelTests: XCTestCase {
 
         XCTAssertEqual(fixture.viewModel.listedIncidents.map(\.id), ["mine"])
         XCTAssertEqual(fixture.viewModel.visibleCount, 1)
-        XCTAssertTrue(fixture.viewModel.profile.behavior.showOnlyMine)
+        XCTAssertTrue(fixture.viewModel.showsOnlyMine)
+    }
+
+    // MARK: - Alcance «Solo las mías»
+
+    func testMineScopeOpensPanelOnMineAndResetsAfterSwitchingToAll() {
+        let mine = IncidentsTestFactory.makeFixture(scope: .mine)
+        XCTAssertTrue(mine.viewModel.showsOnlyMine)
+
+        mine.viewModel.setShowOnlyMine(false)
+        XCTAssertFalse(mine.viewModel.showsOnlyMine)
+
+        mine.viewModel.resetPanelFilter()
+        XCTAssertTrue(mine.viewModel.showsOnlyMine)
+
+        let all = IncidentsTestFactory.makeFixture(scope: .all)
+        XCTAssertFalse(all.viewModel.showsOnlyMine)
+        all.viewModel.setShowOnlyMine(true)
+        all.viewModel.resetPanelFilter()
+        XCTAssertFalse(all.viewModel.showsOnlyMine)
+    }
+
+    func testMineScopeOnlyCountsAndAlertsIncidentsAssignedToUser() async {
+        let fixture = IncidentsTestFactory.makeFixture(scope: .mine)
+        let mine = IncidentsTestFactory.makeIncident(id: "mine", collection: fixture.collection, assigneeID: "u1")
+        let other = IncidentsTestFactory.makeIncident(id: "other", priority: .urgente, collection: fixture.collection, assigneeID: "u2")
+        let unassigned = IncidentsTestFactory.makeIncident(id: "free", priority: .alta, collection: fixture.collection)
+        fixture.monitoring.enqueue(pending: [other, unassigned, mine], new: [other, unassigned, mine])
+
+        fixture.viewModel.startMonitoring()
+
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 3 && fixture.viewModel.arrivalPulse == 1 }
+        }
+        XCTAssertEqual(fixture.monitoring.scopes.last?.scope, .mine)
+        XCTAssertEqual(fixture.monitoring.scopes.last?.userID, "u1")
+        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
+        XCTAssertEqual(fixture.viewModel.presence, .pending(.media))
+        XCTAssertTrue(fixture.viewModel.unattendedLoud.isEmpty)
+        XCTAssertEqual(fixture.notifier.posted.map(\.identifier), ["mine"])
+        XCTAssertEqual(fixture.viewModel.event, .arrived([mine], asBatch: true))
+        XCTAssertEqual(fixture.viewModel.listedIncidents.map(\.id), ["mine"])
+
+        fixture.viewModel.setShowOnlyMine(false)
+
+        XCTAssertEqual(fixture.viewModel.listedIncidents.count, 3)
+        XCTAssertEqual(fixture.viewModel.visibleCount, 3)
+        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
+        XCTAssertEqual(fixture.viewModel.presence, .pending(.media))
+    }
+
+    func testIncidentReassignedToUserAlertsAsNew() async {
+        let fixture = IncidentsTestFactory.makeFixture(scope: .mine)
+        let before = IncidentsTestFactory.makeIncident(id: "r", priority: .alta, collection: fixture.collection, assigneeID: "u2")
+        fixture.monitoring.enqueue(pending: [before])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.monitoring.pollCount == 1 }
+        }
+        XCTAssertEqual(fixture.viewModel.badgeCount, 0)
+        XCTAssertEqual(fixture.viewModel.presence, .idle)
+
+        let after = IncidentsTestFactory.makeIncident(id: "r", priority: .alta, collection: fixture.collection, assigneeID: "u1")
+        fixture.monitoring.enqueue(pending: [after], new: [after])
+        fixture.viewModel.refreshNow()
+
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.arrivalPulse == 1 }
+        }
+        XCTAssertEqual(fixture.viewModel.event, .arrived([after], asBatch: false))
+        XCTAssertEqual(fixture.viewModel.presence, .attention(.alta))
+        XCTAssertTrue(fixture.viewModel.unattendedLoud.contains("r"))
+        XCTAssertEqual(fixture.notifier.posted.map(\.identifier), ["r"])
+        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
+    }
+
+    func testSwitchingScopeToAllCountsEverythingAndUpdatesMonitor() async {
+        let fixture = IncidentsTestFactory.makeFixture(scope: .mine)
+        let mine = IncidentsTestFactory.makeIncident(id: "mine", collection: fixture.collection, assigneeID: "u1")
+        let other = IncidentsTestFactory.makeIncident(id: "other", priority: .urgente, collection: fixture.collection, assigneeID: "u2")
+        fixture.monitoring.enqueue(pending: [other, mine])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 2 && fixture.viewModel.identity != nil }
+        }
+        XCTAssertEqual(fixture.viewModel.presence, .pending(.media))
+
+        fixture.viewModel.setScope(.all)
+
+        XCTAssertEqual(fixture.viewModel.profile.behavior.scope, .all)
+        XCTAssertFalse(fixture.viewModel.showsOnlyMine)
+        XCTAssertEqual(fixture.viewModel.badgeCount, 2)
+        XCTAssertEqual(fixture.viewModel.presence, .pending(.urgente))
+        await assertEventually {
+            await MainActor.run { fixture.monitoring.scopes.last?.scope == .all }
+        }
+    }
+
+    func testAssigningToMeClaimsTheIncident() async {
+        let fixture = IncidentsTestFactory.makeFixture(scope: .mine)
+        let incident = IncidentsTestFactory.makeIncident(id: "c", collection: fixture.collection, assigneeID: "u2")
+        fixture.monitoring.enqueue(pending: [incident])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.viewModel.identity != nil }
+        }
+
+        fixture.viewModel.assignToMe(incident)
+
+        await assertEventually {
+            await MainActor.run { fixture.monitoring.claimed == ["c"] }
+        }
+        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
     }
 
     func testSnoozeMovesIncidentToTheEndAndForwardsToMonitor() async {

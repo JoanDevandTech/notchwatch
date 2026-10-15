@@ -14,7 +14,7 @@ final class NotchIncidentsEventsHandlerTests: XCTestCase {
         let fixture: IncidentsTestFactory.Fixture
     }
 
-    private func makeHarness(configured: Bool = true) -> Harness {
+    private func makeHarness(configured: Bool = true, scope: IncidentScope = .all) -> Harness {
         let suiteName = "NotchIncidentsEventsHandlerTests.\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!
         defaults.removePersistentDomain(forName: suiteName)
@@ -25,7 +25,7 @@ final class NotchIncidentsEventsHandlerTests: XCTestCase {
             hideDelay: 0.01,
             queueDelay: 0
         )
-        let fixture = IncidentsTestFactory.makeFixture(configured: configured)
+        let fixture = IncidentsTestFactory.makeFixture(configured: configured, scope: scope)
         let handler = NotchIncidentsEventsHandler(
             notchViewModel: notchViewModel,
             incidentsViewModel: fixture.viewModel,
@@ -97,6 +97,17 @@ final class NotchIncidentsEventsHandlerTests: XCTestCase {
                 harness.notchViewModel.notchModel.liveActivityContent?.id == NotchContentRegistry.Incidents.pending.id
             }
         }
+    }
+
+    func testCollapsingThePanelRestoresTheMineFilter() {
+        let harness = makeHarness(scope: .mine)
+        harness.fixture.viewModel.setShowOnlyMine(false)
+
+        harness.handler.handleExpansionChange(isExpanded: true)
+        XCTAssertFalse(harness.fixture.viewModel.showsOnlyMine)
+
+        harness.handler.handleExpansionChange(isExpanded: false)
+        XCTAssertTrue(harness.fixture.viewModel.showsOnlyMine)
     }
 
     func testNoAlertWhilePanelIsExpanded() async {

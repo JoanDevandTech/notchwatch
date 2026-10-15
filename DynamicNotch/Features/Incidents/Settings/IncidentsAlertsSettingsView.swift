@@ -49,6 +49,7 @@ struct IncidentsAlertsSettingsView: View {
 
     var body: some View {
         SettingsPageScrollView {
+            scopeCard
             doNotDisturbCard
             scheduleCard
             alertCard
@@ -56,6 +57,25 @@ struct IncidentsAlertsSettingsView: View {
             readingCard
         }
         .accessibilityIdentifier("settings.incidents.alerts.root")
+    }
+
+    private var scopeCard: some View {
+        SettingsCard(title: IncidentsSettingsText.key("alerts.card.scope", "Scope")) {
+            IncidentsSettingsPickerRow(
+                title: IncidentsSettingsText.string("alerts.scope.title", "Alert me about"),
+                description: IncidentsSettingsText.string(
+                    "alerts.scope.desc",
+                    "With Only mine, the counter, the alert card, sounds and notifications only include incidents assigned to you, and one reassigned to you is announced as new. The panel opens on Mine."
+                ),
+                options: IncidentScope.allCases,
+                optionTitle: { IncidentsSettingsText.scopeName($0) },
+                selection: Binding(
+                    get: { behavior.scope },
+                    set: { viewModel.setScope($0) }
+                )
+            )
+            .accessibilityIdentifier("settings.incidents.alerts.scope")
+        }
     }
 
     private var doNotDisturbCard: some View {
@@ -212,20 +232,6 @@ struct IncidentsAlertsSettingsView: View {
 
     private var readingCard: some View {
         SettingsCard(title: IncidentsSettingsText.key("alerts.card.reading", "Reading")) {
-            SettingsToggleRow(
-                title: IncidentsSettingsText.key("alerts.showOnlyMine.title", "Show only mine by default"),
-                description: IncidentsSettingsText.key("alerts.showOnlyMine.desc", "Open the panel filtered to incidents assigned to you."),
-                systemImage: "person.fill.checkmark",
-                color: .green,
-                isOn: Binding(
-                    get: { behavior.showOnlyMine },
-                    set: { viewModel.setShowOnlyMine($0) }
-                ),
-                accessibilityIdentifier: "settings.incidents.alerts.showOnlyMine"
-            )
-
-            IncidentsSettingsDivider(leadingPadding: 43)
-
             IncidentsSettingsPickerRow(
                 title: IncidentsSettingsText.string("alerts.pollInterval.title", "Check Asana every"),
                 description: IncidentsSettingsText.string("alerts.pollInterval.desc", "Shorter intervals use more of the Asana rate limit."),

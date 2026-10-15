@@ -80,6 +80,13 @@ enum IncidentsSettingsText {
         }
     }
 
+    static func scopeName(_ scope: IncidentScope) -> String {
+        switch scope {
+        case .mine: return string("scope.mine", "Only mine")
+        case .all: return string("scope.all", "All")
+        }
+    }
+
     static func seconds(_ value: TimeInterval) -> String {
         let seconds = Int(value.rounded())
         if seconds >= 60, seconds % 60 == 0 {

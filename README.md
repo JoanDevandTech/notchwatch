@@ -8,13 +8,22 @@ Es un fork de DynamicNotch, de Evgeniy Petrukovich, publicado bajo **GPL‑3.0**
 
 - **Píldora con vida propia.** En reposo enseña el estado (color de la prioridad más alta pendiente) y el contador; respira, un brillo la recorre y de vez en cuando asoma la palabra «pendientes». Con altas o urgentes sin atender, el punto parpadea y la píldora resplandece del color de la prioridad.
 - **Aviso al entrar una incidencia.** Tarjeta con prioridad, app, asunto, quién la reporta, módulo, errores de consola y vencimiento, y un sonido distinto por prioridad. Las bajas y medias se recogen solas; las altas y urgentes se quedan hasta que las atiendes y repiten el sonido.
-- **Panel desplegado.** Lista de pendientes con filtro «Todas / Mías» y acciones al pasar el ratón: abrir en Asana, **en curso** (pone el estado «En curso» y te la asigna si no tiene responsable), posponer, **resolver** (pasa a Verificación y pone el estado «Solucionada») y, en el menú «…», asignármela, cambiar vencimiento, prioridad o marcar como vista.
+- **Panel desplegado.** Lista de pendientes con filtro «Todas / Mías» (abre en «Mías» con el alcance «Solo las mías») y acciones al pasar el ratón: abrir en Asana, **en curso** (pone el estado «En curso» y te la asigna si no tiene responsable), posponer, **resolver** (pasa a Verificación y pone el estado «Solucionada») y, en el menú «…», asignármela, cambiar vencimiento, prioridad o marcar como vista.
 - **Notificación de macOS** con las acciones Abrir, En curso, Asignármela y Posponer, y **atajo global** (⌃⌥⌘I por defecto) para desplegar o recoger la isla.
-- **Control total desde Ajustes → Incidencias:** cuenta de Asana y proyectos (con asistente de alta), apariencia (tema, color por prioridad, icono y color por proyecto, tipografía, intensidad de movimiento), sonidos por prioridad y volumen, No molestar manual y por horario, duración de los avisos, intervalo de lectura, atajo, y exportar/importar el perfil para replicarlo en otro Mac.
+- **Control total desde Ajustes → Incidencias:** cuenta de Asana y proyectos (con asistente de alta), alcance de los avisos, apariencia (tema, color por prioridad, icono y color por proyecto, tipografía, intensidad de movimiento), sonidos por prioridad y volumen, No molestar manual y por horario, duración de los avisos, intervalo de lectura, atajo, y exportar/importar el perfil para replicarlo en otro Mac.
 
 ### Otras cuentas y otras apps
 
 La lógica vive en el paquete [`NotchwatchCore`](https://github.com/JoanDevandTech/notchwatch-core): un protocolo `IncidentSource` con colecciones, acciones y capacidades. Asana es la primera fuente; otra app se integra implementando ese protocolo, sin tocar la isla. La cuenta no está cableada: pega un token, la app lista tus workspaces y proyectos y propone qué sección es «Detectadas», cuál «Verificación» y qué campo es la prioridad. Tubuencamino queda como preajuste de un clic.
+
+### Uso en equipo: alcance «Solo las mías»
+
+En *Ajustes → Incidencias → Avisos → Alcance* se elige de qué incidencias avisa la isla:
+
+- **Solo las mías** (por defecto, también en perfiles antiguos que no tenían el ajuste): el contador y el color de la píldora, la tarjeta de aviso, los sonidos, la repetición de altas y urgentes y las notificaciones de macOS solo tienen en cuenta las incidencias asignadas a ti (el usuario del token, `users/me`). El panel abre en «Mías»; puedes pasar a «Todas» para ver el resto, y al recogerlo vuelve a «Mías». Si te **reasignan** una incidencia que ya existía, se avisa como si fuera nueva, aunque la hubieras visto o pospuesto.
+- **Todas**: avisa de todo lo que entra, como antes.
+
+Así la usa el equipo administrativo: cada persona instala Notchwatch y pega **su propio token** de Asana, de modo que «mías» son las suyas. La regla de Asana asigna cada incidencia nueva a Joan, que la reparte reasignándola; en ese momento le salta el aviso a quien la recibe. Joan, con el mismo alcance, recibe todas las nuevas porque entran asignadas a él.
 
 ## Instalación
 

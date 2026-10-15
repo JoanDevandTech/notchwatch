@@ -22,6 +22,20 @@ final class IncidentsProfileStoreTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: store.profileURL.path))
     }
 
+    func testScopeDefaultsToMineForNewAndLegacyProfiles() throws {
+        let (fresh, _, _) = makeStore()
+        XCTAssertEqual(fresh.profile.behavior.scope, .mine)
+
+        let directory = IncidentsTestFactory.makeTemporaryDirectory()
+        let legacy = #"{"version":2,"sources":[],"behavior":{"pollInterval":30,"showOnlyMine":false}}"#
+        try Data(legacy.utf8).write(to: directory.appendingPathComponent(IncidentsProfileStore.profileFileName))
+
+        let (store, _, _) = makeStore(directory: directory)
+
+        XCTAssertEqual(store.profile.behavior.pollInterval, 30)
+        XCTAssertEqual(store.profile.behavior.scope, .mine)
+    }
+
     func testProfileChangesRoundTripThroughDisk() {
         let (store, url, _) = makeStore()
         let collection = WatchedCollection(id: "src/a", name: "Alpha", style: CollectionStyle(symbol: "flame.fill", colorHex: "#E78580"))

@@ -7,6 +7,8 @@ nonisolated protocol IncidentMonitoring: AnyObject, Sendable {
     func markSeen(_ id: String) async
     func snooze(_ id: String, for duration: TimeInterval) async
     func updateSources(_ sources: [any IncidentSource]) async
+    func updateScope(_ scope: IncidentScope, for user: SourceIdentity?) async
+    func claim(_ id: String) async
 }
 
 /// Envuelve el actor `IncidentMonitor` del núcleo.
@@ -32,6 +34,14 @@ nonisolated final class LiveIncidentMonitoring: IncidentMonitoring {
     func updateSources(_ sources: [any IncidentSource]) async {
         await monitor.updateSources(sources)
     }
+
+    func updateScope(_ scope: IncidentScope, for user: SourceIdentity?) async {
+        await monitor.updateScope(scope, for: user)
+    }
+
+    func claim(_ id: String) async {
+        await monitor.claim(id)
+    }
 }
 
 /// No consulta nada: se usa en tests y cuando la feature no está disponible.
@@ -45,4 +55,8 @@ nonisolated final class InactiveIncidentMonitoring: IncidentMonitoring {
     func snooze(_ id: String, for duration: TimeInterval) async {}
 
     func updateSources(_ sources: [any IncidentSource]) async {}
+
+    func updateScope(_ scope: IncidentScope, for user: SourceIdentity?) async {}
+
+    func claim(_ id: String) async {}
 }

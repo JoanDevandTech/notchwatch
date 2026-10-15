@@ -44,7 +44,7 @@ struct IncidentsCompactView: View {
         if viewModel.connectionIssue != nil {
             return L10n.app("incidents.island.compact.offline", fallback: "offline")
         }
-        if viewModel.visibleCount == 0 {
+        if viewModel.badgeCount == 0 {
             return L10n.app("incidents.island.compact.allClear", fallback: "all clear")
         }
         return L10n.app("incidents.island.compact.pending", fallback: "pending")
@@ -101,7 +101,7 @@ struct IncidentsCompactView: View {
                         .foregroundStyle(theme.textTertiary)
                 } else {
                     AnimatedLevelText(
-                        level: viewModel.visibleCount,
+                        level: viewModel.badgeCount,
                         fontSize: IncidentsLayout.compactCountSize,
                         color: theme.textPrimary
                     )
@@ -144,7 +144,7 @@ struct IncidentsCompactView: View {
     }
 
     private var accessibilityText: String {
-        let count = viewModel.visibleCount
+        let count = viewModel.badgeCount
         let format = L10n.app("incidents.island.compact.accessibility", fallback: "%d pending incidents")
         return String(format: format, locale: .current, count)
     }

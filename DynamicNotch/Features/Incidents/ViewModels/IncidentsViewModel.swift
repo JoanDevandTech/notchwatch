@@ -27,6 +27,8 @@ final class IncidentsViewModel: ObservableObject {
     @Published private(set) var isMonitoring = false
     @Published private(set) var notificationPermission: IncidentNotifier.Permission = .notDetermined
     @Published private(set) var hotKeyError: String?
+    /// Filtro «Mías» del panel. Es de sesión: al recoger el panel vuelve al del alcance.
+    @Published private(set) var showsOnlyMine = true
     /// Lo consume el coordinator.
     @Published var event: IncidentsEvent?
 
@@ -49,7 +51,7 @@ final class IncidentsViewModel: ObservableObject {
     private var hasPolledThisSession = false
     /// Notificaciones entregadas en esta sesión; se retiran cuando su incidencia se cierra.
     private var deliveredIdentifiers: Set<String> = []
-    private var lastEmittedSignature: (count: Int, presence: IncidentsPresence, onlyMine: Bool)?
+    private var lastEmittedSignature: (badge: Int, listed: Int, presence: IncidentsPresence)?
     private var cancellables = Set<AnyCancellable>()
 
     init(
@@ -68,6 +70,7 @@ final class IncidentsViewModel: ObservableObject {
         self.hotKey = hotKey
         self.makeSource = makeSource ?? IncidentsViewModel.defaultSourceFactory
         self.now = now
+        self.showsOnlyMine = profileStore.profile.behavior.scope == .mine
         bindProfile()
         bindNotifier()
         hotKey?.action = { [weak self] in
@@ -87,11 +90,11 @@ final class IncidentsViewModel: ObservableObject {
         profile.sources.contains { profileStore.token(for: $0.id) != nil }
     }
 
-    var showsOnlyMine: Bool {
-        profile.behavior.showOnlyMine
+    var scope: IncidentScope {
+        profile.behavior.scope
     }
 
-    /// Filtro «Mías» aplicado; las activas primero y las pospuestas al final.
+    /// Filtro «Mías» del panel aplicado; las activas primero y las pospuestas al final.
     var listedIncidents: [Incident] {
         let filtered = showsOnlyMine ? pending.filter(isMine) : pending
         let active = filtered.filter { !isSnoozed($0) }
@@ -101,6 +104,11 @@ final class IncidentsViewModel: ObservableObject {
 
     var visibleCount: Int {
         listedIncidents.filter { !isSnoozed($0) }.count
+    }
+
+    /// Pendientes activas del alcance: lo que cuentan el contador y el color de la píldora.
+    var badgeCount: Int {
+        activeIncidents(in: scope).count
     }
 
     var mineCount: Int {
@@ -125,7 +133,12 @@ final class IncidentsViewModel: ObservableObject {
     }
 
     func isMine(_ incident: Incident) -> Bool {
-        incident.isAssigned(toUserID: identity?.userID, name: identity?.name)
+        IncidentDemoData.isDemo(incident) || incident.isAssigned(toUserID: identity?.userID, name: identity?.name)
+    }
+
+    /// Con «Solo las mías», solo las asignadas al usuario cuentan y avisan.
+    func isInScope(_ incident: Incident) -> Bool {
+        scope == .all || isMine(incident)
     }
 
     func style(for collectionID: String) -> CollectionStyle {
@@ -225,6 +238,7 @@ final class IncidentsViewModel: ObservableObject {
 
     func assignToMe(_ incident: Incident) {
         let identity = identity
+        claim(incident)
         run(
             .assignToMe,
             on: incident,
@@ -240,6 +254,9 @@ final class IncidentsViewModel: ObservableObject {
     func startProgress(_ incident: Incident) {
         let identity = identity
         let isUnassigned = Text.nonEmpty(incident.assigneeID) == nil && Text.nonEmpty(incident.assigneeName) == nil
+        if isUnassigned {
+            claim(incident)
+        }
         run(
             .startProgress,
             on: incident,
@@ -311,8 +328,18 @@ final class IncidentsViewModel: ObservableObject {
     // MARK: - Preferencias rápidas
 
     func setShowOnlyMine(_ onlyMine: Bool) {
-        guard profile.behavior.showOnlyMine != onlyMine else { return }
-        profile.behavior.showOnlyMine = onlyMine
+        guard showsOnlyMine != onlyMine else { return }
+        showsOnlyMine = onlyMine
+        emitPendingChanged()
+    }
+
+    /// Al recoger el panel: la próxima vez abre con el filtro del alcance.
+    func resetPanelFilter() {
+        showsOnlyMine = scope == .mine
+    }
+
+    func setScope(_ scope: IncidentScope) {
+        profile.behavior.scope = scope
     }
 
     func toggleMuted() {
@@ -354,6 +381,7 @@ final class IncidentsViewModel: ObservableObject {
             }
             upsert(.asana(config))
             self.identity = identity
+            await applyScope()
             await rebuildSources()
             refreshNow()
             emitPendingChanged(force: true)
@@ -381,6 +409,7 @@ final class IncidentsViewModel: ObservableObject {
         emitPendingChanged(force: true)
         Task { [weak self] in
             await self?.rebuildSources()
+            await self?.applyScope()
         }
     }
 
@@ -442,12 +471,17 @@ private extension IncidentsViewModel {
             .store(in: &cancellables)
 
         profileStore.$profile
-            .map(\.behavior.showOnlyMine)
+            .map(\.behavior.scope)
             .removeDuplicates()
             .dropFirst()
-            .sink { [weak self] _ in
-                self?.updatePresence()
-                self?.emitPendingChanged()
+            .sink { [weak self] scope in
+                guard let self else { return }
+                showsOnlyMine = scope == .mine
+                Task { [weak self] in
+                    await self?.applyScope()
+                }
+                updatePresence(scope: scope)
+                emitPendingChanged(scope: scope)
             }
             .store(in: &cancellables)
 
@@ -516,14 +550,28 @@ private extension IncidentsViewModel {
     }
 
     func refreshIdentity() async {
-        guard let source = sources.first else {
+        if let source = sources.first {
+            do {
+                identity = try await source.identity()
+            } catch {
+                setConnectionIssue(describe(error))
+            }
+        } else {
             identity = nil
-            return
         }
-        do {
-            identity = try await source.identity()
-        } catch {
-            setConnectionIssue(describe(error))
+        await applyScope()
+    }
+
+    /// El monitor solo avisa de lo que entra en el alcance; necesita saber quién es el usuario.
+    func applyScope() async {
+        await monitoring.updateScope(scope, for: identity)
+    }
+
+    /// Lo que el usuario se asigna desde la app no debe avisarse luego como reasignado.
+    func claim(_ incident: Incident) {
+        guard !IncidentDemoData.isDemo(incident) else { return }
+        Task { [monitoring] in
+            await monitoring.claim(incident.id)
         }
     }
 
@@ -546,6 +594,9 @@ private extension IncidentsViewModel {
     // MARK: Lecturas
 
     func pollOnce() async {
+        if scope == .mine, identity == nil, !sources.isEmpty {
+            await refreshIdentity()
+        }
         let outcome = await monitoring.poll()
         guard isMonitoring else { return }
         apply(outcome)
@@ -567,11 +618,12 @@ private extension IncidentsViewModel {
 
         setConnectionIssue(connectionMessage(for: outcome.errors))
 
-        if outcome.newIncidents.isEmpty {
+        let arrivals = outcome.newIncidents.filter(isInScope)
+        if arrivals.isEmpty {
             updatePresence()
             emitPendingChanged()
         } else {
-            handleArrivals(outcome.newIncidents, asBatch: isFirstPoll)
+            handleArrivals(arrivals, asBatch: isFirstPoll)
         }
     }
 
@@ -624,7 +676,7 @@ private extension IncidentsViewModel {
     }
 
     func repeatLoudSound() {
-        let loud = pending.filter { unattendedLoud.contains($0.id) && !isSnoozed($0) }
+        let loud = pending.filter { unattendedLoud.contains($0.id) && isInScope($0) && !isSnoozed($0) }
         guard let top = IncidentsViewModel.ordered(loud).first else {
             unattendedLoud = []
             updatePresence()
@@ -636,8 +688,13 @@ private extension IncidentsViewModel {
         scheduleLoudRepeat()
     }
 
-    func updatePresence() {
-        let active = listedIncidents.filter { !isSnoozed($0) }
+    func activeIncidents(in scope: IncidentScope) -> [Incident] {
+        pending.filter { (scope == .all || isMine($0)) && !isSnoozed($0) }
+    }
+
+    /// `scope` llega como parámetro desde el observador del perfil, que avisa antes de cambiarlo.
+    func updatePresence(scope: IncidentScope? = nil) {
+        let active = activeIncidents(in: scope ?? self.scope)
         let loud = active.filter { unattendedLoud.contains($0.id) }
         let newPresence: IncidentsPresence
         if let top = loud.map(\.priority).max() {
@@ -653,14 +710,15 @@ private extension IncidentsViewModel {
     }
 
     /// Re-envía el live activity solo cuando cambia algo que afecta a su tamaño o aspecto.
-    func emitPendingChanged(force: Bool = false) {
-        let signature = (count: visibleCount, presence: presence, onlyMine: showsOnlyMine)
+    func emitPendingChanged(force: Bool = false, scope: IncidentScope? = nil) {
+        let badge = activeIncidents(in: scope ?? self.scope).count
+        let signature = (badge: badge, listed: visibleCount, presence: presence)
         if !force, let last = lastEmittedSignature,
-           last.count == signature.count, last.presence == signature.presence, last.onlyMine == signature.onlyMine {
+           last.badge == signature.badge, last.listed == signature.listed, last.presence == signature.presence {
             return
         }
         lastEmittedSignature = signature
-        event = .pendingChanged(signature.count)
+        event = .pendingChanged(signature.badge)
     }
 
     func setConnectionIssue(_ message: String?) {
