@@ -6,8 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag a publicar (por ejemplo v0.2.0)"
+        description: "Tag a publicar (por ejemplo v0.2.0 o v0.2.0-beta.1)"
         required: true
+      ref:
+        description: "Rama o commit a compilar; el tag se crea sobre él si no existe"
+        required: false
+        default: main
 
 permissions:
   contents: write
@@ -22,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
+          ref: ${{ github.event.inputs.ref || github.ref }}
 
       - name: Xcode
         run: |
@@ -58,4 +62,5 @@ jobs:
           PRERELEASE=""
           case "$TAG" in *-*) PRERELEASE="--prerelease" ;; esac
           gh release create "$TAG" build/dmg/*.dmg build/dmg/*.sha256 \
+            --target "$(git rev-parse HEAD)" \
             --title "Notchwatch $TAG" --generate-notes $PRERELEASE
