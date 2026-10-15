@@ -55,6 +55,12 @@ if [[ ! -d "$APP_PATH" ]]; then
   exit 1
 fi
 
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
+if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
+  echo "Signing $APP_NAME (ad hoc)..."
+  codesign --force --deep --sign - "$APP_PATH"
+fi
+
 echo "Installing to $TARGET_PATH..."
 if [[ ! -d "$INSTALL_DIR" && -w "$(dirname "$INSTALL_DIR")" ]]; then
   mkdir -p "$INSTALL_DIR"

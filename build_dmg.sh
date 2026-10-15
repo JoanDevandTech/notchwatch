@@ -67,6 +67,12 @@ if [[ ! -d "$APP_PATH" ]]; then
 fi
 
 echo "Staging DMG contents..."
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
+if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
+  echo "Signing $APP_NAME (ad hoc)..."
+  codesign --force --deep --sign - "$APP_PATH"
+fi
+
 ditto "$APP_PATH" "$STAGING_DIR/$APP_NAME"
 ln -s /Applications "$STAGING_DIR/Applications"
 
