@@ -19,9 +19,11 @@ La lógica vive en el paquete [`NotchwatchCore`](https://github.com/JoanDevandTe
 ## Instalación
 
 1. Descarga el `.dmg` de la última versión en **Releases** y arrastra Notchwatch a **Aplicaciones**.
-2. La app va firmada ad‑hoc, así que la primera vez macOS la bloquea: ábrela, ve a *Ajustes del Sistema → Privacidad y seguridad* y pulsa **Abrir igualmente** (o `xattr -dr com.apple.quarantine /Applications/Notchwatch.app`).
+2. La app va firmada con un certificado propio («Notchwatch Self-Signed»), no con un Developer ID de Apple, así que la primera vez Gatekeeper la bloquea: ábrela, ve a *Ajustes del Sistema → Privacidad y seguridad* y pulsa **Abrir igualmente** (o `xattr -dr com.apple.quarantine /Applications/Notchwatch.app`). Esto se repite con cada `.dmg` nuevo.
 3. Concede los permisos que te pida para las funciones que uses (notificaciones para las incidencias; el resto son opcionales).
 4. Abre *Ajustes → Incidencias → Cuenta y proyectos*, pega tu **token personal de Asana** (*Mi configuración → Apps → Consola de desarrolladores*) y elige **Usar preajuste de Tubuencamino** o **Configurar con el asistente**. El token solo se guarda en el Llavero.
+
+Permisos ligados a la firma (Accesibilidad y Llavero): macOS asocia el permiso de *Accesibilidad* y el acceso al token de Asana en el Llavero a la firma de la app. Las versiones firmadas con el certificado propio mantienen siempre la misma identidad, así que al pasar a la primera de ellas (desde una ad‑hoc) macOS pide Accesibilidad y Llavero una última vez —vuelve a activar Notchwatch en *Privacidad y seguridad → Accesibilidad* y pulsa **Permitir siempre** en el aviso del Llavero— y ya no vuelve a preguntar en cada actualización. Las versiones ad‑hoc cambiaban de identidad en cada compilación y por eso lo pedían siempre. Gatekeeper, en cambio, sigue pidiendo **Abrir igualmente** con cada `.dmg` nuevo porque el certificado no es un Developer ID de Apple.
 
 Requisitos: macOS 14.6 o superior. Funciona también sin notch (cápsula flotante).
 
@@ -35,7 +37,44 @@ open DynamicNotch.xcodeproj      # esquema DynamicNotch; el producto se llama No
 ./build_dmg.sh                   # build/dmg/Notchwatch.dmg
 ```
 
-Tests del módulo: esquema `DynamicNotch`, carpeta `DynamicNotchTests/Features/Incidents`. La CI (`macos-26`) compila, exige cero avisos en `Features/Incidents` y pasa esos tests más los de integración del motor. Con un tag `v*` se publica el DMG firmado ad‑hoc.
+Tests del módulo: esquema `DynamicNotch`, carpeta `DynamicNotchTests/Features/Incidents`. La CI (`macos-26`) compila, exige cero avisos en `Features/Incidents` y pasa esos tests más los de integración del motor. Con un tag `v*` (o lanzando *Release* a mano) se publica el DMG firmado con el certificado propio.
+
+### Firma de las releases
+
+La workflow `release.yml` compila sin firma de desarrollador y después re‑firma el `.app` entero (frameworks incluidos) con la identidad **Notchwatch Self-Signed**, importada en un llavero temporal que se borra al terminar. Usa dos secretos de *Settings → Secrets and variables → Actions*:
+
+- `MACOS_CERT_P12_BASE64`: el `.p12` (certificado + clave privada) en base64, en una sola línea.
+- `MACOS_CERT_PASSWORD`: la contraseña del `.p12`.
+
+Si `MACOS_CERT_P12_BASE64` no existe o está vacío, la release se firma ad‑hoc como antes. Hardened runtime sigue desactivado (`ENABLE_HARDENED_RUNTIME=NO`).
+
+Regenerar el certificado (solo si se pierde o caduca: cambiarlo hace que el Llavero vuelva a pedir permiso una vez):
+
+```bash
+cat > cert.cnf <<'CNF'
+[req]
+distinguished_name = dn
+prompt = no
+x509_extensions = ext
+[dn]
+CN = Notchwatch Self-Signed
+[ext]
+basicConstraints = critical,CA:FALSE
+keyUsage = critical,digitalSignature
+extendedKeyUsage = critical,codeSigning
+subjectKeyIdentifier = hash
+CNF
+openssl rand -base64 33 | tr -d '\n=' | tr '+/' 'AZ' > MACOS_CERT_PASSWORD.txt
+openssl req -x509 -newkey rsa:2048 -nodes -sha256 -days 3650 -config cert.cnf -keyout key.pem -out cert.pem
+# -legacy hace falta con OpenSSL 3; quítalo con LibreSSL/OpenSSL 1.1
+openssl pkcs12 -export -legacy -name "Notchwatch Self-Signed" -inkey key.pem -in cert.pem \
+  -keypbe PBE-SHA1-3DES -certpbe PBE-SHA1-3DES -macalg sha1 \
+  -passout file:MACOS_CERT_PASSWORD.txt -out notchwatch-signing.p12
+base64 -w0 notchwatch-signing.p12 > MACOS_CERT_P12_BASE64.txt   # en macOS: base64 -i notchwatch-signing.p12
+rm key.pem
+```
+
+Sube el contenido de `MACOS_CERT_P12_BASE64.txt` y `MACOS_CERT_PASSWORD.txt` como los dos secretos y guarda el `.p12` y su contraseña fuera del repo. Para firmar en local con la misma identidad, importa el `.p12` en tu llavero y usa `SIGN_IDENTITY="Notchwatch Self-Signed" ./build_dmg.sh` (opcional `SIGN_KEYCHAIN=<ruta>`; por defecto `SIGN_IDENTITY=-`, ad‑hoc). `build_and_install_app.sh` acepta las mismas variables.
 
 ### Dónde está cada cosa
 
