@@ -127,6 +127,7 @@ enum GeneralSettingsStorage {
         static let homePagePageIndicator = "settings.homePage.pageIndicator"
         static let homePageIndicatorSize = "settings.homePage.indicatorSize"
         static let selectedVPNID = "settings.vpn.selectedID"
+        static let incidentsEnabled = "settings.incidents.enabled"
     }
 
     static let defaultValues: [String: Any] = [
@@ -269,6 +270,7 @@ enum GeneralSettingsStorage {
         Keys.calendarSoundAlert: false,
         Keys.externalDrivesNotificationsEnabled: true,
         Keys.externalDrivesNotificationDuration: 8,
-        Keys.externalDrivesShowEjected: true
+        Keys.externalDrivesShowEjected: true,
+        Keys.incidentsEnabled: true
     ]
 }

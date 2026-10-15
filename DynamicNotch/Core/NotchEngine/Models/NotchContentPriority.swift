@@ -13,6 +13,7 @@ enum NotchContentPriority {
         case timer
         case calendar
         case screenRecording
+        case incidents
 
         var id: String { rawValue }
 
@@ -38,6 +39,8 @@ enum NotchContentPriority {
                 NotchContentPriority.calendar
             case .screenRecording:
                 NotchContentPriority.screenRecording
+            case .incidents:
+                NotchContentPriority.incidents
             }
         }
         
@@ -63,6 +66,8 @@ enum NotchContentPriority {
                 "settings.notch.priorities.row.screenRecording"
             case .calendar:
                 "settings.notch.priorities.row.calendar"
+            case .incidents:
+                "settings.notch.priorities.row.incidents"
             }
         }
         
@@ -88,6 +93,8 @@ enum NotchContentPriority {
                 return "record.circle"
             case .calendar:
                 return "calendar"
+            case .incidents:
+                return "flame.fill"
             }
         }
         
@@ -113,6 +120,8 @@ enum NotchContentPriority {
                     .red
             case .calendar:
                     .blue
+            case .incidents:
+                    .orange
             }
         }
     }
@@ -129,6 +138,7 @@ enum NotchContentPriority {
         .timer,
         .calendar,
         .screenRecording,
+        .incidents,
     ]
 
     static let `default` = 0
@@ -141,6 +151,7 @@ enum NotchContentPriority {
     static let timer = 7
     static let calendar = 8
     static let screenRecording = 9
+    static let incidents = 10
 
     static let homePage = -10000
     static let dragAndDrop = 10001

@@ -32,6 +32,7 @@ final class NotchEventCoordinator: ObservableObject {
     private let lockScreenHandler: NotchLockScreenEventsHandler
     private let onboardingHandler: NotchOnboardingEventsHandler
     private let softwareUpdateHandler: NotchSoftwareUpdateEventsHandler
+    private let incidentsHandler: NotchIncidentsEventsHandler
     private var settingsObserver: NotchSettingsObserver?
     private var cancellables = Set<AnyCancellable>()
 
@@ -61,7 +62,8 @@ final class NotchEventCoordinator: ObservableObject {
             calendarViewModel: container.calendarViewModel,
             screenshotViewModel: container.screenshotViewModel,
             screenRecordingResultViewModel: container.screenRecordingResultViewModel,
-            externalDrivesMonitor: container.externalDrivesMonitor
+            externalDrivesMonitor: container.externalDrivesMonitor,
+            incidentsViewModel: container.incidentsViewModel
         )
     }
 
@@ -86,7 +88,8 @@ final class NotchEventCoordinator: ObservableObject {
         calendarViewModel: CalendarViewModel,
         screenshotViewModel: ScreenshotViewModel? = nil,
         screenRecordingResultViewModel: ScreenRecordingResultViewModel? = nil,
-        externalDrivesMonitor: ExternalDrivesMonitor
+        externalDrivesMonitor: ExternalDrivesMonitor,
+        incidentsViewModel: IncidentsViewModel? = nil
     ) {
         self.notchViewModel = notchViewModel
         self.settingsViewModel = settingsViewModel
@@ -191,6 +194,16 @@ final class NotchEventCoordinator: ObservableObject {
             notchViewModel: notchViewModel,
             settingsViewModel: settingsViewModel
         )
+        let resolvedIncidentsViewModel = incidentsViewModel ?? IncidentsViewModel(
+            profileStore: IncidentsProfileStore.shared,
+            monitoring: InactiveIncidentMonitoring(),
+            notifier: InactiveIncidentNotifier()
+        )
+        self.incidentsHandler = NotchIncidentsEventsHandler(
+            notchViewModel: notchViewModel,
+            incidentsViewModel: resolvedIncidentsViewModel,
+            settingsViewModel: settingsViewModel
+        )
 
         setupEventSubscriptions(
             powerViewModel: powerViewModel,
@@ -206,6 +219,7 @@ final class NotchEventCoordinator: ObservableObject {
             lockScreenManager: lockScreenManager,
             homePageViewModel: homePageViewModel
         )
+        observeIncidentsEvents(resolvedIncidentsViewModel)
 
         self.settingsObserver = NotchSettingsObserver(
             settingsViewModel: settingsViewModel,
@@ -242,10 +256,12 @@ final class NotchEventCoordinator: ObservableObject {
 
     func hideOnboarding(markAsSeen: Bool = false) {
         onboardingHandler.hideOnboarding(markAsSeen: markAsSeen)
+        incidentsHandler.syncLiveActivity()
     }
 
     func finishOnboarding() {
         onboardingHandler.hideOnboarding(markAsSeen: true)
+        incidentsHandler.syncLiveActivity()
     }
 
     func showOnboarding(step: OnboardingSteps = .first) {
@@ -355,6 +371,11 @@ final class NotchEventCoordinator: ObservableObject {
         externalDevicesHandler.handleExternalDriveEvent(drive)
     }
 
+    func handleIncidentsEvent(_ event: IncidentsEvent) {
+        guard !isOnboardingActive else { return }
+        incidentsHandler.handle(event)
+    }
+
     private func setupEventSubscriptions(
         powerViewModel: PowerViewModel?,
         focusViewModel: FocusViewModel?,
@@ -444,6 +465,14 @@ final class NotchEventCoordinator: ObservableObject {
         homePageViewModel.$event.compactMap { $0 }
             .sink { [weak self] event in
                 self?.handleHomePageEvent(event)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func observeIncidentsEvents(_ incidentsViewModel: IncidentsViewModel) {
+        incidentsViewModel.$event.compactMap { $0 }
+            .sink { [weak self] event in
+                self?.handleIncidentsEvent(event)
             }
             .store(in: &cancellables)
     }

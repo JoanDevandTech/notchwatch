@@ -27,6 +27,7 @@ struct SettingsRootView: View {
     let nowPlayingViewModel: NowPlayingViewModel
     let timerViewModel: TimerViewModel
     let lockScreenManager: LockScreenManager
+    let incidentsViewModel: IncidentsViewModel
 
     private let viewModel: SettingsRootViewModel
     
@@ -65,7 +66,8 @@ struct SettingsRootView: View {
             downloadViewModel: container.downloadViewModel,
             nowPlayingViewModel: container.nowPlayingViewModel,
             timerViewModel: container.timerViewModel,
-            lockScreenManager: container.lockScreenManager
+            lockScreenManager: container.lockScreenManager,
+            incidentsViewModel: container.incidentsViewModel
         )
     }
 
@@ -80,7 +82,8 @@ struct SettingsRootView: View {
         downloadViewModel: DownloadViewModel,
         nowPlayingViewModel: NowPlayingViewModel,
         timerViewModel: TimerViewModel,
-        lockScreenManager: LockScreenManager
+        lockScreenManager: LockScreenManager,
+        incidentsViewModel: IncidentsViewModel
     ) {
         self.powerService = powerService
         self.settingsViewModel = settingsViewModel
@@ -93,6 +96,7 @@ struct SettingsRootView: View {
         self.nowPlayingViewModel = nowPlayingViewModel
         self.timerViewModel = timerViewModel
         self.lockScreenManager = lockScreenManager
+        self.incidentsViewModel = incidentsViewModel
         let rootViewModel = SettingsRootViewModel(
             settingsViewModel: settingsViewModel,
             notchViewModel: notchViewModel,
@@ -265,9 +269,18 @@ struct SettingsRootView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("SelectSettingsSubPage"))) { notification in
             if let subPage = notification.object as? SettingsSubPage {
-                applySelection(.general, origin: .sidebar)
+                applySelection(hostSection(for: subPage), origin: .sidebar)
                 navigationPath = [subPage]
             }
+        }
+    }
+
+    private func hostSection(for subPage: SettingsSubPage) -> SettingsRootViewModel.Section {
+        switch subPage {
+        case .incidentsAccount, .incidentsAppearance, .incidentsSounds, .incidentsAlerts, .incidentsAdvanced:
+            return .incidents
+        default:
+            return .general
         }
     }
 
@@ -555,6 +568,14 @@ struct SettingsRootView: View {
                     notchViewModel: notchViewModel
                 )
             }
+
+        case .incidents:
+            detailContainer(for: section) {
+                IncidentsSettingsView(
+                    settings: settingsViewModel.incidents,
+                    viewModel: incidentsViewModel
+                )
+            }
         }
     }
 
@@ -667,6 +688,19 @@ struct SettingsRootView: View {
         case .externalDrives:
             ExternalDrivesNotificationsSettingsView(
                 settings: settingsViewModel.externalDevices
+            )
+        case .incidentsAccount:
+            IncidentsAccountSettingsView(viewModel: incidentsViewModel)
+        case .incidentsAppearance:
+            IncidentsAppearanceSettingsView(viewModel: incidentsViewModel)
+        case .incidentsSounds:
+            IncidentsSoundsSettingsView(viewModel: incidentsViewModel)
+        case .incidentsAlerts:
+            IncidentsAlertsSettingsView(viewModel: incidentsViewModel)
+        case .incidentsAdvanced:
+            IncidentsAdvancedSettingsView(
+                settings: settingsViewModel.incidents,
+                viewModel: incidentsViewModel
             )
         }
     }

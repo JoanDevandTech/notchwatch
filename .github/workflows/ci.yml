@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DERIVED_DATA: build/DerivedData
+
+jobs:
+  build:
+    name: Compilar y testear
+    runs-on: macos-26
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_26.app 2>/dev/null || sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | tail -1)"
+          xcodebuild -version
+          swift --version
+
+      - name: Caché de paquetes
+        uses: actions/cache@v4
+        with:
+          path: build/DerivedData/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('DynamicNotch.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+
+      - name: Compilar
+        run: |
+          set -o pipefail
+          mkdir -p build
+          xcodebuild build \
+            -project DynamicNotch.xcodeproj -scheme DynamicNotch -configuration Debug \
+            -destination 'platform=macOS' -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY="" DEVELOPMENT_TEAM="" \
+            2>&1 | tee build/xcodebuild.log | grep -E "error:|warning:|BUILD|\*\*" || true
+          grep -q "BUILD SUCCEEDED" build/xcodebuild.log
+
+      - name: Avisos del módulo Incidencias
+        run: |
+          grep -E "Features/Incidents/.*warning:" build/xcodebuild.log | sort -u | tee build/incidents-warnings.txt || true
+          test ! -s build/incidents-warnings.txt
+
+      # Dos tests del motor original leen las métricas de pantallas reales y no pueden pasar en un runner
+      # sin monitor; el resto de la integración del motor sí se ejecuta.
+      - name: Tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project DynamicNotch.xcodeproj -scheme DynamicNotch \
+            -destination 'platform=macOS' -derivedDataPath "$DERIVED_DATA" \
+            -only-testing:DynamicNotchTests/IncidentNotifierTests \
+            -only-testing:DynamicNotchTests/IncidentsNotchContentTests \
+            -only-testing:DynamicNotchTests/IncidentsProfileStoreTests \
+            -only-testing:DynamicNotchTests/IncidentsSettingsStoreTests \
+            -only-testing:DynamicNotchTests/IncidentsViewModelTests \
+            -only-testing:DynamicNotchTests/NotchIncidentsEventsHandlerTests \
+            -only-testing:DynamicNotchTests/NotchViewModelIntegrationTests \
+            -only-testing:DynamicNotchTests/NotchEventCoordinatorIntegrationTests \
+            -skip-testing:DynamicNotchTests/NotchViewModelIntegrationTests/testUpdateDimensionsUsesSelectedDisplayMetrics \
+            -skip-testing:DynamicNotchTests/NotchViewModelIntegrationTests/testUpdateDimensionsUsesSpecificDisplayMetrics \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY="" DEVELOPMENT_TEAM="" \
+            2>&1 | tee build/xcodebuild-test.log | grep -E "Test Suite|Executed|error:|failed|\*\*" || true
+          grep -q "TEST SUCCEEDED" build/xcodebuild-test.log
+
+      - name: Subir logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: build/*.log
+          retention-days: 7
+
+      # Resumen de errores y avisos en la rama `ci-logs` (un único commit que se sobrescribe),
+      # para poder revisarlos con git sin descargar artefactos.
+      - name: Publicar resumen en la rama ci-logs
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          WORK="$(mktemp -d)"
+          for log in build/*.log; do
+            [ -f "$log" ] || continue
+            name="$(basename "$log" .log)"
+            grep -E "(error|warning|note): |error generated|BUILD |TEST |Test Case .*(failed|passed)|\*\* " "$log" | sed 's#/Users/runner/work/notchwatch/notchwatch/##g' | sort -u > "$WORK/$name-resumen.txt" || true
+            tail -n 400 "$log" | sed 's#/Users/runner/work/notchwatch/notchwatch/##g' > "$WORK/$name-cola.txt" || true
+          done
+          printf '# Logs de la CI\n\nCommit %s\n' "$SOURCE_SHA" > "$WORK/README.md"
+          cd "$WORK"
+          git init -q -b ci-logs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "ci: logs de ${SOURCE_SHA:0:7}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ci-logs

@@ -1,0 +1,287 @@
+[
+  {
+    "key": "incidents.island.title",
+    "en": "Incidents",
+    "es": "Incidencias"
+  },
+  {
+    "key": "incidents.island.compact.pending",
+    "en": "pending",
+    "es": "pendientes"
+  },
+  {
+    "key": "incidents.island.compact.allClear",
+    "en": "all clear",
+    "es": "al día"
+  },
+  {
+    "key": "incidents.island.compact.offline",
+    "en": "offline",
+    "es": "sin conexión"
+  },
+  {
+    "key": "incidents.island.compact.accessibility",
+    "en": "%d pending incidents",
+    "es": "%d incidencias pendientes"
+  },
+  {
+    "key": "incidents.island.action.open",
+    "en": "Open",
+    "es": "Abrir"
+  },
+  {
+    "key": "incidents.island.action.expand",
+    "en": "Expand",
+    "es": "Expandir"
+  },
+  {
+    "key": "incidents.island.action.assignToMe",
+    "en": "Assign to me",
+    "es": "Asignármela"
+  },
+  {
+    "key": "incidents.island.action.resolve",
+    "en": "Resolve",
+    "es": "Resolver"
+  },
+  {
+    "key": "incidents.island.action.snooze",
+    "en": "Snooze",
+    "es": "Posponer"
+  },
+  {
+    "key": "incidents.island.action.more",
+    "en": "More",
+    "es": "Más"
+  },
+  {
+    "key": "incidents.island.snooze.15m",
+    "en": "15 minutes",
+    "es": "15 minutos"
+  },
+  {
+    "key": "incidents.island.snooze.1h",
+    "en": "1 hour",
+    "es": "1 hora"
+  },
+  {
+    "key": "incidents.island.snooze.4h",
+    "en": "4 hours",
+    "es": "4 horas"
+  },
+  {
+    "key": "incidents.island.snooze.tomorrow",
+    "en": "Until tomorrow",
+    "es": "Hasta mañana"
+  },
+  {
+    "key": "incidents.island.snoozedUntil",
+    "en": "Snoozed until %@",
+    "es": "Pospuesta hasta las %@"
+  },
+  {
+    "key": "incidents.island.more.dueDate",
+    "en": "Due date",
+    "es": "Fecha de vencimiento"
+  },
+  {
+    "key": "incidents.island.more.priority",
+    "en": "Priority",
+    "es": "Prioridad"
+  },
+  {
+    "key": "incidents.island.more.markSeen",
+    "en": "Mark as seen",
+    "es": "Marcar como vista"
+  },
+  {
+    "key": "incidents.island.due.option.none",
+    "en": "No due date",
+    "es": "Quitar fecha"
+  },
+  {
+    "key": "incidents.island.due.none",
+    "en": "No due date",
+    "es": "Sin vencimiento"
+  },
+  {
+    "key": "incidents.island.due.today",
+    "en": "Due today",
+    "es": "Vence hoy"
+  },
+  {
+    "key": "incidents.island.due.tomorrow",
+    "en": "Due tomorrow",
+    "es": "Vence mañana"
+  },
+  {
+    "key": "incidents.island.due.inDays",
+    "en": "Due in %d d",
+    "es": "Vence en %d d"
+  },
+  {
+    "key": "incidents.island.due.overdue",
+    "en": "Overdue %d d",
+    "es": "Vencida hace %d d"
+  },
+  {
+    "key": "incidents.island.errors.one",
+    "en": "1 error",
+    "es": "1 error"
+  },
+  {
+    "key": "incidents.island.errors.many",
+    "en": "%d errors",
+    "es": "%d errores"
+  },
+  {
+    "key": "incidents.island.alert.more",
+    "en": "+%d more",
+    "es": "+%d más"
+  },
+  {
+    "key": "incidents.island.time.now",
+    "en": "now",
+    "es": "ahora"
+  },
+  {
+    "key": "incidents.island.time.minutesAgo",
+    "en": "%d min ago",
+    "es": "hace %d min"
+  },
+  {
+    "key": "incidents.island.time.hoursAgo",
+    "en": "%d h ago",
+    "es": "hace %d h"
+  },
+  {
+    "key": "incidents.island.time.daysAgo",
+    "en": "%d d ago",
+    "es": "hace %d d"
+  },
+  {
+    "key": "incidents.island.priority.urgente",
+    "en": "Urgent",
+    "es": "Urgente"
+  },
+  {
+    "key": "incidents.island.priority.alta",
+    "en": "High",
+    "es": "Alta"
+  },
+  {
+    "key": "incidents.island.priority.media",
+    "en": "Medium",
+    "es": "Media"
+  },
+  {
+    "key": "incidents.island.priority.baja",
+    "en": "Low",
+    "es": "Baja"
+  },
+  {
+    "key": "incidents.island.priority.ninguna",
+    "en": "None",
+    "es": "Sin prioridad"
+  },
+  {
+    "key": "incidents.island.row.assignedToYou",
+    "en": "Assigned to you",
+    "es": "Asignada a ti"
+  },
+  {
+    "key": "incidents.island.row.snoozed",
+    "en": "Snoozed",
+    "es": "Pospuesta"
+  },
+  {
+    "key": "incidents.island.scope.all",
+    "en": "All",
+    "es": "Todas"
+  },
+  {
+    "key": "incidents.island.scope.mine",
+    "en": "Mine",
+    "es": "Mías"
+  },
+  {
+    "key": "incidents.island.header.refresh",
+    "en": "Refresh",
+    "es": "Actualizar"
+  },
+  {
+    "key": "incidents.island.header.doNotDisturb",
+    "en": "Do not disturb",
+    "es": "No molestar"
+  },
+  {
+    "key": "incidents.island.header.mute",
+    "en": "Mute sounds",
+    "es": "Silenciar"
+  },
+  {
+    "key": "incidents.island.header.settings",
+    "en": "Settings",
+    "es": "Ajustes"
+  },
+  {
+    "key": "incidents.island.header.collapse",
+    "en": "Collapse",
+    "es": "Recoger"
+  },
+  {
+    "key": "incidents.island.empty.notConfigured.title",
+    "en": "No source connected",
+    "es": "Sin fuente conectada"
+  },
+  {
+    "key": "incidents.island.empty.notConfigured.subtitle",
+    "en": "Connect Asana to start watching incidents",
+    "es": "Conecta Asana para empezar a vigilar incidencias"
+  },
+  {
+    "key": "incidents.island.empty.notConfigured.action",
+    "en": "Set up",
+    "es": "Configurar"
+  },
+  {
+    "key": "incidents.island.empty.allClear.title",
+    "en": "All clear",
+    "es": "Todo al día"
+  },
+  {
+    "key": "incidents.island.empty.allClear.subtitle",
+    "en": "No open incidents right now",
+    "es": "No hay incidencias abiertas ahora mismo"
+  },
+  {
+    "key": "incidents.island.empty.mine.title",
+    "en": "Nothing assigned to you",
+    "es": "Nada asignado a ti"
+  },
+  {
+    "key": "incidents.island.empty.mine.subtitle",
+    "en": "Switch to All to see the rest",
+    "es": "Cambia a Todas para ver el resto"
+  },
+  {
+    "key": "incidents.island.footer.neverUpdated",
+    "en": "Not updated yet",
+    "es": "Sin actualizar todavía"
+  },
+  {
+    "key": "incidents.island.footer.updatedNow",
+    "en": "Updated just now",
+    "es": "Actualizado ahora"
+  },
+  {
+    "key": "incidents.island.footer.updatedMinutesAgo",
+    "en": "Updated %d min ago",
+    "es": "Actualizado hace %d min"
+  },
+  {
+    "key": "incidents.island.footer.updatedHoursAgo",
+    "en": "Updated %d h ago",
+    "es": "Actualizado hace %d h"
+  }
+]

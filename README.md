@@ -1,171 +1,70 @@
-<p align="center">
-  <img src="DynamicNotch/Resources/Assets.xcassets/AppIcon.appiconset/logo256.png" alt="DynamicNotch logo" width="96" />
-</p>
+# Notchwatch
 
-<h1 align="center">DynamicNotch</h1>
+Notchwatch convierte el notch del Mac en una isla viva que, además de todo lo que hace [DynamicNotch](https://github.com/jackson-storm/DynamicNotch) (reproductor, descargas, AirDrop, batería, Bluetooth, Wi‑Fi, temporizador, pantalla de bloqueo…), **avisa con animación y sonido de las incidencias nuevas de Asana** y deja atenderlas sin salir del notch.
 
-<p align="center">
-  <strong>Turn the MacBook notch into a living native surface.</strong>
-</p>
+Es un fork de DynamicNotch, de Evgeniy Petrukovich, publicado bajo **GPL‑3.0**. Este proyecto conserva esa licencia: si alguna vez se distribuye fuera, hay que entregar el código fuente. El módulo de incidencias es nuestro; el resto es suyo y se mantiene lo más cerca posible del original para poder traer sus mejoras.
 
-<p align="center">
-  DynamicNotch is a native macOS app for notched MacBooks that turns the notch into a live system surface for media,
-  downloads, AirDrop, timers, screen recording, connectivity events, lock-screen transitions, and custom hardware HUDs.
-</p>
+## El módulo «Incidencias»
 
-<p align="center">
-  <a href="https://t.me/Dynamic_Notch">
-    <img src="https://img.shields.io/badge/Telegram-Join%20Channel-26A5E4?style=for-the-badge&logo=telegram&logoColor=white&labelColor=26A5E4" alt="Join the Telegram channel" />
-  </a>
-  <a href="mailto:evgeniy.petrukovich@icloud.com?subject=A%20question%20about%20Dynamic%20Notch">
-    <img src="https://img.shields.io/badge/Email-Contact%20Me-0A84FF?style=for-the-badge&logo=icloud&logoColor=white&labelColor=0A84FF" alt="Send an email about DynamicNotch" />
-  </a>
-  <a href="https://t.me/id10101101">
-    <img src="https://img.shields.io/badge/Telegram-Contact%20Me-229ED9?style=for-the-badge&logo=telegram&logoColor=white&labelColor=229ED9" alt="Contact me on Telegram" />
-  </a>
-</p>
+- **Píldora con vida propia.** En reposo enseña el estado (color de la prioridad más alta pendiente) y el contador; respira, un brillo la recorre y de vez en cuando asoma la palabra «pendientes». Con altas o urgentes sin atender, el punto parpadea y la píldora resplandece del color de la prioridad.
+- **Aviso al entrar una incidencia.** Tarjeta con prioridad, app, asunto, quién la reporta, módulo, errores de consola y vencimiento, y un sonido distinto por prioridad. Las bajas y medias se recogen solas; las altas y urgentes se quedan hasta que las atiendes y repiten el sonido.
+- **Panel desplegado.** Lista de pendientes con filtro «Todas / Mías» y acciones al pasar el ratón: abrir en Asana, asignármela, posponer, **resolver** (pasa a Verificación) y, en el menú «…», cambiar vencimiento, prioridad o marcar como vista.
+- **Notificación de macOS** con las acciones Abrir, Asignármela y Posponer, y **atajo global** (⌃⌥⌘I por defecto) para desplegar o recoger la isla.
+- **Control total desde Ajustes → Incidencias:** cuenta de Asana y proyectos (con asistente de alta), apariencia (tema, color por prioridad, icono y color por proyecto, tipografía, intensidad de movimiento), sonidos por prioridad y volumen, No molestar manual y por horario, duración de los avisos, intervalo de lectura, atajo, y exportar/importar el perfil para replicarlo en otro Mac.
 
-<p align="center">
-  <a href="https://github.com/jackson-storm/DynamicNotch/releases">
-    <img src="https://img.shields.io/github/downloads/jackson-storm/DynamicNotch/total?style=for-the-badge&label=Downloads&logo=github&logoColor=white&color=28a745" alt="GitHub downloads" />
-  </a>
-  <a href="https://github.com/jackson-storm/DynamicNotch/releases/latest">
-    <img src="https://img.shields.io/github/v/release/jackson-storm/DynamicNotch?style=for-the-badge&label=Latest%20Release&logo=github&logoColor=white&color=0a84ff" alt="Latest release" />
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/jackson-storm/DynamicNotch?style=for-the-badge&label=License&color=blueviolet" alt="License" />
-  </a>
-  <img src="https://img.shields.io/badge/macOS-14.6%2B-red?style=for-the-badge&logo=apple&logoColor=white" alt="macOS 14.6 or later" />
-</p>
+### Otras cuentas y otras apps
 
-<p align="center">
-  <a href="https://boosty.to/jacksonstormdev">
-    <img src="https://img.shields.io/badge/Boosty-Support-F58220?style=for-the-badge&logo=boosty&logoColor=white" alt="Support on Boosty" />
-  </a>
-  <a href="https://www.donationalerts.com/r/jacksonstormdev">
-    <img src="https://img.shields.io/badge/DonationAlerts-Donate-FF9A00?style=for-the-badge&logo=donationalerts&logoColor=white" alt="Donate via Donation Alerts" />
-  </a>
-</p>
+La lógica vive en el paquete [`NotchwatchCore`](https://github.com/JoanDevandTech/notchwatch-core): un protocolo `IncidentSource` con colecciones, acciones y capacidades. Asana es la primera fuente; otra app se integra implementando ese protocolo, sin tocar la isla. La cuenta no está cableada: pega un token, la app lista tus workspaces y proyectos y propone qué sección es «Detectadas», cuál «Verificación» y qué campo es la prioridad. Tubuencamino queda como preajuste de un clic.
 
-<p align="center">
-  <img src="assets/readme/Player.png" alt="DynamicNotch preview" width="100%" />
-  <img src="assets/readme/LockScreen.png" alt="DynamicNotch preview" width="100%" />
-</p>
+## Instalación
 
-## 🧐 Why DynamicNotch
+1. Descarga el `.dmg` de la última versión en **Releases** y arrastra Notchwatch a **Aplicaciones**.
+2. La app va firmada ad‑hoc, así que la primera vez macOS la bloquea: ábrela, ve a *Ajustes del Sistema → Privacidad y seguridad* y pulsa **Abrir igualmente** (o `xattr -dr com.apple.quarantine /Applications/Notchwatch.app`).
+3. Concede los permisos que te pida para las funciones que uses (notificaciones para las incidencias; el resto son opcionales).
+4. Abre *Ajustes → Incidencias → Cuenta y proyectos*, pega tu **token personal de Asana** (*Mi configuración → Apps → Consola de desarrolladores*) y elige **Usar preajuste de Tubuencamino** o **Configurar con el asistente**. El token solo se guarda en el Llavero.
 
-The app is built with SwiftUI and AppKit, so the notch window, settings UI, and event handling feel
-like part of macOS rather than a web-style overlay.
+Requisitos: macOS 14.6 o superior. Funciona también sin notch (cápsula flotante).
 
-The difference between this project and others is that it is built on its own engine, and not taken from other ready-made repositories. It completely copies the logic, animations, and behavior of a real Dynamic Island on an iPhone, unlike other projects. 
+## Desarrollo
 
-The main goal is to make the project as native as possible, both in terms of design and interaction.
-
-## 🎯 Highlights
-
-- **Live Activities**: Now Playing (media control, album artwork, audio visualizer, customizable progress bar tint style), Downloads progress, AirDrop, Timer, Screen Recording indicator, Focus mode, Personal Hotspot, and Lock Screen media/live activity surfaces.
-
-- **Temporary Alerts**: Interactive HUD status for battery charging, low/full battery, Bluetooth connections, Wi-Fi, VPN, Focus-off toggling, and notch size modification settings feedback.
-
-- **Gestures & Swipe Controls**: Native interactive gestures including mouse drag, trackpad swipes, vertical swipe-to-dismiss/restore with adaptive corner radii and swipe-aware blur, and horizontal trackpad/mouse scroll-to-dismiss.
-
-- **Fluid Physics Animations**: True-to-life replication of the iOS Dynamic Island's motion design, featuring responsive physics-based spring animations, jelly-like morphing transitions, and synchronized content interpolation that matches the stretch, squash, and elastic behavior of Apple's implementation.
-
-- **Dynamic Island (Floating Capsule)**: Automatic support for devices without a physical hardware notch (e.g. non-notched MacBooks, iMac, Mac mini, or external monitors). Transitions to a floating capsule shape (`DynamicIslandShape`) when `topInset == 0`, utilizing dynamic, smooth corner radius transitions.
-
-- **Deep Customization**: Personalization options for base notch width/height, stroke options, background styling, animation presets, custom screen/display selection, and fullscreen spaces handling.
-
-## 📦 Installation
-
-1. Download the latest DMG from the [Releases](https://github.com/jackson-storm/DynamicNotch/releases) page.
-2. Drag `DynamicNotch` into `Applications`.
-3. Launch the app.
-4. Grant the permissions needed for the features you want to use.
-5. If macOS blocks the first launch, allow it from `System Settings > Privacy & Security`.
-
-## ✅ Requirements
-
-- macOS 14.6 or later
-- Works on both notched MacBooks and non-notched displays (automatically rendering as a floating Dynamic Island capsule)
-- Feature-specific permissions as needed:
-  - Accessibility for custom HUD interception and some system-level interactions
-  - Bluetooth access for accessory status updates
-  - Screen Recording access for audio-reactive Now Playing visualization where macOS requires it
-  - Media/Now Playing access where macOS requires it
-
-## 🛠️ Build From Source
+Requisitos: Xcode 26 (macOS 15.6 o 26).
 
 ```bash
-git clone https://github.com/jackson-storm/DynamicNotch.git
-cd DynamicNotch
-open DynamicNotch.xcodeproj
+open DynamicNotch.xcodeproj      # esquema DynamicNotch; el producto se llama Notchwatch.app
+./build_and_install_app.sh       # compila en Release y copia a /Applications
+./build_dmg.sh                   # build/dmg/Notchwatch.dmg
 ```
 
-Then run the `DynamicNotch` scheme from Xcode. Swift Package Manager dependencies are resolved by the project.
+Tests del módulo: esquema `DynamicNotch`, carpeta `DynamicNotchTests/Features/Incidents`. La CI (`macos-26`) compila, exige cero avisos en `Features/Incidents` y pasa esos tests más los de integración del motor. Con un tag `v*` se publica el DMG firmado ad‑hoc.
 
-## 💻 Gallery
+### Dónde está cada cosa
 
-<table align="center">
-  <tr>
-    <td><img src="assets/readme/NoInternet.png" alt="No Internet" width="100%" /></td>
-    <td><img src="assets/readme/Tray.png" alt="Tray" width="100%" /></td>
-    <td><img src="assets/readme/Timer.png" alt="Timer" width="100%" /></td>
-  </tr>
-  <tr>
-    <td><img src="assets/readme/Charging.png" alt="Charging" width="100%" /></td>
-    <td><img src="assets/readme/LowBattery.png" alt="Low Battery" width="100%" /></td>
-    <td><img src="assets/readme/FullBattery.png" alt="Full Battery" width="100%" /></td>
-  </tr>
-  <tr>
-    <td><img src="assets/readme/Bluetooth.png" alt="Bluetooth" width="100%" /></td>
-    <td><img src="assets/readme/VpnConnection.png" alt="VPN Connection" width="100%" /></td>
-    <td><img src="assets/readme/VolumeHud.png" alt="Volume HUD" width="100%" /></td>
-  </tr>
-  <tr>
-    <td><img src="assets/readme/Hotspot.png" alt="Hotspot" width="100%" /></td>
-    <td><img src="assets/readme/Downloads.png" alt="Downloads" width="100%" /></td>
-    <td><img src="assets/readme/FocusMode.png" alt="Focus Mode" width="100%" /></td>
-  </tr>
-</table>
+```
+DynamicNotch/Features/Incidents/
+  Content/        Contenidos del motor: píldora/panel (live activity) y tarjeta de aviso (alerta)
+  EventHandlers/  Decide qué enseña el notch: siempre la píldora; alerta o pulso según el estado
+  ViewModels/     IncidentsViewModel: lectura, acciones optimistas, sonido, notificaciones, atajo
+  Services/       Monitor (NotchwatchCore), perfil JSON, Llavero, notificaciones, atajo Carbon, sonidos
+  Views/          Píldora, animaciones ambientales, alerta, panel, filas, componentes
+  Design/         Tokens visuales (IncidentsTheme) y medidas (IncidentsLayout)
+  Settings/       Sección de Ajustes con sus subpáginas y el asistente de alta de Asana
+```
 
-> **Note:** This gallery displays only a selection of the events, live activities, and temporary alerts supported by DynamicNotch. Many other states, animations, and system transitions are supported.
+El perfil se guarda en `~/Library/Application Support/Notchwatch/profile.json` (sin tokens) y las vistas/pospuestas en `seen.json`.
 
-## 🧰 Tech Stack
+### Traer cambios del DynamicNotch original
 
-- SwiftUI for notch content and settings UI
-- AppKit for windows, input handling, and macOS integration
-- Combine for feature and settings streams
-- [Lottie](https://github.com/airbnb/lottie-ios) for animation assets
+```bash
+git remote add upstream https://github.com/jackson-storm/DynamicNotch.git
+git fetch upstream && git merge upstream/main
+```
 
-## 🌍 Localization
+Nuestros cambios fuera del módulo son pocos y están localizados: registro y prioridad del contenido, contenedor, coordinador de eventos, observadores de arranque, exclusión de gestos en `NotchInteractiveBodyView`, sección de Ajustes y el catálogo de cadenas (claves `incidents.*`). Identidad: bundle `com.joandev.notchwatch`, producto `Notchwatch`, feed de Sparkle propio.
 
-DynamicNotch features full native localization support for **38+ languages** across interface elements, notch activities, and settings. You can switch languages instantly in the app settings.
+### Pendiente antes de publicar actualizaciones automáticas
 
-## 💖 Support
+Sparkle apunta al `appcast.xml` de este repo, que está vacío. Para activarlo hay que generar un par de claves EdDSA con `generate_keys` de Sparkle, poner la pública en `SUPublicEDKey` (Info.plist) y firmar cada release.
 
-Without your support, the project will not be able to develop. If you would like to support the project, you can do so via:
+## Licencia
 
-### Services
-
-- **Boosty**: [Support development or subscribe](https://boosty.to/jacksonstormdev)
-- **Donation Alerts**: [One-time donation via cards or crypto](https://www.donationalerts.com/r/jacksonstormdev)
-
-### Cryptocurrency
-
-- **USDT (TRC-20)**: `TWYo42HQNuXSA5gmVoVV1973ScPqCtduvA`
-- **USDT (ERC-20)**: `0xd3261630d7EC2484A3fcf5315f194B58834ab891`
-- **Bitcoin (BTC)**: `bc1qw29074zwlp600rhvjat2v7ks53h835tthfj7dx`
-
-
-## 🤝 Acknowledgements
-
-Special thanks to the following open-source projects and services that make DynamicNotch possible:
-
-- [Lottie for iOS](https://github.com/airbnb/lottie-ios) — for rendering premium, smooth vector animations.
-- [LRCLIB](https://lrclib.net) — for providing the main engine for synchronized lyrics search.
-- [Lyrics.ovh](https://lyrics.ovh) — for serving as a fallback database for static song lyrics.
-- [mediaremote-adapter](https://github.com/ungive/mediaremote-adapter) — for MediaRemote API integration.
-
-## 📄 License
-
-DynamicNotch is released under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
+GPL‑3.0, como el proyecto original. Consulta `LICENSE`.

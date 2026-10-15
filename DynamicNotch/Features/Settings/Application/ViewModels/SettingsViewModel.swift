@@ -22,6 +22,7 @@ final class SettingsViewModel: ObservableObject, NotchSettingsProviding {
         case calendar
         case externalDevices
         case faceID
+        case incidents
         static var notifications: ResetGroup { .externalDevices }
     }
 
@@ -67,6 +68,7 @@ final class SettingsViewModel: ObservableObject, NotchSettingsProviding {
     let calendar: CalendarSettingsStore
     let externalDevices: ExternalDevicesSettingsStore
     let faceID: FaceIDSettingsStore
+    let incidents: IncidentsSettingsStore
     var notifications: ExternalDevicesSettingsStore { externalDevices }
     private let defaults: UserDefaults
 
@@ -85,6 +87,7 @@ final class SettingsViewModel: ObservableObject, NotchSettingsProviding {
         self.calendar = CalendarSettingsStore(defaults: defaults)
         self.externalDevices = ExternalDevicesSettingsStore(defaults: defaults)
         self.faceID = FaceIDSettingsStore(defaults: defaults)
+        self.incidents = IncidentsSettingsStore(defaults: defaults)
         bindStores()
     }
 
@@ -484,6 +487,8 @@ final class SettingsViewModel: ObservableObject, NotchSettingsProviding {
             externalDevices.reset()
         case .faceID:
             faceID.reset()
+        case .incidents:
+            incidents.resetIncidents()
         }
     }
 
@@ -499,6 +504,7 @@ final class SettingsViewModel: ObservableObject, NotchSettingsProviding {
         bind(store: calendar)
         bind(store: externalDevices)
         bind(store: faceID)
+        bind(store: incidents)
     }
 
     private func bind<Object: ObservableObject>(store: Object)

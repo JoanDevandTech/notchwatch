@@ -75,6 +75,21 @@ extension AppDelegate {
             }
             .store(in: &cancellables)
 
+        settingsViewModel.incidents.$isIncidentsEnabled
+            .removeDuplicates()
+            .sink { [weak self] isIncidentsEnabled in
+                guard let self else { return }
+                // El coordinator debe existir antes del primer evento para no perder el live activity inicial.
+                _ = notchEventCoordinator
+
+                if isIncidentsEnabled {
+                    container.incidentsViewModel.startMonitoring()
+                } else {
+                    container.incidentsViewModel.stopMonitoring()
+                }
+            }
+            .store(in: &cancellables)
+
         updateExternalDrivesMonitoringState()
     }
 

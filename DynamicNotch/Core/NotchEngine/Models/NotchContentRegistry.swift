@@ -144,6 +144,14 @@ enum NotchContentRegistry {
         )
     }
 
+    enum Incidents {
+        static let pending = NotchContentDescriptor(
+            id: "incidents.pending",
+            priorityKey: .incidents
+        )
+        static let alert = NotchContentDescriptor(id: "incidents.alert")
+    }
+
     enum SoftwareUpdate {
         static let update = NotchContentDescriptor(
             id: "softwareUpdate",

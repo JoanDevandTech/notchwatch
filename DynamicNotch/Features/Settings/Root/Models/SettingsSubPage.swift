@@ -18,6 +18,11 @@ enum SettingsSubPage: Hashable, Identifiable {
     case homePagePages
     case timer
     case externalDrives
+    case incidentsAccount
+    case incidentsAppearance
+    case incidentsSounds
+    case incidentsAlerts
+    case incidentsAdvanced
     
     var id: Self { self }
     var titleKey: String {
@@ -39,6 +44,11 @@ enum SettingsSubPage: Hashable, Identifiable {
         case .homePagePages: return "settings.homePage.pages.title"
         case .timer: return "settings.section.timer.title"
         case .externalDrives: return "settings.notifications.externalDrives.title"
+        case .incidentsAccount: return "incidents.settings.account.title"
+        case .incidentsAppearance: return "incidents.settings.appearance.title"
+        case .incidentsSounds: return "incidents.settings.sounds.title"
+        case .incidentsAlerts: return "incidents.settings.alerts.title"
+        case .incidentsAdvanced: return "incidents.settings.advanced.title"
         }
     }
     
@@ -61,6 +71,11 @@ enum SettingsSubPage: Hashable, Identifiable {
         case .homePagePages: return "Pages"
         case .timer: return "Timer"
         case .externalDrives: return "External Drives"
+        case .incidentsAccount: return "Account & Projects"
+        case .incidentsAppearance: return "Appearance"
+        case .incidentsSounds: return "Sounds"
+        case .incidentsAlerts: return "Alerts"
+        case .incidentsAdvanced: return "Shortcut & Advanced"
         }
     }
     
@@ -83,6 +98,11 @@ enum SettingsSubPage: Hashable, Identifiable {
         case .homePagePages: return "settings.homePage.pages.subtitle"
         case .timer: return "settings.section.timer.subtitle"
         case .externalDrives: return "settings.notifications.externalDrives.subtitle"
+        case .incidentsAccount: return "incidents.settings.account.subtitle"
+        case .incidentsAppearance: return "incidents.settings.appearance.subtitle"
+        case .incidentsSounds: return "incidents.settings.sounds.subtitle"
+        case .incidentsAlerts: return "incidents.settings.alerts.subtitle"
+        case .incidentsAdvanced: return "incidents.settings.advanced.subtitle"
         }
     }
     
@@ -105,6 +125,11 @@ enum SettingsSubPage: Hashable, Identifiable {
         case .homePagePages: return "Reorder or enable/disable home page cards."
         case .timer: return "Clock timer live activity and stroke appearance."
         case .externalDrives: return "Notifications for connected external disks and flash drives."
+        case .incidentsAccount: return "Asana token, connection status and watched projects."
+        case .incidentsAppearance: return "Theme, priority colors, typography and motion."
+        case .incidentsSounds: return "Volume, sound per priority and repeats."
+        case .incidentsAlerts: return "Do Not Disturb, alert card, macOS notifications and polling."
+        case .incidentsAdvanced: return "Global shortcut, profile export/import and reset."
         }
     }
     
