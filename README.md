@@ -23,7 +23,7 @@ La lógica vive en el paquete [`NotchwatchCore`](https://github.com/JoanDevandTe
 3. Concede los permisos que te pida para las funciones que uses (notificaciones para las incidencias; el resto son opcionales).
 4. Abre *Ajustes → Incidencias → Cuenta y proyectos*, pega tu **token personal de Asana** (*Mi configuración → Apps → Consola de desarrolladores*) y elige **Usar preajuste de Tubuencamino** o **Configurar con el asistente**. El token solo se guarda en el Llavero.
 
-Sobre el Llavero: el token de Asana queda ligado a la firma de la app. Las versiones firmadas con el certificado propio mantienen siempre la misma identidad, así que al pasar a la primera de ellas (desde una ad‑hoc) macOS pide acceso al Llavero una última vez —pulsa **Permitir siempre**— y ya no vuelve a preguntar en cada actualización. Las versiones ad‑hoc cambiaban de identidad en cada compilación y por eso lo pedían siempre.
+Permisos ligados a la firma (Accesibilidad y Llavero): macOS asocia el permiso de *Accesibilidad* y el acceso al token de Asana en el Llavero a la firma de la app. Las versiones firmadas con el certificado propio mantienen siempre la misma identidad, así que al pasar a la primera de ellas (desde una ad‑hoc) macOS pide Accesibilidad y Llavero una última vez —vuelve a activar Notchwatch en *Privacidad y seguridad → Accesibilidad* y pulsa **Permitir siempre** en el aviso del Llavero— y ya no vuelve a preguntar en cada actualización. Las versiones ad‑hoc cambiaban de identidad en cada compilación y por eso lo pedían siempre. Gatekeeper, en cambio, sigue pidiendo **Abrir igualmente** con cada `.dmg` nuevo porque el certificado no es un Developer ID de Apple.
 
 Requisitos: macOS 14.6 o superior. Funciona también sin notch (cápsula flotante).
 
