@@ -53,8 +53,9 @@ struct IncidentsCompactView: View {
     var body: some View {
         HStack(spacing: 0) {
             statusSymbol
-            Spacer(minLength: 0)
             counter
+                .frame(maxWidth: counterMaxWidth, alignment: .trailing)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.leading, leadingPadding)
         .padding(.trailing, trailingPadding)
@@ -80,28 +81,35 @@ struct IncidentsCompactView: View {
     }
 
     private var counter: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 0) {
             if ambient.isPeeking {
-                SwiftUI.Text(peekLabel)
-                    .font(theme.font(IncidentsLayout.compactLabelSize, weight: .semibold))
-                    .foregroundStyle(theme.textSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.75)
-                    .transition(.move(edge: .trailing).combined(with: .opacity))
+                ViewThatFits(in: .horizontal) {
+                    SwiftUI.Text(peekLabel)
+                        .font(theme.font(IncidentsLayout.compactLabelSize, weight: .semibold))
+                        .foregroundStyle(theme.textSecondary)
+                        .lineLimit(1)
+                        .fixedSize()
+                        .padding(.trailing, 6)
+                    Color.clear.frame(width: 0, height: 0)
+                }
+                .transition(.move(edge: .trailing).combined(with: .opacity))
             }
-            if viewModel.connectionIssue != nil {
-                Image(systemName: "wifi.exclamationmark")
-                    .font(.system(size: IncidentsLayout.compactCountSize - 2, weight: .semibold))
-                    .foregroundStyle(theme.textTertiary)
-            } else {
-                AnimatedLevelText(
-                    level: viewModel.visibleCount,
-                    fontSize: IncidentsLayout.compactCountSize,
-                    color: theme.textPrimary
-                )
-                .fontWeight(.bold)
+            HStack(spacing: 6) {
+                if viewModel.connectionIssue != nil {
+                    Image(systemName: "wifi.exclamationmark")
+                        .font(.system(size: IncidentsLayout.compactCountSize - 2, weight: .semibold))
+                        .foregroundStyle(theme.textTertiary)
+                } else {
+                    AnimatedLevelText(
+                        level: viewModel.visibleCount,
+                        fontSize: IncidentsLayout.compactCountSize,
+                        color: theme.textPrimary
+                    )
+                    .fontWeight(.bold)
+                    .fixedSize()
+                }
+                statusDot
             }
-            statusDot
         }
     }
 
@@ -113,6 +121,12 @@ struct IncidentsCompactView: View {
             .opacity(ambient.isBlinkOn ? 1 : 0.15)
             .scaleEffect(ambient.breathScale)
             .animation(.spring(response: 0.4, dampingFraction: 0.8), value: tint)
+    }
+
+    /// Con notch, el contador no puede invadir el hueco físico: se limita a su lado de la píldora.
+    private var counterMaxWidth: CGFloat {
+        guard !isNotchlessScreen else { return .infinity }
+        return max(0, IncidentsLayout.compactExtraWidth(isNotchless: false) / 2 - trailingPadding)
     }
 
     private var leadingPadding: CGFloat {
