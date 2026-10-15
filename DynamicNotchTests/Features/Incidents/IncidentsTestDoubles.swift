@@ -52,7 +52,7 @@ final class FakeIncidentSource: IncidentSource, @unchecked Sendable {
     let kind: SourceKind = .asana
     let displayName: String
     var collections: [WatchedCollection]
-    var capabilities: SourceCapabilities = [.assignToMe, .resolve, .dueDate, .priority]
+    var capabilities: SourceCapabilities = [.assignToMe, .startProgress, .resolve, .dueDate, .priority]
     var identityValue = SourceIdentity(userID: "u1", name: "Joan")
     var performError: SourceError?
     var openIncidentsValue: [Incident] = []

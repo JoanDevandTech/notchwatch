@@ -39,6 +39,12 @@ else
     -scheme "$SCHEME"
 fi
 
+# Sin certificado el binario se firma ad hoc; el hardened runtime impediría cargar los frameworks.
+EXTRA_BUILD_SETTINGS=""
+if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
+  EXTRA_BUILD_SETTINGS="ENABLE_HARDENED_RUNTIME=NO"
+fi
+
 echo "Building $APP_NAME ($CONFIGURATION)..."
 if [[ -n "$CLONED_SOURCE_PACKAGES_PATH" ]]; then
   xcodebuild \
@@ -49,6 +55,7 @@ if [[ -n "$CLONED_SOURCE_PACKAGES_PATH" ]]; then
     -derivedDataPath "$DERIVED_DATA_PATH" \
     -clonedSourcePackagesDirPath "$CLONED_SOURCE_PACKAGES_PATH" \
     CODE_SIGNING_ALLOWED="$CODE_SIGNING_ALLOWED" \
+    $EXTRA_BUILD_SETTINGS \
     build
 else
   xcodebuild \
@@ -58,6 +65,7 @@ else
     -destination "$DESTINATION" \
     -derivedDataPath "$DERIVED_DATA_PATH" \
     CODE_SIGNING_ALLOWED="$CODE_SIGNING_ALLOWED" \
+    $EXTRA_BUILD_SETTINGS \
     build
 fi
 
@@ -67,6 +75,12 @@ if [[ ! -d "$APP_PATH" ]]; then
 fi
 
 echo "Staging DMG contents..."
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
+if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
+  echo "Signing $APP_NAME (ad hoc)..."
+  codesign --force --deep --sign - "$APP_PATH"
+fi
+
 ditto "$APP_PATH" "$STAGING_DIR/$APP_NAME"
 ln -s /Applications "$STAGING_DIR/Applications"
 

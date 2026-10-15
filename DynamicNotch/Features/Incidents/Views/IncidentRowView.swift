@@ -3,7 +3,7 @@ import NotchwatchCore
 import SwiftUI
 
 /// Fila del panel: barra de prioridad, icono de colección, título, chips y hora relativa; al pasar
-/// el ratón aparecen Abrir, Asignármela, Posponer, Resolver y «…».
+/// el ratón aparecen Abrir, En curso, Posponer, Resolver y «…», y los chips dejan sitio a la prioridad.
 struct IncidentRowView: View {
     @ObservedObject private var viewModel: IncidentsViewModel
     @Environment(\.incidentsTheme) private var theme
@@ -41,13 +41,13 @@ struct IncidentRowView: View {
     }
 
     var body: some View {
-        HStack(spacing: 9) {
+        HStack(spacing: 9.5) {
             IncidentIconTile(
                 symbol: collectionStyle.symbol,
                 color: theme.collection(collectionStyle),
                 size: IncidentsLayout.rowIconSize
             )
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 3.5) {
                 titleLine
                 metaLine
             }
@@ -55,8 +55,8 @@ struct IncidentRowView: View {
             .opacity(isSnoozed ? 0.6 : 1)
             trailing
         }
-        .padding(.leading, 10)
-        .padding(.trailing, 7)
+        .padding(.leading, 10.5)
+        .padding(.trailing, 7.5)
         .frame(height: IncidentsLayout.rowHeight)
         .background(rowBackground)
         .overlay(alignment: .leading) { priorityBar }
@@ -83,7 +83,7 @@ struct IncidentRowView: View {
     // MARK: Texto
 
     private var titleLine: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: 5.5) {
             SwiftUI.Text(incident.name)
                 .font(theme.font(11.5, weight: .bold))
                 .foregroundStyle(theme.textPrimary)
@@ -114,30 +114,54 @@ struct IncidentRowView: View {
         }
     }
 
+    @ViewBuilder
     private var metaLine: some View {
-        HStack(spacing: 6) {
-            IncidentChip(text: incident.collectionName, tint: theme.textSecondary)
-            if let reporter = NotchwatchCore.Text.nonEmpty(incident.reporter) {
-                IncidentChip(text: reporter, systemImage: "person", isFilled: false)
+        if showsActions {
+            IncidentPriorityChip(priority: incident.priority)
+                .transition(.opacity)
+        } else {
+            let chips = metaChips
+            ViewThatFits(in: .horizontal) {
+                ForEach(Array((1...chips.count).reversed()), id: \.self) { count in
+                    HStack(spacing: 6.5) {
+                        ForEach(chips.prefix(count)) { chip in
+                            IncidentChip(text: chip.text, systemImage: chip.systemImage, tint: chip.tint, isFilled: chip.isFilled)
+                        }
+                    }
+                }
             }
-            if let module = NotchwatchCore.Text.nonEmpty(incident.module) {
-                IncidentChip(text: module, systemImage: "square.on.square", isFilled: false)
-            }
-            if let errors = incident.consoleErrors, errors > 0 {
-                IncidentChip(
-                    text: IncidentsFormatting.consoleErrors(errors),
-                    systemImage: "exclamationmark.square",
-                    tint: priorityColor.opacity(0.9),
-                    isFilled: false
-                )
-            }
-            IncidentChip(
+            .transition(.opacity)
+        }
+    }
+
+    /// Chips de la fila por orden de importancia: si no caben todos se descartan desde el final.
+    private var metaChips: [IncidentMetaChip] {
+        var chips = [
+            IncidentMetaChip(id: "collection", text: incident.collectionName, tint: theme.textSecondary),
+            IncidentMetaChip(
+                id: "due",
                 text: IncidentsFormatting.due(incident.dueOn),
                 systemImage: "clock",
                 tint: IncidentsFormatting.isOverdue(incident.dueOn) ? theme.failure : nil,
                 isFilled: false
-            )
+            ),
+        ]
+        if let errors = incident.consoleErrors, errors > 0 {
+            chips.append(IncidentMetaChip(
+                id: "errors",
+                text: IncidentsFormatting.consoleErrors(errors),
+                systemImage: "exclamationmark.square",
+                tint: priorityColor.opacity(0.9),
+                isFilled: false
+            ))
         }
+        if let reporter = NotchwatchCore.Text.nonEmpty(incident.reporter) {
+            chips.append(IncidentMetaChip(id: "reporter", text: reporter, systemImage: "person", isFilled: false))
+        }
+        if let module = NotchwatchCore.Text.nonEmpty(incident.module) {
+            chips.append(IncidentMetaChip(id: "module", text: module, systemImage: "square.on.square", isFilled: false))
+        }
+        return chips
     }
 
     private var snoozedHelp: String {
@@ -166,13 +190,16 @@ struct IncidentRowView: View {
     }
 
     private var actions: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 4.5) {
             IncidentIconButton(symbol: "arrow.up.right", help: L10n.app("incidents.island.action.open", fallback: "Open")) {
                 viewModel.open(incident)
             }
-            if viewModel.can(.assignToMe, on: incident), !viewModel.isMine(incident) {
-                IncidentIconButton(symbol: "person.badge.plus", help: L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) {
-                    viewModel.assignToMe(incident)
+            if viewModel.can(.startProgress, on: incident) {
+                IncidentIconButton(
+                    symbol: "play.circle",
+                    help: L10n.app("incidents.island.action.startProgress.help", fallback: "Mark as in progress (assigns it to you if it has no assignee)")
+                ) {
+                    viewModel.startProgress(incident)
                 }
             }
             rowMenu(symbol: "clock", help: L10n.app("incidents.island.action.snooze", fallback: "Snooze")) {
@@ -218,6 +245,9 @@ struct IncidentRowView: View {
 
     @ViewBuilder
     private var moreItems: some View {
+        if viewModel.can(.assignToMe, on: incident), !viewModel.isMine(incident) {
+            Button(L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) { viewModel.assignToMe(incident) }
+        }
         if viewModel.can(.setDueDate(nil), on: incident) {
             Menu(L10n.app("incidents.island.more.dueDate", fallback: "Due date")) { dueDateItems }
         }
@@ -252,8 +282,8 @@ struct IncidentRowView: View {
     @ViewBuilder
     private var contextMenuItems: some View {
         Button(L10n.app("incidents.island.action.open", fallback: "Open")) { viewModel.open(incident) }
-        if viewModel.can(.assignToMe, on: incident) {
-            Button(L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) { viewModel.assignToMe(incident) }
+        if viewModel.can(.startProgress, on: incident) {
+            Button(L10n.app("incidents.island.action.startProgress", fallback: "In progress")) { viewModel.startProgress(incident) }
         }
         if viewModel.can(.resolve, on: incident) {
             Button(L10n.app("incidents.island.action.resolve", fallback: "Resolve")) { viewModel.resolve(incident) }
@@ -293,6 +323,14 @@ struct IncidentRowView: View {
         )
         .fill(priorityColor)
         .frame(width: IncidentsLayout.rowBarWidth)
-        .padding(.vertical, 11)
+        .padding(.vertical, 11.5)
     }
+}
+
+private struct IncidentMetaChip: Identifiable {
+    let id: String
+    let text: String
+    var systemImage: String? = nil
+    var tint: Color? = nil
+    var isFilled = true
 }

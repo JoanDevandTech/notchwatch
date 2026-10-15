@@ -206745,6 +206745,22 @@
         }
       }
     },
+    "incidents.action.started" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marked as in progress"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcada en curso"
+          }
+        }
+      }
+    },
     "incidents.action.dueDateChanged" : {
       "localizations" : {
         "en" : {
@@ -207225,6 +207241,22 @@
         }
       }
     },
+    "incidents.notification.action.startProgress" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In progress"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En curso"
+          }
+        }
+      }
+    },
     "incidents.notification.action.snooze" : {
       "localizations" : {
         "en" : {
@@ -207621,6 +207653,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir"
+          }
+        }
+      }
+    },
+    "incidents.island.action.startProgress" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In progress"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En curso"
+          }
+        }
+      }
+    },
+    "incidents.island.action.startProgress.help" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as in progress (assigns it to you if it has no assignee)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marcar en curso (te la asigna si no tiene responsable)"
           }
         }
       }

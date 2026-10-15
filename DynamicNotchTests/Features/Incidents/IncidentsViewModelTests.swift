@@ -143,6 +143,71 @@ final class IncidentsViewModelTests: XCTestCase {
         }
     }
 
+    func testStartProgressAssignsUnassignedIncidentOptimisticallyAndPerformsOnSource() async {
+        let fixture = IncidentsTestFactory.makeFixture()
+        let incident = IncidentsTestFactory.makeIncident(id: "s", collection: fixture.collection)
+        fixture.monitoring.enqueue(pending: [incident])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.viewModel.identity != nil }
+        }
+
+        fixture.viewModel.startProgress(incident)
+
+        XCTAssertEqual(fixture.viewModel.pending.map(\.id), ["s"])
+        XCTAssertEqual(fixture.viewModel.pending.first?.assigneeID, "u1")
+        XCTAssertEqual(fixture.viewModel.activity["s"], .working)
+        await assertEventually {
+            await MainActor.run {
+                fixture.source.performed.contains { $0.action == .startProgress && $0.incidentID == "s" }
+            }
+        }
+        await assertEventually {
+            await MainActor.run {
+                if case .done = fixture.viewModel.activity["s"] { return true }
+                return false
+            }
+        }
+        XCTAssertEqual(fixture.viewModel.pending.map(\.id), ["s"])
+    }
+
+    func testStartProgressKeepsExistingAssignee() async {
+        let fixture = IncidentsTestFactory.makeFixture()
+        let incident = IncidentsTestFactory.makeIncident(id: "o", collection: fixture.collection, assigneeID: "u2")
+        fixture.monitoring.enqueue(pending: [incident])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.viewModel.identity != nil }
+        }
+
+        fixture.viewModel.startProgress(incident)
+
+        XCTAssertEqual(fixture.viewModel.pending.first?.assigneeID, "u2")
+        await assertEventually {
+            await MainActor.run {
+                fixture.source.performed.contains { $0.action == .startProgress && $0.incidentID == "o" }
+            }
+        }
+    }
+
+    func testNotificationResponseStartsProgress() async {
+        let fixture = IncidentsTestFactory.makeFixture()
+        let incident = IncidentsTestFactory.makeIncident(id: "np", collection: fixture.collection)
+        fixture.monitoring.enqueue(pending: [incident])
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.pending.count == 1 }
+        }
+
+        fixture.notifier.respond(IncidentNotifier.Response(incidentID: "np", url: nil, action: .startProgress))
+
+        await assertEventually {
+            await MainActor.run {
+                fixture.source.performed.contains { $0.action == .startProgress && $0.incidentID == "np" }
+            }
+        }
+    }
+
     func testResolveRemovesLocallyAndPerformsOnSource() async {
         let fixture = IncidentsTestFactory.makeFixture()
         let incident = IncidentsTestFactory.makeIncident(id: "r", priority: .alta, collection: fixture.collection)

@@ -38,6 +38,7 @@ if [[ -n "$CLONED_SOURCE_PACKAGES_PATH" ]]; then
     -derivedDataPath "$DERIVED_DATA_PATH" \
     -clonedSourcePackagesDirPath "$CLONED_SOURCE_PACKAGES_PATH" \
     CODE_SIGNING_ALLOWED=NO \
+    ENABLE_HARDENED_RUNTIME=NO \
     build
 else
   xcodebuild \
@@ -47,12 +48,20 @@ else
     -destination "$DESTINATION" \
     -derivedDataPath "$DERIVED_DATA_PATH" \
     CODE_SIGNING_ALLOWED=NO \
+    ENABLE_HARDENED_RUNTIME=NO \
     build
 fi
 
 if [[ ! -d "$APP_PATH" ]]; then
   echo "Build finished, but app was not found at: $APP_PATH" >&2
   exit 1
+fi
+
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
+# El script compila siempre sin certificado: la app se firma ad hoc.
+if true; then
+  echo "Signing $APP_NAME (ad hoc)..."
+  codesign --force --deep --sign - "$APP_PATH"
 fi
 
 echo "Installing to $TARGET_PATH..."

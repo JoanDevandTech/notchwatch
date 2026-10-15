@@ -10,7 +10,7 @@ struct IncidentChip: View {
     var isFilled = true
 
     var body: some View {
-        HStack(spacing: 3) {
+        HStack(spacing: 3.5) {
             if let systemImage {
                 Image(systemName: systemImage)
                     .font(.system(size: theme.scaled(8), weight: .semibold))
@@ -18,9 +18,10 @@ struct IncidentChip: View {
             SwiftUI.Text(text)
                 .font(theme.font(9.5, weight: isFilled ? .semibold : .medium))
                 .lineLimit(1)
+                .fixedSize()
         }
         .foregroundStyle(tint ?? (isFilled ? theme.textSecondary : theme.textTertiary))
-        .padding(.horizontal, isFilled ? 6 : 0)
+        .padding(.horizontal, isFilled ? 6.5 : 0)
         .padding(.vertical, isFilled ? 2.5 : 0)
         .background {
             if isFilled {
@@ -41,8 +42,10 @@ struct IncidentPriorityChip: View {
         SwiftUI.Text(IncidentsFormatting.priorityName(priority).uppercased())
             .font(theme.font(8.5, weight: .heavy))
             .kerning(0.4)
+            .lineLimit(1)
+            .fixedSize()
             .foregroundStyle(color)
-            .padding(.horizontal, 6)
+            .padding(.horizontal, 6.5)
             .padding(.vertical, 2.5)
             .background(
                 RoundedRectangle(cornerRadius: IncidentsLayout.chipCornerRadius, style: .continuous)
@@ -142,7 +145,7 @@ struct IncidentTextButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 4) {
+            HStack(spacing: 4.5) {
                 if let systemImage {
                     Image(systemName: systemImage)
                         .font(.system(size: theme.scaled(9.5), weight: .bold))
@@ -152,7 +155,7 @@ struct IncidentTextButton: View {
                     .lineLimit(1)
             }
             .foregroundStyle(isProminent ? theme.textOnAccent : (isHovering ? theme.textPrimary : theme.textSecondary))
-            .padding(.horizontal, 9)
+            .padding(.horizontal, 9.5)
             .frame(height: height)
             .background(
                 RoundedRectangle(cornerRadius: IncidentsLayout.controlCornerRadius, style: .continuous)
@@ -205,7 +208,7 @@ struct IncidentsScopeSwitch: View {
             SwiftUI.Text(title)
                 .font(theme.font(10, weight: .semibold))
                 .foregroundStyle(isSelected ? theme.textPrimary : theme.textTertiary)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 8.5)
                 .frame(height: IncidentsLayout.rowActionSize - 4)
                 .background(
                     RoundedRectangle(cornerRadius: IncidentsLayout.controlCornerRadius - 2, style: .continuous)
@@ -237,7 +240,7 @@ struct IncidentActivityBadge: View {
     }
 
     private func label(_ message: String, symbol: String, color: Color) -> some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 4.5) {
             Image(systemName: symbol)
                 .foregroundStyle(color)
             SwiftUI.Text(message)

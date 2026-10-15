@@ -3,7 +3,7 @@ import NotchwatchCore
 import SwiftUI
 
 /// Tarjeta de aviso de una incidencia recién llegada: orbe de la prioridad, chips, título, meta y
-/// botones Abrir / Expandir. Sin `Menu`: el gesto del notch es simultáneo (informe §9.4).
+/// botones En curso / Abrir / Expandir. Sin `Menu`: el gesto del notch es simultáneo (informe §9.4).
 struct IncidentAlertView: View {
     @ObservedObject private var viewModel: IncidentsViewModel
     @Environment(\.isNotchlessScreen) private var isNotchlessScreen
@@ -45,9 +45,9 @@ struct IncidentAlertView: View {
     }
 
     private var content: some View {
-        HStack(alignment: .center, spacing: 11) {
+        HStack(alignment: .center, spacing: 11.5) {
             orb
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 5.5) {
                 chips
                 SwiftUI.Text(incident.name)
                     .font(theme.font(13, weight: .bold))
@@ -82,20 +82,32 @@ struct IncidentAlertView: View {
     }
 
     private var chips: some View {
-        HStack(spacing: 6) {
-            IncidentPriorityChip(priority: incident.priority)
-            IncidentChip(
-                text: incident.collectionName,
-                systemImage: collectionStyle.symbol,
-                tint: theme.collection(collectionStyle)
-            )
-            if extra > 0 {
-                IncidentChip(text: IncidentsFormatting.more(extra), isFilled: false)
+        HStack(spacing: 6.5) {
+            ViewThatFits(in: .horizontal) {
+                chipRow(showsCollection: true, showsExtra: extra > 0)
+                chipRow(showsCollection: true, showsExtra: false)
+                chipRow(showsCollection: false, showsExtra: false)
             }
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
             SwiftUI.Text(IncidentsFormatting.relativeAge(of: incident.createdAt))
                 .font(theme.font(9.5))
                 .foregroundStyle(theme.textTertiary)
+        }
+    }
+
+    private func chipRow(showsCollection: Bool, showsExtra: Bool) -> some View {
+        HStack(spacing: 6.5) {
+            IncidentPriorityChip(priority: incident.priority)
+            if showsCollection {
+                IncidentChip(
+                    text: incident.collectionName,
+                    systemImage: collectionStyle.symbol,
+                    tint: theme.collection(collectionStyle)
+                )
+            }
+            if showsExtra {
+                IncidentChip(text: IncidentsFormatting.more(extra), isFilled: false)
+            }
         }
     }
 
@@ -115,7 +127,22 @@ struct IncidentAlertView: View {
     }
 
     private var buttons: some View {
-        VStack(spacing: 5) {
+        HStack(spacing: 5.5) {
+            if viewModel.can(.startProgress, on: incident) {
+                IncidentIconButton(
+                    symbol: "play.circle",
+                    help: L10n.app("incidents.island.action.startProgress.help", fallback: "Mark as in progress (assigns it to you if it has no assignee)"),
+                    size: IncidentsLayout.alertButtonSize
+                ) {
+                    viewModel.startProgress(incident)
+                }
+            }
+            navigationButtons
+        }
+    }
+
+    private var navigationButtons: some View {
+        VStack(spacing: 5.5) {
             IncidentIconButton(
                 symbol: "arrow.up.right",
                 help: L10n.app("incidents.island.action.open", fallback: "Open"),

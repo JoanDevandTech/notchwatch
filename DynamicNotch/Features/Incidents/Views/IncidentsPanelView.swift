@@ -74,18 +74,18 @@ struct IncidentsPanelView: View {
     // MARK: Cabecera
 
     private var header: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 8.5) {
             IncidentIconTile(
                 symbol: viewModel.topPendingPriority.map(theme.symbol(for:)) ?? "checkmark.circle.fill",
                 color: headerTint,
-                size: IncidentsLayout.headerHeight - 6
+                size: IncidentsLayout.headerHeight - 8
             )
             SwiftUI.Text(L10n.app("incidents.island.title", fallback: "Incidents"))
                 .font(theme.font(15, weight: .bold))
                 .foregroundStyle(theme.textPrimary)
                 .lineLimit(1)
             countBadge
-            Spacer(minLength: 6)
+            Spacer(minLength: 6.5)
             if viewModel.isConfigured {
                 IncidentsScopeSwitch(showOnlyMine: showOnlyMine, mineCount: viewModel.mineCount) { onlyMine in
                     viewModel.setShowOnlyMine(onlyMine)
@@ -101,8 +101,8 @@ struct IncidentsPanelView: View {
             .monospacedDigit()
             .contentTransition(.numericText())
             .foregroundStyle(headerTint)
-            .padding(.horizontal, 7)
-            .padding(.vertical, 3)
+            .padding(.horizontal, 7.5)
+            .padding(.vertical, 3.5)
             .background(
                 RoundedRectangle(cornerRadius: IncidentsLayout.chipCornerRadius + 1, style: .continuous)
                     .fill(headerTint.opacity(theme.orbFillOpacity))
@@ -115,7 +115,7 @@ struct IncidentsPanelView: View {
     }
 
     private var tools: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 4.5) {
             IncidentIconButton(symbol: "arrow.clockwise", help: L10n.app("incidents.island.header.refresh", fallback: "Refresh")) {
                 viewModel.refreshNow()
             }
@@ -145,7 +145,7 @@ struct IncidentsPanelView: View {
     // MARK: Aviso
 
     private func banner(_ issue: String) -> some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 6.5) {
             Image(systemName: "wifi.exclamationmark")
                 .font(.system(size: theme.scaled(10), weight: .bold))
             SwiftUI.Text(issue)
@@ -154,7 +154,7 @@ struct IncidentsPanelView: View {
             Spacer(minLength: 0)
         }
         .foregroundStyle(theme.failure)
-        .padding(.horizontal, 9)
+        .padding(.horizontal, 9.5)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             RoundedRectangle(cornerRadius: IncidentsLayout.controlCornerRadius, style: .continuous)
@@ -227,9 +227,9 @@ struct IncidentsPanelView: View {
         actionTitle: String? = nil,
         action: (() -> Void)? = nil
     ) -> some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 12.5) {
             IncidentIconTile(symbol: symbol, color: tint ?? theme.textSecondary, size: IncidentsLayout.alertOrbSize - 8)
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 3.5) {
                 SwiftUI.Text(title)
                     .font(theme.font(12.5, weight: .bold))
                     .foregroundStyle(theme.textPrimary)
@@ -243,7 +243,7 @@ struct IncidentsPanelView: View {
                 IncidentTextButton(title: actionTitle, action: action)
             }
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 12.5)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             RoundedRectangle(cornerRadius: IncidentsLayout.rowCornerRadius, style: .continuous)
@@ -259,7 +259,7 @@ struct IncidentsPanelView: View {
 
     private var footer: some View {
         TimelineView(.periodic(from: .now, by: 30)) { context in
-            HStack(spacing: 6) {
+            HStack(spacing: 6.5) {
                 if let identity = viewModel.identity {
                     SwiftUI.Text(IncidentsFormatting.initials(of: identity.name))
                         .font(theme.font(8, weight: .heavy))
@@ -271,7 +271,7 @@ struct IncidentsPanelView: View {
                         .foregroundStyle(theme.textSecondary)
                         .lineLimit(1)
                 }
-                Spacer(minLength: 6)
+                Spacer(minLength: 6.5)
                 Circle()
                     .fill(hasBanner ? theme.failure : theme.success)
                     .frame(width: IncidentsLayout.compactDotSize, height: IncidentsLayout.compactDotSize)
