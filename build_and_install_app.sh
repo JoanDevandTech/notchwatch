@@ -15,12 +15,6 @@ APP_NAME="${APP_NAME:-Notchwatch.app}"
 APP_PATH="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/$APP_NAME"
 TARGET_PATH="$INSTALL_DIR/$APP_NAME"
 
-# Sin certificado el binario se firma ad hoc; el hardened runtime impediría cargar los frameworks.
-EXTRA_BUILD_SETTINGS=""
-if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
-  EXTRA_BUILD_SETTINGS="ENABLE_HARDENED_RUNTIME=NO"
-fi
-
 echo "Building $APP_NAME ($CONFIGURATION)..."
 if [[ -n "$CLONED_SOURCE_PACKAGES_PATH" ]]; then
   xcodebuild \
@@ -44,6 +38,7 @@ if [[ -n "$CLONED_SOURCE_PACKAGES_PATH" ]]; then
     -derivedDataPath "$DERIVED_DATA_PATH" \
     -clonedSourcePackagesDirPath "$CLONED_SOURCE_PACKAGES_PATH" \
     CODE_SIGNING_ALLOWED=NO \
+    ENABLE_HARDENED_RUNTIME=NO \
     build
 else
   xcodebuild \
@@ -53,6 +48,7 @@ else
     -destination "$DESTINATION" \
     -derivedDataPath "$DERIVED_DATA_PATH" \
     CODE_SIGNING_ALLOWED=NO \
+    ENABLE_HARDENED_RUNTIME=NO \
     build
 fi
 
@@ -62,7 +58,8 @@ if [[ ! -d "$APP_PATH" ]]; then
 fi
 
 # Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
-if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
+# El script compila siempre sin certificado: la app se firma ad hoc.
+if true; then
   echo "Signing $APP_NAME (ad hoc)..."
   codesign --force --deep --sign - "$APP_PATH"
 fi
