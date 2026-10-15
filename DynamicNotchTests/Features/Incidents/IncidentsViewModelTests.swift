@@ -105,7 +105,7 @@ final class IncidentsViewModelTests: XCTestCase {
 
         fixture.viewModel.startMonitoring()
 
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.viewModel.pending.count == 3 && fixture.viewModel.arrivalPulse == 1 }
         }
         XCTAssertEqual(fixture.monitoring.scopes.last?.scope, .mine)
@@ -130,7 +130,7 @@ final class IncidentsViewModelTests: XCTestCase {
         let before = IncidentsTestFactory.makeIncident(id: "r", priority: .alta, collection: fixture.collection, assigneeID: "u2")
         fixture.monitoring.enqueue(pending: [before])
         fixture.viewModel.startMonitoring()
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.monitoring.pollCount == 1 }
         }
         XCTAssertEqual(fixture.viewModel.badgeCount, 0)
@@ -140,7 +140,7 @@ final class IncidentsViewModelTests: XCTestCase {
         fixture.monitoring.enqueue(pending: [after], new: [after])
         fixture.viewModel.refreshNow()
 
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.viewModel.arrivalPulse == 1 }
         }
         XCTAssertEqual(fixture.viewModel.event, .arrived([after], asBatch: false))
@@ -156,7 +156,7 @@ final class IncidentsViewModelTests: XCTestCase {
         let other = IncidentsTestFactory.makeIncident(id: "other", priority: .urgente, collection: fixture.collection, assigneeID: "u2")
         fixture.monitoring.enqueue(pending: [other, mine])
         fixture.viewModel.startMonitoring()
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.viewModel.pending.count == 2 && fixture.viewModel.identity != nil }
         }
         XCTAssertEqual(fixture.viewModel.presence, .pending(.media))
@@ -167,7 +167,7 @@ final class IncidentsViewModelTests: XCTestCase {
         XCTAssertFalse(fixture.viewModel.showsOnlyMine)
         XCTAssertEqual(fixture.viewModel.badgeCount, 2)
         XCTAssertEqual(fixture.viewModel.presence, .pending(.urgente))
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.monitoring.scopes.last?.scope == .all }
         }
     }
@@ -177,13 +177,13 @@ final class IncidentsViewModelTests: XCTestCase {
         let incident = IncidentsTestFactory.makeIncident(id: "c", collection: fixture.collection, assigneeID: "u2")
         fixture.monitoring.enqueue(pending: [incident])
         fixture.viewModel.startMonitoring()
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.viewModel.pending.count == 1 && fixture.viewModel.identity != nil }
         }
 
         fixture.viewModel.assignToMe(incident)
 
-        await assertEventually {
+        await assertEventually(timeout: 3) {
             await MainActor.run { fixture.monitoring.claimed == ["c"] }
         }
         XCTAssertEqual(fixture.viewModel.badgeCount, 1)
