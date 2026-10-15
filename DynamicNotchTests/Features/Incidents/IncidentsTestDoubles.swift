@@ -17,25 +17,32 @@ final class FakeIncidentMonitoring: IncidentMonitoring {
         pendingSnapshot = pending
     }
 
-    func poll() async -> PollOutcome {
+    nonisolated func poll() async -> PollOutcome {
+        await MainActor.run { nextOutcome() }
+    }
+
+    nonisolated func markSeen(_ id: String) async {
+        await MainActor.run {
+            seen.append(id)
+            pendingSnapshot.removeAll { $0.id == id }
+        }
+    }
+
+    nonisolated func snooze(_ id: String, for duration: TimeInterval) async {
+        await MainActor.run { snoozed.append((id: id, duration: duration)) }
+    }
+
+    nonisolated func updateSources(_ sources: [any IncidentSource]) async {
+        let ids = sources.map(\.id)
+        await MainActor.run { sourceUpdates.append(ids) }
+    }
+
+    private func nextOutcome() -> PollOutcome {
         pollCount += 1
         if !queuedOutcomes.isEmpty {
             return queuedOutcomes.removeFirst()
         }
         return PollOutcome(newIncidents: [], pending: pendingSnapshot, errors: [:], date: Date())
-    }
-
-    func markSeen(_ id: String) async {
-        seen.append(id)
-        pendingSnapshot.removeAll { $0.id == id }
-    }
-
-    func snooze(_ id: String, for duration: TimeInterval) async {
-        snoozed.append((id: id, duration: duration))
-    }
-
-    func updateSources(_ sources: [any IncidentSource]) async {
-        sourceUpdates.append(sources.map(\.id))
     }
 }
 
