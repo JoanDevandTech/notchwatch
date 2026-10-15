@@ -33,7 +33,7 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_26.app 2>/dev/null || sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | tail -1)"
           xcodebuild -version
 
-      - name: Compilar (firma ad-hoc)
+      - name: Compilar
         run: |
           set -o pipefail
           xcodebuild build \
@@ -44,6 +44,53 @@ jobs:
             MARKETING_VERSION="${TAG#v}" \
             2>&1 | grep -E "error:|BUILD|\*\*" || true
           test -d build/DerivedData/Build/Products/Release/Notchwatch.app
+
+      # Con los secretos MACOS_CERT_P12_BASE64 y MACOS_CERT_PASSWORD se firma con el certificado
+      # propio «Notchwatch Self-Signed» (identidad estable: el permiso del Llavero sobrevive a las
+      # actualizaciones). Sin ellos se mantiene la firma ad-hoc.
+      - name: Preparar la identidad de firma
+        env:
+          MACOS_CERT_P12_BASE64: ${{ secrets.MACOS_CERT_P12_BASE64 }}
+          MACOS_CERT_PASSWORD: ${{ secrets.MACOS_CERT_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${MACOS_CERT_P12_BASE64:-}" ]]; then
+            echo "Sin MACOS_CERT_P12_BASE64: firma ad-hoc."
+            echo "SIGN_IDENTITY=-" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          KC="$RUNNER_TEMP/notchwatch-signing.keychain-db"
+          KC_PASS="$(openssl rand -hex 32)"
+          echo "::add-mask::$KC_PASS"
+          P12="$RUNNER_TEMP/notchwatch-signing.p12"
+          printf '%s' "$MACOS_CERT_P12_BASE64" | base64 --decode > "$P12"
+          security create-keychain -p "$KC_PASS" "$KC"
+          echo "SIGN_KEYCHAIN=$KC" >> "$GITHUB_ENV"
+          security set-keychain-settings -lut 21600 "$KC"
+          security unlock-keychain -p "$KC_PASS" "$KC"
+          security import "$P12" -k "$KC" -f pkcs12 -P "$MACOS_CERT_PASSWORD" -T /usr/bin/codesign
+          rm -f "$P12"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KC_PASS" "$KC" > /dev/null
+          EXISTING="$(security list-keychains -d user | sed -e 's/^[[:space:]]*"//' -e 's/"[[:space:]]*$//')"
+          # shellcheck disable=SC2086
+          security list-keychains -d user -s "$KC" $EXISTING
+          security find-identity -p codesigning "$KC"
+          security find-certificate -c "Notchwatch Self-Signed" "$KC" > /dev/null
+          echo "SIGN_IDENTITY=Notchwatch Self-Signed" >> "$GITHUB_ENV"
+
+      - name: Firmar la app
+        run: |
+          set -euo pipefail
+          APP="build/DerivedData/Build/Products/Release/Notchwatch.app"
+          echo "Identidad: $SIGN_IDENTITY"
+          if [[ -n "${SIGN_KEYCHAIN:-}" ]]; then
+            codesign --force --deep --sign "$SIGN_IDENTITY" --keychain "$SIGN_KEYCHAIN" "$APP"
+          else
+            codesign --force --deep --sign "$SIGN_IDENTITY" "$APP"
+          fi
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          codesign -dvv "$APP" 2>&1 | grep -E "^(Identifier|Authority|Signature|TeamIdentifier)" || true
+          codesign -dr - "$APP"
 
       - name: DMG
         run: |
@@ -65,3 +112,12 @@ jobs:
           gh release create "$TAG" build/dmg/*.dmg build/dmg/*.sha256 \
             --target "$(git rev-parse HEAD)" \
             --title "Notchwatch $TAG" --generate-notes $PRERELEASE
+
+      - name: Borrar el llavero temporal
+        if: always()
+        run: |
+          KC="$RUNNER_TEMP/notchwatch-signing.keychain-db"
+          if [[ -f "$KC" ]]; then
+            security delete-keychain "$KC" || true
+          fi
+          rm -f "$RUNNER_TEMP/notchwatch-signing.p12"

@@ -11,6 +11,9 @@ DERIVED_DATA_PATH="${DERIVED_DATA_PATH:-/private/tmp/DynamicNotchDerivedData}"
 CLONED_SOURCE_PACKAGES_PATH="${CLONED_SOURCE_PACKAGES_PATH:-}"
 INSTALL_DIR="${INSTALL_DIR:-/Applications}"
 APP_NAME="${APP_NAME:-Notchwatch.app}"
+# Identidad de firma: "-" (ad hoc) o "Notchwatch Self-Signed"; SIGN_KEYCHAIN es opcional.
+SIGN_IDENTITY="${SIGN_IDENTITY:--}"
+SIGN_KEYCHAIN="${SIGN_KEYCHAIN:-}"
 
 APP_PATH="$DERIVED_DATA_PATH/Build/Products/$CONFIGURATION/$APP_NAME"
 TARGET_PATH="$INSTALL_DIR/$APP_NAME"
@@ -57,11 +60,17 @@ if [[ ! -d "$APP_PATH" ]]; then
   exit 1
 fi
 
-# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
-# El script compila siempre sin certificado: la app se firma ad hoc.
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc
+# o, con SIGN_IDENTITY, con el certificado propio («Notchwatch Self-Signed»).
+# El script compila siempre sin certificado y firma después.
 if true; then
-  echo "Signing $APP_NAME (ad hoc)..."
-  codesign --force --deep --sign - "$APP_PATH"
+  echo "Signing $APP_NAME (identity: $SIGN_IDENTITY)..."
+  SIGN_ARGS=(--force --deep --sign "$SIGN_IDENTITY")
+  if [[ -n "$SIGN_KEYCHAIN" ]]; then
+    SIGN_ARGS+=(--keychain "$SIGN_KEYCHAIN")
+  fi
+  codesign "${SIGN_ARGS[@]}" "$APP_PATH"
+  codesign --verify --deep --strict "$APP_PATH"
 fi
 
 echo "Installing to $TARGET_PATH..."

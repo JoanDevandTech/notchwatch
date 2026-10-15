@@ -12,6 +12,9 @@ CLONED_SOURCE_PACKAGES_PATH="${CLONED_SOURCE_PACKAGES_PATH:-}"
 CODE_SIGNING_ALLOWED="${CODE_SIGNING_ALLOWED:-NO}"
 
 APP_NAME="${APP_NAME:-Notchwatch.app}"
+# Identidad de firma: "-" (ad hoc) o "Notchwatch Self-Signed"; SIGN_KEYCHAIN es opcional.
+SIGN_IDENTITY="${SIGN_IDENTITY:--}"
+SIGN_KEYCHAIN="${SIGN_KEYCHAIN:-}"
 VOLUME_NAME="${VOLUME_NAME:-Notchwatch}"
 OUTPUT_DIR="${OUTPUT_DIR:-$ROOT_DIR/build/dmg}"
 DMG_NAME="${DMG_NAME:-Notchwatch.dmg}"
@@ -75,10 +78,16 @@ if [[ ! -d "$APP_PATH" ]]; then
 fi
 
 echo "Staging DMG contents..."
-# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc.
+# Sin firma de desarrollador, Apple Silicon no ejecuta el binario: se firma ad hoc
+# o, con SIGN_IDENTITY, con el certificado propio («Notchwatch Self-Signed»).
 if [[ "$CODE_SIGNING_ALLOWED" == "NO" ]]; then
-  echo "Signing $APP_NAME (ad hoc)..."
-  codesign --force --deep --sign - "$APP_PATH"
+  echo "Signing $APP_NAME (identity: $SIGN_IDENTITY)..."
+  SIGN_ARGS=(--force --deep --sign "$SIGN_IDENTITY")
+  if [[ -n "$SIGN_KEYCHAIN" ]]; then
+    SIGN_ARGS+=(--keychain "$SIGN_KEYCHAIN")
+  fi
+  codesign "${SIGN_ARGS[@]}" "$APP_PATH"
+  codesign --verify --deep --strict "$APP_PATH"
 fi
 
 ditto "$APP_PATH" "$STAGING_DIR/$APP_NAME"
