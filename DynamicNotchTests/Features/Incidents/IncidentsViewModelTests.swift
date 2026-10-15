@@ -183,10 +183,10 @@ final class IncidentsViewModelTests: XCTestCase {
 
         fixture.viewModel.assignToMe(incident)
 
+        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
         await assertEventually(timeout: 3) {
             await MainActor.run { fixture.monitoring.claimed == ["c"] }
         }
-        XCTAssertEqual(fixture.viewModel.badgeCount, 1)
     }
 
     func testSnoozeMovesIncidentToTheEndAndForwardsToMonitor() async {
