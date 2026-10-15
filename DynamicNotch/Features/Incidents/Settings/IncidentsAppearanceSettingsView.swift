@@ -31,7 +31,7 @@ struct IncidentsAppearanceSettingsView: View {
                 title: IncidentsSettingsText.string("appearance.theme.title", "Island theme"),
                 description: IncidentsSettingsText.string("appearance.theme.desc", "Automatic follows the system appearance."),
                 options: ThemeMode.allCases,
-                optionTitle: IncidentsSettingsText.themeName,
+                optionTitle: { IncidentsSettingsText.themeName($0) },
                 selection: viewModel.settingsProfileBinding(\.appearance.theme)
             )
         }
@@ -86,7 +86,7 @@ struct IncidentsAppearanceSettingsView: View {
                 title: IncidentsSettingsText.string("appearance.font.title", "Font"),
                 description: IncidentsSettingsText.string("appearance.font.desc", "Design used for titles and chips in the island."),
                 options: FontDesignChoice.allCases,
-                optionTitle: IncidentsSettingsText.fontDesignName,
+                optionTitle: { IncidentsSettingsText.fontDesignName($0) },
                 selection: viewModel.settingsProfileBinding(\.appearance.fontDesign)
             )
 
@@ -96,7 +96,7 @@ struct IncidentsAppearanceSettingsView: View {
                 title: IncidentsSettingsText.string("appearance.textScale.title", "Text size"),
                 description: IncidentsSettingsText.string("appearance.textScale.desc", "Scales every text in the island."),
                 options: TextScale.allCases,
-                optionTitle: IncidentsSettingsText.textScaleName,
+                optionTitle: { IncidentsSettingsText.textScaleName($0) },
                 selection: viewModel.settingsProfileBinding(\.appearance.textScale)
             )
         }
@@ -108,7 +108,7 @@ struct IncidentsAppearanceSettingsView: View {
                 title: IncidentsSettingsText.string("appearance.motion.title", "Ambient motion"),
                 description: IncidentsSettingsText.string("appearance.motion.desc", "How often the island breathes, shimmers or unfolds while idle."),
                 options: MotionIntensity.allCases,
-                optionTitle: IncidentsSettingsText.motionName,
+                optionTitle: { IncidentsSettingsText.motionName($0) },
                 selection: viewModel.settingsProfileBinding(\.behavior.motion)
             )
         }

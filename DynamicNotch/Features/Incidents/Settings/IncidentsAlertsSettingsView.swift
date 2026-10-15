@@ -230,7 +230,7 @@ struct IncidentsAlertsSettingsView: View {
                 title: IncidentsSettingsText.string("alerts.pollInterval.title", "Check Asana every"),
                 description: IncidentsSettingsText.string("alerts.pollInterval.desc", "Shorter intervals use more of the Asana rate limit."),
                 options: Self.pollIntervals,
-                optionTitle: IncidentsSettingsText.seconds,
+                optionTitle: { IncidentsSettingsText.seconds($0) },
                 selection: Binding(
                     get: { Self.pollIntervals.contains(behavior.pollInterval) ? behavior.pollInterval : 20 },
                     set: { viewModel.profile.behavior.pollInterval = $0 }

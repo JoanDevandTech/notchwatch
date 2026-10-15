@@ -130,7 +130,7 @@ struct IncidentsSoundsSettingsView: View {
                 title: IncidentsSettingsText.string("sounds.repeatInterval.title", "Repeat every"),
                 description: IncidentsSettingsText.string("sounds.repeatInterval.desc", "Pause between repeats while unattended."),
                 options: Self.repeatIntervals,
-                optionTitle: IncidentsSettingsText.seconds,
+                optionTitle: { IncidentsSettingsText.seconds($0) },
                 selection: Binding(
                     get: { Self.repeatIntervals.contains(sound.loudRepeatInterval) ? sound.loudRepeatInterval : 30 },
                     set: { viewModel.profile.sound.loudRepeatInterval = $0 }

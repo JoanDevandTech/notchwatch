@@ -62,7 +62,7 @@ struct IncidentsAdvancedSettingsView: View {
                 title: IncidentsSettingsText.string("advanced.hotkey.title", "Expand or collapse the island"),
                 description: IncidentsSettingsText.string("advanced.hotkey.desc", "Works from any app and needs no permission."),
                 options: HotKeyChoice.allCases,
-                optionTitle: IncidentsSettingsText.hotKeyName,
+                optionTitle: { IncidentsSettingsText.hotKeyName($0) },
                 selection: viewModel.settingsProfileBinding(\.behavior.hotKey)
             )
             if let error = viewModel.hotKeyError {
