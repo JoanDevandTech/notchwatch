@@ -8,8 +8,8 @@ Es un fork de DynamicNotch, de Evgeniy Petrukovich, publicado bajo **GPL‑3.0**
 
 - **Píldora con vida propia.** En reposo enseña el estado (color de la prioridad más alta pendiente) y el contador; respira, un brillo la recorre y de vez en cuando asoma la palabra «pendientes». Con altas o urgentes sin atender, el punto parpadea y la píldora resplandece del color de la prioridad.
 - **Aviso al entrar una incidencia.** Tarjeta con prioridad, app, asunto, quién la reporta, módulo, errores de consola y vencimiento, y un sonido distinto por prioridad. Las bajas y medias se recogen solas; las altas y urgentes se quedan hasta que las atiendes y repiten el sonido.
-- **Panel desplegado.** Lista de pendientes con filtro «Todas / Mías» y acciones al pasar el ratón: abrir en Asana, asignármela, posponer, **resolver** (pasa a Verificación) y, en el menú «…», cambiar vencimiento, prioridad o marcar como vista.
-- **Notificación de macOS** con las acciones Abrir, Asignármela y Posponer, y **atajo global** (⌃⌥⌘I por defecto) para desplegar o recoger la isla.
+- **Panel desplegado.** Lista de pendientes con filtro «Todas / Mías» y acciones al pasar el ratón: abrir en Asana, **en curso** (pone el estado «En curso» y te la asigna si no tiene responsable), posponer, **resolver** (pasa a Verificación) y, en el menú «…», asignármela, cambiar vencimiento, prioridad o marcar como vista.
+- **Notificación de macOS** con las acciones Abrir, En curso, Asignármela y Posponer, y **atajo global** (⌃⌥⌘I por defecto) para desplegar o recoger la isla.
 - **Control total desde Ajustes → Incidencias:** cuenta de Asana y proyectos (con asistente de alta), apariencia (tema, color por prioridad, icono y color por proyecto, tipografía, intensidad de movimiento), sonidos por prioridad y volumen, No molestar manual y por horario, duración de los avisos, intervalo de lectura, atajo, y exportar/importar el perfil para replicarlo en otro Mac.
 
 ### Otras cuentas y otras apps

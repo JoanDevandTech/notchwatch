@@ -856,7 +856,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JoanDevandTech/notchwatch-core.git";
 			requirement = {
-				branch = main;
+				branch = "feature/en-curso";
 				kind = branch;
 			};
 		};

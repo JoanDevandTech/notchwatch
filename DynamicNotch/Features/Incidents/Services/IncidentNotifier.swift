@@ -26,16 +26,20 @@ final class IncidentNotifier: NSObject, IncidentNotifying, UNUserNotificationCen
 
     enum Action: Equatable {
         case open
+        case startProgress
         case assign
         case snooze
         case dismissed
 
+        static let startProgressIdentifier = "com.joandev.notchwatch.startProgress"
         static let assignIdentifier = "com.joandev.notchwatch.assign"
         static let snoozeIdentifier = "com.joandev.notchwatch.snooze"
         static let openIdentifier = "com.joandev.notchwatch.open"
 
         init(responseIdentifier: String) {
             switch responseIdentifier {
+            case Action.startProgressIdentifier:
+                self = .startProgress
             case Action.assignIdentifier:
                 self = .assign
             case Action.snoozeIdentifier:
@@ -85,6 +89,11 @@ final class IncidentNotifier: NSObject, IncidentNotifying, UNUserNotificationCen
             title: L10n.app("incidents.notification.action.open", fallback: "Open"),
             options: [.foreground]
         )
+        let startProgress = UNNotificationAction(
+            identifier: Action.startProgressIdentifier,
+            title: L10n.app("incidents.notification.action.startProgress", fallback: "In progress"),
+            options: []
+        )
         let assign = UNNotificationAction(
             identifier: Action.assignIdentifier,
             title: L10n.app("incidents.notification.action.assign", fallback: "Assign to me"),
@@ -97,7 +106,7 @@ final class IncidentNotifier: NSObject, IncidentNotifying, UNUserNotificationCen
         )
         return UNNotificationCategory(
             identifier: categoryIdentifier,
-            actions: [open, assign, snooze],
+            actions: [open, startProgress, assign, snooze],
             intentIdentifiers: [],
             options: []
         )

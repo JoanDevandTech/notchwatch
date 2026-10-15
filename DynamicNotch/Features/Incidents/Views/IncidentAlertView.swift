@@ -3,7 +3,7 @@ import NotchwatchCore
 import SwiftUI
 
 /// Tarjeta de aviso de una incidencia recién llegada: orbe de la prioridad, chips, título, meta y
-/// botones Abrir / Expandir. Sin `Menu`: el gesto del notch es simultáneo (informe §9.4).
+/// botones En curso / Abrir / Expandir. Sin `Menu`: el gesto del notch es simultáneo (informe §9.4).
 struct IncidentAlertView: View {
     @ObservedObject private var viewModel: IncidentsViewModel
     @Environment(\.isNotchlessScreen) private var isNotchlessScreen
@@ -127,6 +127,21 @@ struct IncidentAlertView: View {
     }
 
     private var buttons: some View {
+        HStack(spacing: 5.5) {
+            if viewModel.can(.startProgress, on: incident) {
+                IncidentIconButton(
+                    symbol: "play.circle",
+                    help: L10n.app("incidents.island.action.startProgress.help", fallback: "Mark as in progress (assigns it to you if it has no assignee)"),
+                    size: IncidentsLayout.alertButtonSize
+                ) {
+                    viewModel.startProgress(incident)
+                }
+            }
+            navigationButtons
+        }
+    }
+
+    private var navigationButtons: some View {
         VStack(spacing: 5.5) {
             IncidentIconButton(
                 symbol: "arrow.up.right",

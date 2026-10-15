@@ -30,6 +30,16 @@
     "es": "Abrir"
   },
   {
+    "key": "incidents.island.action.startProgress",
+    "en": "In progress",
+    "es": "En curso"
+  },
+  {
+    "key": "incidents.island.action.startProgress.help",
+    "en": "Mark as in progress (assigns it to you if it has no assignee)",
+    "es": "Marcar en curso (te la asigna si no tiene responsable)"
+  },
+  {
     "key": "incidents.island.action.expand",
     "en": "Expand",
     "es": "Expandir"

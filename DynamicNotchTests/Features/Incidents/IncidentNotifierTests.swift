@@ -19,6 +19,7 @@ final class IncidentNotifierTests: XCTestCase {
     }
 
     func testActionMapsResponseIdentifiers() {
+        XCTAssertEqual(IncidentNotifier.Action(responseIdentifier: IncidentNotifier.Action.startProgressIdentifier), .startProgress)
         XCTAssertEqual(IncidentNotifier.Action(responseIdentifier: IncidentNotifier.Action.assignIdentifier), .assign)
         XCTAssertEqual(IncidentNotifier.Action(responseIdentifier: IncidentNotifier.Action.snoozeIdentifier), .snooze)
         XCTAssertEqual(IncidentNotifier.Action(responseIdentifier: IncidentNotifier.Action.openIdentifier), .open)

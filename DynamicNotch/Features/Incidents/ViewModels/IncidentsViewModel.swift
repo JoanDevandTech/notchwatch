@@ -236,6 +236,22 @@ final class IncidentsViewModel: ObservableObject {
         )
     }
 
+    /// Marca la incidencia «en curso»; la fuente solo la asigna si no tiene responsable.
+    func startProgress(_ incident: Incident) {
+        let identity = identity
+        let isUnassigned = Text.nonEmpty(incident.assigneeID) == nil && Text.nonEmpty(incident.assigneeName) == nil
+        run(
+            .startProgress,
+            on: incident,
+            doneText: L10n.app("incidents.action.started", fallback: "Marked as in progress"),
+            mutate: { updated in
+                guard isUnassigned else { return }
+                updated.assigneeID = identity?.userID
+                updated.assigneeName = identity?.name
+            }
+        )
+    }
+
     func resolve(_ incident: Incident) {
         run(
             .resolve,
@@ -466,6 +482,12 @@ private extension IncidentsViewModel {
         switch response.action {
         case .open:
             open(incident)
+        case .startProgress:
+            if can(.startProgress, on: incident) {
+                startProgress(incident)
+            } else {
+                assignToMe(incident)
+            }
         case .assign:
             assignToMe(incident)
         case .snooze:

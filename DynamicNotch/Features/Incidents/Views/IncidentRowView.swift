@@ -3,7 +3,7 @@ import NotchwatchCore
 import SwiftUI
 
 /// Fila del panel: barra de prioridad, icono de colección, título, chips y hora relativa; al pasar
-/// el ratón aparecen Abrir, Asignármela, Posponer, Resolver y «…», y los chips dejan sitio a la prioridad.
+/// el ratón aparecen Abrir, En curso, Posponer, Resolver y «…», y los chips dejan sitio a la prioridad.
 struct IncidentRowView: View {
     @ObservedObject private var viewModel: IncidentsViewModel
     @Environment(\.incidentsTheme) private var theme
@@ -194,9 +194,12 @@ struct IncidentRowView: View {
             IncidentIconButton(symbol: "arrow.up.right", help: L10n.app("incidents.island.action.open", fallback: "Open")) {
                 viewModel.open(incident)
             }
-            if viewModel.can(.assignToMe, on: incident), !viewModel.isMine(incident) {
-                IncidentIconButton(symbol: "person.badge.plus", help: L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) {
-                    viewModel.assignToMe(incident)
+            if viewModel.can(.startProgress, on: incident) {
+                IncidentIconButton(
+                    symbol: "play.circle",
+                    help: L10n.app("incidents.island.action.startProgress.help", fallback: "Mark as in progress (assigns it to you if it has no assignee)")
+                ) {
+                    viewModel.startProgress(incident)
                 }
             }
             rowMenu(symbol: "clock", help: L10n.app("incidents.island.action.snooze", fallback: "Snooze")) {
@@ -242,6 +245,9 @@ struct IncidentRowView: View {
 
     @ViewBuilder
     private var moreItems: some View {
+        if viewModel.can(.assignToMe, on: incident), !viewModel.isMine(incident) {
+            Button(L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) { viewModel.assignToMe(incident) }
+        }
         if viewModel.can(.setDueDate(nil), on: incident) {
             Menu(L10n.app("incidents.island.more.dueDate", fallback: "Due date")) { dueDateItems }
         }
@@ -276,8 +282,8 @@ struct IncidentRowView: View {
     @ViewBuilder
     private var contextMenuItems: some View {
         Button(L10n.app("incidents.island.action.open", fallback: "Open")) { viewModel.open(incident) }
-        if viewModel.can(.assignToMe, on: incident) {
-            Button(L10n.app("incidents.island.action.assignToMe", fallback: "Assign to me")) { viewModel.assignToMe(incident) }
+        if viewModel.can(.startProgress, on: incident) {
+            Button(L10n.app("incidents.island.action.startProgress", fallback: "In progress")) { viewModel.startProgress(incident) }
         }
         if viewModel.can(.resolve, on: incident) {
             Button(L10n.app("incidents.island.action.resolve", fallback: "Resolve")) { viewModel.resolve(incident) }
