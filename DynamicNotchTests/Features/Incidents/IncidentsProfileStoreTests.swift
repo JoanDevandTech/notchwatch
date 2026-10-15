@@ -5,7 +5,8 @@ import NotchwatchCore
 @MainActor
 final class IncidentsProfileStoreTests: XCTestCase {
 
-    private func makeStore(directory: URL? = nil, keychain: FakeKeychain = FakeKeychain()) -> (IncidentsProfileStore, URL, FakeKeychain) {
+    private func makeStore(directory: URL? = nil, keychain: FakeKeychain? = nil) -> (IncidentsProfileStore, URL, FakeKeychain) {
+        let keychain = keychain ?? FakeKeychain()
         let url = directory ?? IncidentsTestFactory.makeTemporaryDirectory()
         let store = IncidentsProfileStore(directoryURL: url, keychain: keychain)
         TestLifetime.retain(store)
