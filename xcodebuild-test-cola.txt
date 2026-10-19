@@ -1,0 +1,400 @@
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Shared/AppEnvironmentTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Shared/NotchScreenSelectionTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Shared/NotchTransitionMetricsTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/TestSupport/TestDoubles.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/TestSupport/XCTestCase+Async.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 Compiling\ IncidentsProfileStoreTests.swift,\ IncidentsTestDoubles.swift,\ IncidentsViewModelTests.swift,\ NotchIncidentsEventsHandlerTests.swift,\ LockScreenManagerIntegrationTests.swift,\ NotchEventCoordinatorIntegrationTests.swift,\ NotchTimerEventsHandlerTests.swift,\ NotchViewModelIntegrationTests.swift,\ ExternalDriveNotchContentTests.swift,\ NowPlayingViewModelIntegrationTests.swift,\ ScreenRecordingViewModelIntegrationTests.swift,\ ScreenshotViewModelTests.swift DynamicNotchTests/Features/Incidents/IncidentsProfileStoreTests.swift DynamicNotchTests/Features/Incidents/IncidentsTestDoubles.swift DynamicNotchTests/Features/Incidents/IncidentsViewModelTests.swift DynamicNotchTests/Features/Incidents/NotchIncidentsEventsHandlerTests.swift DynamicNotchTests/Features/Notch/LockScreenManagerIntegrationTests.swift DynamicNotchTests/Features/Notch/NotchEventCoordinatorIntegrationTests.swift DynamicNotchTests/Features/Notch/NotchTimerEventsHandlerTests.swift DynamicNotchTests/Features/Notch/NotchViewModelIntegrationTests.swift DynamicNotchTests/Features/Notifications/ExternalDrives/ExternalDriveNotchContentTests.swift DynamicNotchTests/Features/NowPlaying/NowPlayingViewModelIntegrationTests.swift DynamicNotchTests/Features/ScreenRecording/ScreenRecordingViewModelIntegrationTests.swift DynamicNotchTests/Features/ScreenshotHub/ScreenshotViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/IncidentsProfileStoreTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/IncidentsTestDoubles.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/IncidentsViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/NotchIncidentsEventsHandlerTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Notch/LockScreenManagerIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Notch/NotchEventCoordinatorIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Notch/NotchTimerEventsHandlerTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Notch/NotchViewModelIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+DynamicNotchTests/Features/Notch/NotchViewModelIntegrationTests.swift:1067:13: warning: initialization of immutable value 'mainScale' was never used; consider replacing with assignment to '_' or removing it
+        let mainScale = max(0.35, CGFloat(1728) / 1440.0)
+        ~~~~^~~~~~~~~
+        _
+DynamicNotchTests/Features/Notch/NotchViewModelIntegrationTests.swift:1097:13: warning: initialization of immutable value 'scale' was never used; consider replacing with assignment to '_' or removing it
+        let scale = max(0.35, CGFloat(1920) / 1440.0)
+        ~~~~^~~~~
+        _
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Notifications/ExternalDrives/ExternalDriveNotchContentTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/NowPlaying/NowPlayingViewModelIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/ScreenRecording/ScreenRecordingViewModelIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/ScreenshotHub/ScreenshotViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 Compiling\ NotchPowerEventsHandlerTests.swift,\ PowerViewModelTests.swift,\ BluetoothViewModelTests.swift,\ ChromiumDownloadMetadataReaderTests.swift,\ DownloadViewModelIntegrationTests.swift,\ FolderFileDownloadMonitorIntegrationTests.swift,\ FocusTests.swift,\ SystemMediaKeyTapConfigurationTests.swift,\ SystemMediaKeyTapTests.swift,\ IncidentsSettingsStoreTests.swift,\ IncidentNotifierTests.swift,\ IncidentsNotchContentTests.swift DynamicNotchTests/Features/Battery/NotchPowerEventsHandlerTests.swift DynamicNotchTests/Features/Battery/PowerViewModelTests.swift DynamicNotchTests/Features/Bluetooth/BluetoothViewModelTests.swift DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift DynamicNotchTests/Features/Download/DownloadViewModelIntegrationTests.swift DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift DynamicNotchTests/Features/Focus/FocusTests.swift DynamicNotchTests/Features/HUD/SystemMediaKeyTapConfigurationTests.swift DynamicNotchTests/Features/HUD/SystemMediaKeyTapTests.swift DynamicNotchTests/Features/Incidents/Settings/IncidentsSettingsStoreTests.swift DynamicNotchTests/Features/Incidents/IncidentNotifierTests.swift DynamicNotchTests/Features/Incidents/IncidentsNotchContentTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Battery/NotchPowerEventsHandlerTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Battery/PowerViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Bluetooth/BluetoothViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift:117:37: warning: main actor-isolated property 'displayName' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.displayName, "dataset.zip")
+                                    ^
+DynamicNotch.DownloadModel.displayName:2:25: note: property declared here
+@MainActor internal let displayName: String}
+                        ^
+DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift:118:37: warning: main actor-isolated property 'estimatedTotalByteCount' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.estimatedTotalByteCount, totalBytes)
+                                    ^
+DynamicNotch.DownloadModel.estimatedTotalByteCount:2:25: note: property declared here
+@MainActor internal let estimatedTotalByteCount: Int64}
+                        ^
+DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift:119:37: warning: main actor-isolated property 'byteCount' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.byteCount, Int64(currentBytes))
+                                    ^
+DynamicNotch.DownloadModel.byteCount:2:25: note: property declared here
+@MainActor internal let byteCount: Int64}
+                        ^
+DynamicNotchTests/Features/Download/ChromiumDownloadMetadataReaderTests.swift:121:37: warning: main actor-isolated property 'progress' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.progress, 0.25, accuracy: 0.001)
+                                    ^
+DynamicNotch.DownloadModel.progress:2:25: note: property declared here
+@MainActor internal let progress: Double}
+                        ^
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Download/DownloadViewModelIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:14:37: warning: main actor-isolated property 'displayName' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.displayName, "archive.zip")
+                                    ^
+DynamicNotch.DownloadModel.displayName:2:25: note: property declared here
+@MainActor internal let displayName: String}
+                        ^
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:15:37: warning: main actor-isolated property 'directoryName' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.directoryName, tempDirectory.lastPathComponent)
+                                    ^
+DynamicNotch.DownloadModel.directoryName:2:25: note: property declared here
+@MainActor internal let directoryName: String}
+                        ^
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:16:36: warning: main actor-isolated property 'isTemporaryFile' can not be referenced from a nonisolated autoclosure
+            XCTAssertTrue(transfer.isTemporaryFile)
+                                   ^
+DynamicNotch.DownloadModel.isTemporaryFile:2:25: note: property declared here
+@MainActor internal let isTemporaryFile: Bool}
+                        ^
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:17:43: warning: main actor-isolated property 'byteCount' can not be referenced from a nonisolated autoclosure
+            XCTAssertGreaterThan(transfer.byteCount, 0)
+                                          ^
+DynamicNotch.DownloadModel.byteCount:2:25: note: property declared here
+@MainActor internal let byteCount: Int64}
+                        ^
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:44:37: warning: main actor-isolated property 'displayName' can not be referenced from a nonisolated autoclosure
+            XCTAssertEqual(transfer.displayName, "video.mp4")
+                                    ^
+DynamicNotch.DownloadModel.displayName:2:25: note: property declared here
+@MainActor internal let displayName: String}
+                        ^
+DynamicNotchTests/Features/Download/FolderFileDownloadMonitorIntegrationTests.swift:45:36: warning: main actor-isolated property 'isTemporaryFile' can not be referenced from a nonisolated autoclosure
+            XCTAssertTrue(transfer.isTemporaryFile)
+                                   ^
+DynamicNotch.DownloadModel.isTemporaryFile:2:25: note: property declared here
+@MainActor internal let isTemporaryFile: Bool}
+                        ^
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Focus/FocusTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/HUD/SystemMediaKeyTapConfigurationTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/HUD/SystemMediaKeyTapTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/Settings/IncidentsSettingsStoreTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/IncidentNotifierTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftCompile normal arm64 DynamicNotchTests/Features/Incidents/IncidentsNotchContentTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for DynamicNotchTests (in target 'DynamicNotchTests' from project 'DynamicNotch')
+
+SwiftDriver\ Compilation\ Requirements DynamicNotchTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name DynamicNotchTests -Onone @build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.6 -g -module-cache-path build/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path build/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I build/DerivedData/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc build/DerivedData/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path build/DerivedData/ModuleCache.noindex -sdk-module-cache-path build/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftmodule -validate-clang-modules-once -clang-build-session-file build/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests_const_extract_protocols.json -Xcc -iquote -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-generated-files.hmap -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-own-target-headers.hmap -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotch-208c43965df5540b7d8eaae858f65d24-VFS/all-product-headers.yaml -Xcc -iquote -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-project-headers.hmap -Xcc -Ibuild/DerivedData/Build/Products/Debug/include -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources-normal/arm64 -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources/arm64 -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-Swift.h -working-directory /Users/runner/work/notchwatch/notchwatch -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling LocalizationCatalogTests.swift, SettingsSelectionHistoryTests.swift, StoredDefaultTests.swift, VPNStatusFetcherTests.swift, VpnViewModelIntegrationTests.swift, WifiViewModelIntegrationTests.swift, AppEnvironmentTests.swift, NotchScreenSelectionTests.swift, NotchTransitionMetricsTests.swift, TestDoubles.swift, XCTestCase+Async.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+
+SwiftMergeGeneratedHeaders build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources/DynamicNotchTests-Swift.h build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-Swift.h (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-swiftHeaderTool -arch arm64 build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-Swift.h -o build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources/DynamicNotchTests-Swift.h
+
+Copy build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.swiftmodule build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftmodule (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftmodule build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.swiftdoc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftdoc (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftdoc build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.abi.json build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.abi.json (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.abi.json build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/arm64-apple-macos.abi.json
+
+Copy build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftsourceinfo (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftsourceinfo build/DerivedData/Build/Products/Debug/DynamicNotchTests.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling NotchPowerEventsHandlerTests.swift, PowerViewModelTests.swift, BluetoothViewModelTests.swift, ChromiumDownloadMetadataReaderTests.swift, DownloadViewModelIntegrationTests.swift, FolderFileDownloadMonitorIntegrationTests.swift, FocusTests.swift, SystemMediaKeyTapConfigurationTests.swift, SystemMediaKeyTapTests.swift, IncidentsSettingsStoreTests.swift, IncidentNotifierTests.swift, IncidentsNotchContentTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+
+SwiftDriverJobDiscovery normal arm64 Compiling IncidentsProfileStoreTests.swift, IncidentsTestDoubles.swift, IncidentsViewModelTests.swift, NotchIncidentsEventsHandlerTests.swift, LockScreenManagerIntegrationTests.swift, NotchEventCoordinatorIntegrationTests.swift, NotchTimerEventsHandlerTests.swift, NotchViewModelIntegrationTests.swift, ExternalDriveNotchContentTests.swift, NowPlayingViewModelIntegrationTests.swift, ScreenRecordingViewModelIntegrationTests.swift, ScreenshotViewModelTests.swift (in target 'DynamicNotchTests' from project 'DynamicNotch')
+
+SwiftDriver\ Compilation DynamicNotchTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name DynamicNotchTests -Onone @build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos15.6 -g -module-cache-path build/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path build/DerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I build/DerivedData/Build/Products/Debug -Isystem /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug/PackageFrameworks -F build/DerivedData/Build/Products/Debug -F /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc build/DerivedData/SDKStatCaches.noindex/macosx26.5-25F70-688ef53f1462e2c8f657fdc38a81448fee0e6409aa6676c5e6c013d148225433.sdkstatcache -output-file-map build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path build/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path build/DerivedData/ModuleCache.noindex -sdk-module-cache-path build/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftmodule -validate-clang-modules-once -clang-build-session-file build/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests_const_extract_protocols.json -Xcc -iquote -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-generated-files.hmap -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-own-target-headers.hmap -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotch-208c43965df5540b7d8eaae858f65d24-VFS/all-product-headers.yaml -Xcc -iquote -Xcc build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests-project-headers.hmap -Xcc -Ibuild/DerivedData/Build/Products/Debug/include -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources-normal/arm64 -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources/arm64 -Xcc -Ibuild/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-Swift.h -working-directory /Users/runner/work/notchwatch/notchwatch -experimental-emit-module-separately -disable-cmo
+
+Ld build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/MacOS/DynamicNotchTests normal (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.6 -bundle -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -O0 -Lbuild/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -Lbuild/DerivedData/Build/Products/Debug -L/Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -Fbuild/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -Fbuild/DerivedData/Build/Products/Debug/PackageFrameworks -Fbuild/DerivedData/Build/Products/Debug/PackageFrameworks -Fbuild/DerivedData/Build/Products/Debug/PackageFrameworks -Fbuild/DerivedData/Build/Products/Debug -iframework /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker build/DerivedData/Build/Products/Debug/PackageFrameworks -Xlinker -rpath -Xlinker @loader_path/../Frameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -dead_strip -bundle_loader build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/MacOS/Notchwatch -Xlinker -object_path_lto -Xlinker build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.swiftmodule @build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport build/DerivedData/Build/Products/Debug/PackageFrameworks/NotchwatchCore_7D7DAF1D3AE9B4AA_PackageProduct.framework/Versions/A/NotchwatchCore_7D7DAF1D3AE9B4AA_PackageProduct build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/MacOS/Notchwatch.debug.dylib -o build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/MacOS/DynamicNotchTests
+
+ExtractAppIntentsMetadata (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.39tD7h/Metal.xctoolchain --module-name DynamicNotchTests --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 15.6 --bundle-identifier com.Jackson.DynamicNotchTests --output build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/Resources --target-triple arm64-apple-macos15.6 --binary-file build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/MacOS/DynamicNotchTests --dependency-file build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests_dependency_info.dat --stringsdata-file build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.SwiftFileList --metadata-file-list build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests.DependencyMetadataFileList --static-metadata-file-list build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/DynamicNotchTests.DependencyStaticMetadataFileList --swift-const-vals-list build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/Objects-normal/arm64/DynamicNotchTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-19 10:18:08.179 appintentsmetadataprocessor[5722:21041] Starting appintentsmetadataprocessor export
+2026-10-19 10:18:08.185 appintentsmetadataprocessor[5722:21041] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-swiftStdLibTool --copy --verbose --scan-executable build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/MacOS/DynamicNotchTests --scan-folder build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/Frameworks --scan-folder build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/PlugIns --scan-folder build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/Library/SystemExtensions --scan-folder build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/Extensions --scan-folder build/DerivedData/Build/Products/Debug/PackageFrameworks/NotchwatchCore_7D7DAF1D3AE9B4AA_PackageProduct.framework --platform macosx --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.39tD7h/Metal.xctoolchain --toolchain /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest/Contents/Frameworks --strip-bitcode --scan-executable /Applications/Xcode_26.6.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info build/DerivedData/Build/Intermediates.noindex/DynamicNotch.build/Debug/DynamicNotchTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+Ignoring --strip-bitcode because --sign was not passed
+
+RegisterExecutionPolicyException build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-RegisterExecutionPolicyException build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest
+
+Touch build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest (in target 'DynamicNotchTests' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    /usr/bin/touch -c build/DerivedData/Build/Products/Debug/Notchwatch.app/Contents/PlugIns/DynamicNotchTests.xctest
+
+Validate build/DerivedData/Build/Products/Debug/Notchwatch.app (in target 'DynamicNotch' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    builtin-validationUtility build/DerivedData/Build/Products/Debug/Notchwatch.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+RegisterWithLaunchServices build/DerivedData/Build/Products/Debug/Notchwatch.app (in target 'DynamicNotch' from project 'DynamicNotch')
+    cd /Users/runner/work/notchwatch/notchwatch
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted build/DerivedData/Build/Products/Debug/Notchwatch.app
+
+note: Run script build phase 'Remove Stale XCTest Bundles' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'DynamicNotch' from project 'DynamicNotch')
+2026-10-19 10:18:23.239 xcodebuild[5134:19307] [MT] IDETestOperationsObserverDebug: 14.769 elapsed -- Testing started completed.
+2026-10-19 10:18:23.239 xcodebuild[5134:19307] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-19 10:18:23.239 xcodebuild[5134:19307] [MT] IDETestOperationsObserverDebug: 14.769 sec, +14.769 sec -- end
+
+Test session results, code coverage, and logs:
+	build/DerivedData/Logs/Test/Test-DynamicNotch-2026.10.19_10-17-51-+0000.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started
+Test suite 'IncidentsViewModelTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'IncidentsViewModelTests.testAssigningToMeClaimsTheIncident()' passed on 'My Mac - Notchwatch (5736)' (0.143 seconds)
+Test case 'IncidentsViewModelTests.testAssignToMeIsOptimisticAndPerformsOnSource()' passed on 'My Mac - Notchwatch (5736)' (0.028 seconds)
+Test case 'IncidentsViewModelTests.testConnectionErrorsSurfaceAsConnectionIssue()' passed on 'My Mac - Notchwatch (5736)' (0.017 seconds)
+Test case 'IncidentsViewModelTests.testFailedActionRestoresPendingAndReportsError()' passed on 'My Mac - Notchwatch (5736)' (0.027 seconds)
+Test case 'IncidentsViewModelTests.testIncidentReassignedToUserAlertsAsNew()' passed on 'My Mac - Notchwatch (5736)' (0.697 seconds)
+Test case 'IncidentsViewModelTests.testIsConfiguredRequiresSourceWithToken()' passed on 'My Mac - Notchwatch (5736)' (0.006 seconds)
+Test case 'IncidentsViewModelTests.testMarkSeenRemovesIncidentAndForwardsToMonitor()' passed on 'My Mac - Notchwatch (5736)' (0.027 seconds)
+Test case 'IncidentsViewModelTests.testMineScopeOnlyCountsAndAlertsIncidentsAssignedToUser()' passed on 'My Mac - Notchwatch (5736)' (0.059 seconds)
+Test case 'IncidentsViewModelTests.testMineScopeOpensPanelOnMineAndResetsAfterSwitchingToAll()' passed on 'My Mac - Notchwatch (5736)' (0.332 seconds)
+Test case 'IncidentsViewModelTests.testNewLoudIncidentRequestsAttentionAndEmitsArrival()' passed on 'My Mac - Notchwatch (5736)' (0.062 seconds)
+Test case 'IncidentsViewModelTests.testNotificationResponseSnoozesIncident()' passed on 'My Mac - Notchwatch (5736)' (0.024 seconds)
+Test case 'IncidentsViewModelTests.testNotificationResponseStartsProgress()' passed on 'My Mac - Notchwatch (5736)' (0.014 seconds)
+Test suite 'NotchEventCoordinatorIntegrationTests' started on 'My Mac - Notchwatch (5756)'
+Test case 'IncidentsViewModelTests.testPollPopulatesPendingAndPresence()' passed on 'My Mac - Notchwatch (5736)' (0.015 seconds)
+Test case 'IncidentsViewModelTests.testRemoveSourceDropsItsIncidentsAndToken()' passed on 'My Mac - Notchwatch (5736)' (0.018 seconds)
+Test case 'IncidentsViewModelTests.testResolveRemovesLocallyAndPerformsOnSource()' passed on 'My Mac - Notchwatch (5736)' (0.177 seconds)
+Test case 'IncidentsViewModelTests.testSetPriorityAndDueDateUpdateLocallyAndPerform()' passed on 'My Mac - Notchwatch (5736)' (0.029 seconds)
+Test case 'IncidentsViewModelTests.testShowOnlyMineFiltersListedIncidents()' passed on 'My Mac - Notchwatch (5736)' (0.014 seconds)
+Test case 'IncidentsViewModelTests.testSimulateAddsDemoIncidentAndCanActWithoutSource()' passed on 'My Mac - Notchwatch (5736)' (0.046 seconds)
+Test case 'IncidentsViewModelTests.testSnoozeMovesIncidentToTheEndAndForwardsToMonitor()' passed on 'My Mac - Notchwatch (5736)' (0.040 seconds)
+Test case 'IncidentsViewModelTests.testStartProgressAssignsUnassignedIncidentOptimisticallyAndPerformsOnSource()' passed on 'My Mac - Notchwatch (5736)' (0.127 seconds)
+Test case 'IncidentsViewModelTests.testStartProgressKeepsExistingAssignee()' passed on 'My Mac - Notchwatch (5736)' (0.028 seconds)
+Test case 'IncidentsViewModelTests.testStopMonitoringClearsStateAndEmitsPendingChanged()' passed on 'My Mac - Notchwatch (5736)' (0.071 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testChargerNotificationShowOnLockScreen()' passed on 'My Mac - Notchwatch (5756)' (0.459 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testCheckFirstLaunchSyncsActiveNowPlayingSessionWhenOnboardingIsAlreadyCompleted()' passed on 'My Mac - Notchwatch (5756)' (0.035 seconds)
+Test case 'IncidentsViewModelTests.testSubtaskHidesPriorityButKeepsOtherActions()' passed on 'My Mac - Notchwatch (5736)' (0.006 seconds)
+Test case 'IncidentsViewModelTests.testSwitchingScopeToAllCountsEverythingAndUpdatesMonitor()' passed on 'My Mac - Notchwatch (5736)' (0.059 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledBrightnessHUDSuppressesTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.071 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledDragAndDropSuppressesLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.067 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledKeyboardHUDSuppressesTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.075 seconds)
+Test suite 'NotchViewModelIntegrationTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'NotchViewModelIntegrationTests.testActivityPresentationHiddenCollapsesSurfaceWithoutClearingLiveActivity()' passed on 'My Mac - Notchwatch (5736)' (0.037 seconds)
+Test case 'NotchViewModelIntegrationTests.testActivityPresentationHiddenDisplaysLiveActivityWhenLocked()' passed on 'My Mac - Notchwatch (5736)' (0.015 seconds)
+Test case 'NotchViewModelIntegrationTests.testActivityPresentationHiddenKeepsProcessingLiveActivityUpdates()' passed on 'My Mac - Notchwatch (5736)' (0.026 seconds)
+Test case 'NotchViewModelIntegrationTests.testActivityPresentationHiddenKeepsTemporaryNotificationVisible()' passed on 'My Mac - Notchwatch (5736)' (0.023 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledNoInternetTemporaryActivitySuppressesNotification()' passed on 'My Mac - Notchwatch (5756)' (0.108 seconds)
+Test case 'NotchViewModelIntegrationTests.testDismissActiveContentCollapsesExpandedTimerInsteadOfHidingIt()' passed on 'My Mac - Notchwatch (5736)' (0.055 seconds)
+Test case 'NotchViewModelIntegrationTests.testDismissActiveContentHidesTemporaryNotificationAndRestoresLiveActivity()' passed on 'My Mac - Notchwatch (5736)' (0.035 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledTrayLiveActivitySuppressesFileTrayItems()' passed on 'My Mac - Notchwatch (5756)' (0.036 seconds)
+Test case 'NotchViewModelIntegrationTests.testDismissActiveContentRemovesVisibleLiveActivityAndShowsNextHighest()' passed on 'My Mac - Notchwatch (5736)' (0.069 seconds)
+Test case 'NotchViewModelIntegrationTests.testDismissSwipeCompressesCollapsedNotchAlongWidth()' passed on 'My Mac - Notchwatch (5736)' (0.014 seconds)
+Test case 'NotchViewModelIntegrationTests.testDismissSwipeCompressesExpandedNotchAlongHeight()' passed on 'My Mac - Notchwatch (5736)' (0.036 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDisabledVolumeHUDSuppressesTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.155 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDownloadEventsShowAndHideLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.164 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDragAndDropCombinedModeShowsCombinedLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.043 seconds)
+Test case 'NotchViewModelIntegrationTests.testDuplicateTemporaryNotificationRestartsLifetimeInsteadOfUsingOldTimer()' passed on 'My Mac - Notchwatch (5736)' (0.254 seconds)
+Test case 'NotchViewModelIntegrationTests.testDynamicIslandCornerRadiusCoefficients()' passed on 'My Mac - Notchwatch (5736)' (0.035 seconds)
+Test case 'NotchViewModelIntegrationTests.testHidingCurrentLiveActivityRestoresNextHighestPriorityActivity()' passed on 'My Mac - Notchwatch (5736)' (0.025 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testDragAndDropTrayModeShowsTrayLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.103 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testFileTrayItemsShowTrayActiveLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.053 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testFinishingOnboardingRestoresNowPlayingWhenPlaybackIsActive()' passed on 'My Mac - Notchwatch (5756)' (0.102 seconds)
+Test case 'NotchViewModelIntegrationTests.testHidingDismissedLiveActivityRemovesItFromRestoreStack()' passed on 'My Mac - Notchwatch (5736)' (0.227 seconds)
+Test case 'NotchViewModelIntegrationTests.testHigherPriorityLiveActivityReplacesLowerPriority()' passed on 'My Mac - Notchwatch (5736)' (0.025 seconds)
+Test case 'NotchViewModelIntegrationTests.testHoverExpandInteractionBecomesAvailableForExpandableLiveActivity()' passed on 'My Mac - Notchwatch (5736)' (0.015 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testFocusOffReplacesFocusLiveActivityWithTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.049 seconds)
+Test case 'NotchViewModelIntegrationTests.testOutsideClickDoesNotDismissTemporaryNotification()' passed on 'My Mac - Notchwatch (5736)' (0.025 seconds)
+Test case 'NotchViewModelIntegrationTests.testOutsideClickHidesExpandedLiveActivityThenRestoresCollapsedPresentation()' passed on 'My Mac - Notchwatch (5736)' (0.102 seconds)
+Test case 'NotchViewModelIntegrationTests.testPresentedNotchSizeKeepsOpeningTransitionUnstaged()' passed on 'My Mac - Notchwatch (5736)' (0.037 seconds)
+Test case 'NotchViewModelIntegrationTests.testRestoreDismissedContentBringsBackLastLiveActivity()' passed on 'My Mac - Notchwatch (5736)' (0.037 seconds)
+Test case 'NotchViewModelIntegrationTests.testRestoreDismissedContentBringsBackLastTemporaryNotification()' passed on 'My Mac - Notchwatch (5736)' (0.048 seconds)
+Test case 'NotchViewModelIntegrationTests.testRestoreDismissedContentWalksBackThroughDismissedLiveActivityStack()' passed on 'My Mac - Notchwatch (5736)' (0.141 seconds)
+Test case 'NotchViewModelIntegrationTests.testRestoreSwipeKeepsCornerRadiusUnchanged()' passed on 'My Mac - Notchwatch (5736)' (0.114 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testFocusOnWithAutoHideShowsTemporaryNotificationAndDismisses()' passed on 'My Mac - Notchwatch (5756)' (0.632 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testHotspotEventsShowAndHideLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.053 seconds)
+Test case 'NotchViewModelIntegrationTests.testStrokeRemainsVisibleUntilCloseAnimationFinishes()' passed on 'My Mac - Notchwatch (5736)' (0.154 seconds)
+Test case 'NotchViewModelIntegrationTests.testTappingDownloadLiveActivityUsesExpandedPresentation()' passed on 'My Mac - Notchwatch (5736)' (0.047 seconds)
+Test case 'NotchViewModelIntegrationTests.testTappingExpandableLiveActivityUsesExpandedPresentation()' passed on 'My Mac - Notchwatch (5736)' (0.035 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testLanguageChangeShowsTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.138 seconds)
+Test case 'NotchViewModelIntegrationTests.testTappingNonExpandableLiveActivityKeepsCollapsedPresentation()' passed on 'My Mac - Notchwatch (5736)' (0.082 seconds)
+Test case 'NotchViewModelIntegrationTests.testTapToExpandSettingBlocksExpansion()' passed on 'My Mac - Notchwatch (5736)' (0.014 seconds)
+Test case 'NotchViewModelIntegrationTests.testTemporaryNotificationAppearsImmediatelyWhenNotchIsEmpty()' passed on 'My Mac - Notchwatch (5736)' (0.019 seconds)
+Test case 'NotchViewModelIntegrationTests.testTemporaryNotificationCollapsesExpandedLiveActivityBeforeRestore()' passed on 'My Mac - Notchwatch (5736)' (0.055 seconds)
+Test case 'NotchViewModelIntegrationTests.testTemporaryNotificationSuspendsAndRestoresLiveActivity()' passed on 'My Mac - Notchwatch (5736)' (0.089 seconds)
+Test case 'NotchViewModelIntegrationTests.testUpdateDimensionsAppliesSettingsOffsets()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'NotchViewModelIntegrationTests.testUpdateDimensionsSetsTopInset()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test suite 'NotchIncidentsEventsHandlerTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'NotchIncidentsEventsHandlerTests.testCollapsingThePanelRestoresTheMineFilter()' passed on 'My Mac - Notchwatch (5736)' (0.024 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testDoNotDisturbSuppressesAlertButKeepsCounter()' passed on 'My Mac - Notchwatch (5736)' (0.116 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testLiveActivityAppearsWhenConfiguredAndMonitoring()' passed on 'My Mac - Notchwatch (5736)' (0.033 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testLiveActivityHidesWhenMonitoringStops()' passed on 'My Mac - Notchwatch (5736)' (0.036 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testLiveActivityIsResentWhenCountChanges()' passed on 'My Mac - Notchwatch (5736)' (0.040 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testLiveActivitiesSuppressedOnLockScreenExceptLockScreenActivityAndTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.578 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testNewUrgentIncidentShowsStickyAlert()' passed on 'My Mac - Notchwatch (5736)' (0.199 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testLockScreenEventsShowAndHideLockLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.160 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testLockScreenShowsLiveActivityWhenActivityPresentationHiddenIsTrue()' passed on 'My Mac - Notchwatch (5756)' (0.127 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testNoAlertWhilePanelIsExpanded()' passed on 'My Mac - Notchwatch (5736)' (0.181 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testNoInternetEventShowsTemporaryNotification()' passed on 'My Mac - Notchwatch (5756)' (0.032 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testNowPlayingEventsShowAndHideLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.030 seconds)
+Test case 'NotchIncidentsEventsHandlerTests.testNoLiveActivityWithoutConfiguredSource()' passed on 'My Mac - Notchwatch (5736)' (0.106 seconds)
+Test suite 'IncidentNotifierTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'IncidentNotifierTests.testActionMapsResponseIdentifiers()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testOnboardingBlocksPowerNotifications()' passed on 'My Mac - Notchwatch (5756)' (0.087 seconds)
+Test case 'IncidentNotifierTests.testClosedIncidentsAreWithdrawnFromNotificationCenter()' passed on 'My Mac - Notchwatch (5736)' (0.193 seconds)
+Test case 'IncidentNotifierTests.testInactiveNotifierReportsUnavailablePermission()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'IncidentNotifierTests.testRequestPermissionUpdatesViewModel()' passed on 'My Mac - Notchwatch (5736)' (0.002 seconds)
+Test case 'IncidentNotifierTests.testViewModelPostsSummaryForFirstBatchWhenAllowed()' passed on 'My Mac - Notchwatch (5736)' (0.054 seconds)
+Test case 'IncidentNotifierTests.testViewModelSkipsNotificationsWhenDisabledInProfile()' passed on 'My Mac - Notchwatch (5736)' (0.065 seconds)
+Test case 'IncidentNotifierTests.testViewModelSkipsNotificationsWhenPermissionIsDenied()' passed on 'My Mac - Notchwatch (5736)' (0.062 seconds)
+Test suite 'IncidentsNotchContentTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'IncidentsNotchContentTests.testAlertContentUsesLayoutSizes()' passed on 'My Mac - Notchwatch (5736)' (0.003 seconds)
+Test case 'IncidentsNotchContentTests.testCompactSizeKeepsBaseHeightAndAddsWidth()' passed on 'My Mac - Notchwatch (5736)' (0.005 seconds)
+Test case 'IncidentsNotchContentTests.testConnectionBannerAddsHeight()' passed on 'My Mac - Notchwatch (5736)' (0.030 seconds)
+Test case 'IncidentsNotchContentTests.testCornerRadiiComeFromLayout()' passed on 'My Mac - Notchwatch (5736)' (0.003 seconds)
+Test case 'IncidentsNotchContentTests.testDescriptorsAndFlags()' passed on 'My Mac - Notchwatch (5736)' (0.002 seconds)
+Test case 'IncidentsNotchContentTests.testExpandedHeightGrowsWithRows()' passed on 'My Mac - Notchwatch (5736)' (0.129 seconds)
+Test case 'IncidentsNotchContentTests.testExpandedHeightIsCappedAtMaxVisibleRows()' passed on 'My Mac - Notchwatch (5736)' (0.129 seconds)
+Test case 'IncidentsNotchContentTests.testStrokePaletteParsesHexAndFollowsPresence()' passed on 'My Mac - Notchwatch (5736)' (0.009 seconds)
+Test suite 'IncidentsSettingsStoreTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'IncidentsSettingsStoreTests.testDisablingPersistsInSuiteDefaults()' passed on 'My Mac - Notchwatch (5736)' (0.006 seconds)
+Test case 'IncidentsSettingsStoreTests.testIncidentsAreEnabledByDefault()' passed on 'My Mac - Notchwatch (5736)' (0.004 seconds)
+Test case 'IncidentsSettingsStoreTests.testObjectWillChangeFiresOnToggle()' passed on 'My Mac - Notchwatch (5736)' (0.005 seconds)
+Test case 'IncidentsSettingsStoreTests.testPublisherEmitsCurrentValueThenChanges()' passed on 'My Mac - Notchwatch (5736)' (0.006 seconds)
+Test case 'IncidentsSettingsStoreTests.testResetRestoresDefault()' passed on 'My Mac - Notchwatch (5736)' (0.005 seconds)
+Test case 'IncidentsSettingsStoreTests.testSettingsViewModelExposesIncidentsStoreAndResetGroup()' passed on 'My Mac - Notchwatch (5736)' (0.019 seconds)
+Test suite 'IncidentsProfileStoreTests' started on 'My Mac - Notchwatch (5736)'
+Test case 'IncidentsProfileStoreTests.testEmptyTokenIsNotSaved()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'IncidentsProfileStoreTests.testExportAndImportKeepTheProfile()' passed on 'My Mac - Notchwatch (5736)' (0.003 seconds)
+Test case 'IncidentsProfileStoreTests.testImportRejectsGarbage()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'IncidentsProfileStoreTests.testKeychainFailureIsReported()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'IncidentsProfileStoreTests.testProfileChangesRoundTripThroughDisk()' passed on 'My Mac - Notchwatch (5736)' (0.002 seconds)
+Test case 'IncidentsProfileStoreTests.testScopeDefaultsToMineForNewAndLegacyProfiles()' passed on 'My Mac - Notchwatch (5736)' (0.002 seconds)
+Test case 'IncidentsProfileStoreTests.testStartsEmptyWhenNothingIsSaved()' passed on 'My Mac - Notchwatch (5736)' (0.003 seconds)
+Test case 'IncidentsProfileStoreTests.testTokensLiveInTheKeychainBySourceID()' passed on 'My Mac - Notchwatch (5736)' (0.001 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testPausedNowPlayingHidesAfterConfiguredDelay()' passed on 'My Mac - Notchwatch (5756)' (1.035 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testPausedNowPlayingStaysVisibleWhenPauseHideTimerIsDisabled()' passed on 'My Mac - Notchwatch (5756)' (1.308 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testSleepFocusOnAndOffLiveActivityDismissal()' passed on 'My Mac - Notchwatch (5756)' (0.156 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testSwipeDismissOnLockScreenDoesNotDismissContent()' passed on 'My Mac - Notchwatch (5756)' (0.180 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testTemporaryDurationScaleShortensHUDLifetime()' passed on 'My Mac - Notchwatch (5756)' (1.036 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testTogglingFocusAutoHideHidesExistingLiveActivity()' passed on 'My Mac - Notchwatch (5756)' (0.067 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testUnlockingRestoresNowPlayingAfterLockScreenActivityStops()' passed on 'My Mac - Notchwatch (5756)' (0.273 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testVolumeHUDEventsShowTemporaryNotificationWhenEnabled()' passed on 'My Mac - Notchwatch (5756)' (0.134 seconds)
+Test case 'NotchEventCoordinatorIntegrationTests.testVolumeHUDShowOnLockScreen()' passed on 'My Mac - Notchwatch (5756)' (0.059 seconds)
