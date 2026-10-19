@@ -387,10 +387,15 @@ final class IncidentsViewModelTests: XCTestCase {
 
     func testSubtaskHidesPriorityButKeepsOtherActions() async {
         let fixture = IncidentsTestFactory.makeFixture()
-        await fixture.viewModel.rebuildSources()
         var subtask = IncidentsTestFactory.makeIncident(id: "sub-1", collection: fixture.collection)
         subtask.parentID = "parent-1"
         let task = IncidentsTestFactory.makeIncident(id: "task-1", collection: fixture.collection)
+
+        // Las fuentes se crean al arrancar la monitorización.
+        fixture.viewModel.startMonitoring()
+        await assertEventually {
+            await MainActor.run { fixture.viewModel.can(.resolve, on: task) }
+        }
 
         XCTAssertFalse(fixture.viewModel.can(.setPriority(.alta), on: subtask))
         XCTAssertTrue(fixture.viewModel.can(.resolve, on: subtask))
