@@ -148,6 +148,8 @@ final class IncidentsViewModel: ObservableObject {
     func can(_ action: IncidentAction, on incident: Incident) -> Bool {
         if IncidentDemoData.isDemo(incident) { return true }
         guard let source = source(for: incident) else { return false }
+        // Las subtareas no tienen campos del proyecto: sin prioridad.
+        if incident.isSubtask, case .setPriority = action { return false }
         return source.capabilities.contains(action.requiredCapability)
     }
 
